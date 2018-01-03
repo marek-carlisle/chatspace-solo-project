@@ -2,16 +2,15 @@ var express = require('express');
 var app = express();
 var cors = require('cors');
 var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
 var path = require('path');
 
-var passport = require('./strategies/user_sql');
+var passport = require('./strategies/user.strategy');
 var session = require('express-session');
 
 // Route includes
-var user = require('./routes/user.sql');
-var register = require('./routes/register.sql');
-var index = require('./routes/index.sql')
+var userRouter = require('./routes/user.router');
+var registerRouter = require('./routes/register.router');
+var authenticateRouter = require('./routes/authenticate.router')
 
 var corsOptions = {
   origin: 'http://localhost:3000',
@@ -39,9 +38,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 /** Routes **/
-app.use('/api/register', register);
-app.use('/api/user', user);
-app.use('/api/*', index);
+app.use('/api/register', registerRouter);
+app.use('/api/user', userRouter);
+app.use('/api/authenticate', authenticateRouter);
 
 // handles redirect from passport login failure
 app.use('/loginFailure', function(req, res) {

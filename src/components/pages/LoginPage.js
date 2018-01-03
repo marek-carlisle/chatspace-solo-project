@@ -25,7 +25,7 @@ export default class LoginPage extends Component {
         } else {
             console.log('sendinj to server...', this.state);
             console.log('hey', CONSTANTS.apiBaseUrl)
-            const request = new Request(CONSTANTS.apiBaseUrl + '/', {
+            const request = new Request(CONSTANTS.apiBaseUrl + '/authenticate', {
                 method: 'POST',
                 headers: new Headers({ 'Content-Type': 'application/json' }),
                 body: JSON.stringify({
