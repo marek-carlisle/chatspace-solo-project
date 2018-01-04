@@ -33,7 +33,7 @@ pool.on('connect', function () {
 
 passport.serializeUser(function(user, done) {
     done(null, user.id);
-    console.log('fuck yea serialized ---------')
+    console.log('serialized ---------')
 });
 
 passport.deserializeUser(function(id, done) {
