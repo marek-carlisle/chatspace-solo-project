@@ -12,6 +12,8 @@ import RegisterPage from './components/pages/RegisterPage';
 import UserPage from './components/pages/UserPage';
 import InfoPage from './components/pages/InfoPage';
 
+import './styles/main.css';
+
 class App extends Component {
     render() {
         return (

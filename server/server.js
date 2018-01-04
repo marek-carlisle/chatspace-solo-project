@@ -48,13 +48,12 @@ app.use('/loginFailure', function(req, res) {
 });
 
 // Serve static files
-app.use(express.static(path.resolve(__dirname, '../', 'public')));
-
+app.use(express.static('build'));
 
 // App Set //
-app.set('port', (process.env.PORT || 5000));
+var PORT = process.env.PORT || 5000;
 
 /** Listen **/
-app.listen(app.get("port"), function(){
-   console.log("Listening on port: " + app.get("port"));
+app.listen(PORT, function(){
+   console.log(`Listening on port: ${PORT}`);
 });

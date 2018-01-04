@@ -31,7 +31,7 @@ class UserPage extends Component {
             content = (
                 <div className="container">
                     <p>
-                        WE IN THE INFO
+                        Info Page
                     </p>
                 </div>
             );
