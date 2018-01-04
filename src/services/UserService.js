@@ -4,7 +4,7 @@ class UserService {
     userObject = null;
 
     getUser = () => {
-        const request = new Request(CONSTANTS.apiBaseUrl + '/user', {
+        const request = new Request(`${CONSTANTS.apiBaseUrl}/user`, {
             method: 'GET',
             headers: new Headers({ 'Content-Type': 'application/json' }),
             credentials: 'include',
@@ -31,7 +31,7 @@ class UserService {
     }
 
     logout = () => {
-        const request = new Request(CONSTANTS.apiBaseUrl + '/user/logout', {
+        const request = new Request(`${CONSTANTS.apiBaseUrl}/user/logout`, {
             method: 'GET',
             headers: new Headers({ 'Content-Type': 'application/json' }),
             credentials: 'include',

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 
+import CONSTANTS from '../../constants/';
+
 export default class LoginPage extends Component {
 
     constructor(props) {
@@ -22,8 +24,8 @@ export default class LoginPage extends Component {
             });
         } else {
             console.log('sending to server...', this.state);
-
-            const request = new Request('http://localhost:5000/api/register', {
+             + '/authenticate'
+            const request = new Request(`${CONSTANTS.apiBaseUrl}/register`, {
                 method: 'POST',
                 headers: new Headers({ 'Content-Type': 'application/json' }),
                 body: JSON.stringify({
