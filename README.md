@@ -1,7 +1,9 @@
 # Express/Passport with React
 This version uses React to control the login requests and redirection in coordination with client-side routing.
 
-## Create database and table
+## Starting the project
+
+### Create database and table
 
 Create a new database called `prime_app` and create a `person` table:
 
@@ -13,20 +15,19 @@ CREATE TABLE person (
 );
 ```
 
-## Development Setup Instructions
+### Development Setup Instructions
 * Run `npm install`,
 * Start postgres if not running already by using `brew services start postgresql`
-* Run `npm run start:server` in an open tab of terminal to start the server
-* Run `npm run start` in an open tab of terminal to start the web site
+* Run `npm run dev`
+* Navigate to `localhost:3000`
 
-## Production Build:
+### Production Build
 * Start postgres if not running already by using `brew services start postgresql`
-* Run `npm run build` in an open tab of terminal to build the react application to `/build`
-* Run `npm run start:server` to start the server
-* Navigate to `localhost:5000` to view the site
+* Run `npm start`
+* Navigate to `localhost:5000`
 
-
-### Lay of the Land
+## Lay of the Land
 * `src/` contains the React application
-* `server/` contains the Express App
 * `public/` contains static assets for the client-side
+* `build/` contains the transpiled code from `src/` and `public/` that will be viewed on the production site
+* `server/` contains the Express App
