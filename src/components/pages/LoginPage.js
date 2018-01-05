@@ -23,8 +23,7 @@ export default class LoginPage extends Component {
             	message: 'Enter your username and password!'
             });
         } else {
-            console.log('sendinj to server...', this.state);
-            console.log('hey', CONSTANTS.apiBaseUrl)
+            console.log('sending to server...', this.state);
             const request = new Request(`${CONSTANTS.apiBaseUrl}/authenticate`, {
                 method: 'POST',
                 headers: new Headers({ 'Content-Type': 'application/json' }),
