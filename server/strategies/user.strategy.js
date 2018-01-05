@@ -1,89 +1,58 @@
 const passport = require('passport');
-const localStrategy = require('passport-local').Strategy;
+const LocalStrategy = require('passport-local').Strategy;
 const encryptLib = require('../modules/encryption');
 const pool = require('../modules/pool');
 
-passport.serializeUser(function(user, done) {
-    done(null, user.id);
-    console.log('serialized ---------')
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+  console.log('serialized ---------');
 });
 
-passport.deserializeUser(function(id, done) {
+passport.deserializeUser((id, done) => {
   console.log('called deserializeUser - pg');
 
-  pool.connect(function (err, client, release) {
-    if(err) {
-      console.log('connection err ', err);
-      release();
-      done(err);
+  pool.query('SELECT * FROM person WHERE id = $1', [id]).then((result) => {
+    // Handle Errors
+    const user = result.rows[0];
+
+    if (!user) {
+      // user not found
+      done(null, false, { message: 'Incorrect credentials.' });
+    } else {
+      // user found
+      console.log('User row ', user);
+      done(null, user);
     }
-
-    client.query("SELECT * FROM person WHERE id = $1", [id], function(err, result) {
-
-      // Handle Errors
-      if(err) {
-        console.log('query err ', err);
-        done(err);
-        release();
-      }
-
-      const user = result.rows[0];
-      release();
-
-      if(!user) {
-          // user not found
-          return done(null, false, {message: 'Incorrect credentials.'});
-      } else {
-        // user found
-        console.log('User row ', user);
-        done(null, user);
-      }
-
-    });
+  }).catch((err) => {
+    console.log('query err ', err);
+    done(err);
   });
 });
 
 // Does actual work of logging in
-passport.use('local', new localStrategy({
-    passReqToCallback: true,
-    usernameField: 'username'
-    }, function(req, username, password, done) {
-	    pool.connect(function (err, client, release) {
-	    	console.log('called local - pg');
-
-        // assumes the username will be unique, thus returning 1 or 0 results
-        client.query("SELECT * FROM person WHERE username = $1", [username],
-          function(err, result) {
-
-            // Handle Errors
-            if (err) {
-              console.log('connection err ', err);
-              done(null, {});
-            }
-
-            release();
-
-            if(result.rows[0] != undefined) {
-              const user = result.rows[0];
-              console.log('User obj', user);
-              // Hash and compare
-              if(encryptLib.comparePassword(password, user.password)) {
-                // all good!
-                console.log('passwords match');
-                console.log('-------user-------', user);
-                done(null, user);
-              } else {
-                console.log('password does not match');
-                done(null, false, {message: 'Incorrect credentials.'});
-              }
-            } else {
-              console.log('no user');
-              done(null, false);
-            }
-
-          });
-	    });
-    }
+passport.use('local', new LocalStrategy({
+  passReqToCallback: true,
+  usernameField: 'username',
+}, ((req, username, password, done) => {
+    pool.query('SELECT * FROM person WHERE username = $1', [username]
+      .then((err, result) => {
+        const user = result.rows[0];
+        if (user && encryptLib.comparePassword(password, user.password)) {
+          // all good! Passwords match!
+          done(null, user);
+        } else if (user) {
+          // not good! Passwords don't match!
+          done(null, false, { message: 'Incorrect credentials.' });
+        } else {
+          // not good! No user with that name
+          done(null, false);
+        }
+      }).catch((err) => {
+        console.log('error', err);
+        done(null, {});
+      }),
+    );
+  }),
 ));
 
 module.exports = passport;

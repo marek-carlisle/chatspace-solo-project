@@ -1,5 +1,6 @@
 const pg = require('pg');
 const url = require('url');
+
 let config = {};
 
 if (process.env.DATABASE_URL) {
@@ -23,7 +24,7 @@ if (process.env.DATABASE_URL) {
     user: process.env.PG_USER || null, // env var: PGUSER
     password: process.env.DATABASE_SECRET || null, // env var: PGPASSWORD
     host: process.env.DATABASE_SERVER || 'localhost', // Server hosting the postgres database
-    port: process.env.DATABASE_PORT || 5432, // env var: PGPORT    
+    port: process.env.DATABASE_PORT || 5432, // env var: PGPORT
     database: process.env.DATABASE_NAME || 'prime_app', // env var: PGDATABASE
     max: 10, // max number of clients in the pool
     idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
@@ -32,13 +33,13 @@ if (process.env.DATABASE_URL) {
 
 const pool = new pg.Pool(config);
 
-pool.on('connect', (client) => {
+pool.on('connect', () => {
   console.log('Postgesql connected');
-})
+});
 
 // the pool with emit an error on behalf of any idle clients
 // it contains if a backend error or network partition happens
-pool.on('error', (err, client) => {
+pool.on('error', (err) => {
   console.log('Unexpected error on idle client', err);
   process.exit(-1);
 });
