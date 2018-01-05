@@ -1,5 +1,5 @@
 const CONSTANTS = {
-	'apiBaseUrl': 'http://localhost:5000/api'
+	'apiBaseUrl': process.env.REACT_APP_API_BASE_URL || ''
 };
 
 export default CONSTANTS;
