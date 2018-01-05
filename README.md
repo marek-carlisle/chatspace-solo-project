@@ -1,7 +1,9 @@
 # Express/Passport with React
 This version uses React to control the login requests and redirection in coordination with client-side routing.
 
-## Create `person` table
+## Create database and table
+
+Create a new database called `prime_app` and create a `person` table:
 
 ```SQL
 CREATE TABLE person (

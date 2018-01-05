@@ -1,20 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var passport = require('passport');
-// var Users = require('../models/user');
-
-var config = {
-  database: 'prime_app', //env var: PGDATABASE
-  port: 5432, //env var: PGPORT
-  max: 10, // max number of clients in the pool
-  idleTimeoutMillis: 1500, // 1.5s // how long a client is allowed to remain idle before being closed
-};
-
 // module with bcrypt functions
 var encryptLib = require('../modules/encryption');
-var connection = require('../modules/connection');
-var pg = require('pg');
-var pool = new pg.Pool(config)
+var pool = require('../modules/pool');
 
 // Handles POST request with new user data
 router.post('/', function(req, res, next) {
