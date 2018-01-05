@@ -1,19 +1,19 @@
 require('dotenv').config();
-var express = require('express');
-var app = express();
-var cors = require('cors');
-var bodyParser = require('body-parser');
-var path = require('path');
+const express = require('express');
+const app = express();
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const path = require('path');
 
-var passport = require('./strategies/user.strategy');
-var session = require('express-session');
+const passport = require('./strategies/user.strategy');
+const session = require('express-session');
 
 // Route includes
-var userRouter = require('./routes/user.router');
-var registerRouter = require('./routes/register.router');
-var authenticateRouter = require('./routes/authenticate.router')
+const userRouter = require('./routes/user.router');
+const registerRouter = require('./routes/register.router');
+const authenticateRouter = require('./routes/authenticate.router')
 
-var corsOptions = {
+const corsOptions = {
   origin: 'http://localhost:3000',
   credentials: true
 };
@@ -52,7 +52,7 @@ app.use('/loginFailure', function(req, res) {
 app.use(express.static('build'));
 
 // App Set //
-var PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5000;
 
 /** Listen **/
 app.listen(PORT, function(){

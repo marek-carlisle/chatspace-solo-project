@@ -1,7 +1,7 @@
-var passport = require('passport');
-var localStrategy = require('passport-local').Strategy;
-var encryptLib = require('../modules/encryption');
-var pool = require('../modules/pool');
+const passport = require('passport');
+const localStrategy = require('passport-local').Strategy;
+const encryptLib = require('../modules/encryption');
+const pool = require('../modules/pool');
 
 passport.serializeUser(function(user, done) {
     done(null, user.id);
@@ -18,8 +18,6 @@ passport.deserializeUser(function(id, done) {
       done(err);
     }
 
-    var user = {};
-
     client.query("SELECT * FROM person WHERE id = $1", [id], function(err, result) {
 
       // Handle Errors
@@ -29,7 +27,7 @@ passport.deserializeUser(function(id, done) {
         release();
       }
 
-      user = result.rows[0];
+      const user = result.rows[0];
       release();
 
       if(!user) {
@@ -56,18 +54,17 @@ passport.use('local', new localStrategy({
         // assumes the username will be unique, thus returning 1 or 0 results
         client.query("SELECT * FROM person WHERE username = $1", [username],
           function(err, result) {
-            var user = {};
 
             // Handle Errors
             if (err) {
               console.log('connection err ', err);
-              done(null, user);
+              done(null, {});
             }
 
             release();
 
             if(result.rows[0] != undefined) {
-              user = result.rows[0];
+              const user = result.rows[0];
               console.log('User obj', user);
               // Hash and compare
               if(encryptLib.comparePassword(password, user.password)) {

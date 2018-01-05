@@ -1,6 +1,6 @@
-var express = require('express');
-var router = express.Router();
-var passport = require('passport');
+const express = require('express');
+const router = express.Router();
+const passport = require('passport');
 
 // Handles Ajax request for user information if user is authenticated
 router.get('/', function(req, res) {  

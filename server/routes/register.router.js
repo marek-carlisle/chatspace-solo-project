@@ -1,14 +1,14 @@
-var express = require('express');
-var router = express.Router();
-var passport = require('passport');
+const express = require('express');
+const router = express.Router();
+const passport = require('passport');
 // module with bcrypt functions
-var encryptLib = require('../modules/encryption');
-var pool = require('../modules/pool');
+const encryptLib = require('../modules/encryption');
+const pool = require('../modules/pool');
 
 // Handles POST request with new user data
 router.post('/', function(req, res, next) {
 
-  var saveUser = {
+  const saveUser = {
     username: req.body.username,
     password: encryptLib.encryptPassword(req.body.password)
   };

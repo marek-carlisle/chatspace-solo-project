@@ -1,10 +1,10 @@
 // encryption.js
-var bcrypt = require('bcrypt');
-var SALT_WORK_FACTOR = 10;
+const bcrypt = require('bcrypt');
+const SALT_WORK_FACTOR = 10;
 
-var publicAPI = {
+const publicAPI = {
   encryptPassword: function(password) {
-      var salt = bcrypt.genSaltSync(SALT_WORK_FACTOR);
+      const salt = bcrypt.genSaltSync(SALT_WORK_FACTOR);
       return bcrypt.hashSync(password, salt);
   },
   comparePassword: function(candidatePassword, storedPassword) {
