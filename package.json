@@ -24,8 +24,10 @@
     "redux-thunk": "^2.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "start:server": "node server/server.js",
+    "start": "react-scripts build && node server/server.js",
+    "dev": "npm run dev:client | npm run dev:server",
+    "dev:client": "react-scripts start",
+    "dev:server": "nodemon server/server.js",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
