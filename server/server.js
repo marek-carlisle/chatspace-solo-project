@@ -3,9 +3,9 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const corsIfInDevelopment = require('./modules/cors-if-on-development');
+const sessionMiddleware = require('./modules/session-middleware');
 
 const passport = require('./strategies/user.strategy');
-const session = require('express-session');
 
 // Route includes
 const userRouter = require('./routes/user.router');
@@ -20,13 +20,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 // Passport Session Configuration //
-app.use(session({
-   secret: 'secret',
-   key: 'user', // this is the name of the req.variable. 'user' is convention, but not required
-   resave: 'true',
-   saveUninitialized: false,
-   cookie: { maxage: 60000, secure: false }
-}));
+app.use(sessionMiddleware);
 
 // start up passport sessions
 app.use(passport.initialize());
