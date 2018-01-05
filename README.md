@@ -16,7 +16,11 @@ CREATE TABLE person (
 ```
 
 ### Development Setup Instructions
-* Run `npm install`,
+* Run `npm install`
+* Create a `.env` file at the root of the project and paste this line into the file:
+    ```
+    REACT_APP_API_BASE_URL=http://localhost:5000/api
+    ```
 * Start postgres if not running already by using `brew services start postgresql`
 * Run `npm run dev`
 * Navigate to `localhost:3000`
@@ -31,3 +35,12 @@ CREATE TABLE person (
 * `public/` contains static assets for the client-side
 * `build/` contains the transpiled code from `src/` and `public/` that will be viewed on the production site
 * `server/` contains the Express App
+
+## Deployment
+
+1. Create a new Heroku project
+2. Link the Heroku project to the project GitHub Repo
+3. Create an Herkoku Postgres database
+4. Connect to the Heroku Postgres database from Postico
+5. Create the necessary tables
+6. In the deploy section, select manual deploy
