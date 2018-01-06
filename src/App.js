@@ -14,35 +14,31 @@ import InfoPage from './components/pages/InfoPage';
 
 import './styles/main.css';
 
-class App extends Component {
-  render() {
-    return (
-      <div>
-        <Header title="Passport Authentication" />
-        <Router>
-          <Switch>
-            <Redirect exact from="/" to="/home" />
-            <Route
-              path="/home"
-              component={LoginPage}
-            />
-            <Route
-              path="/register"
-              component={RegisterPage}
-            />
-            <Route
-              path="/user"
-              component={UserPage}
-            />
-            <Route
-              path="/info"
-              component={InfoPage}
-            />
-          </Switch>
-        </Router>
-      </div>
-    );
-  }
-}
+const App = () => (
+  <div>
+    <Header title="Passport Authentication" />
+    <Router>
+      <Switch>
+        <Redirect exact from="/" to="/home" />
+        <Route
+          path="/home"
+          component={LoginPage}
+        />
+        <Route
+          path="/register"
+          component={RegisterPage}
+        />
+        <Route
+          path="/user"
+          component={UserPage}
+        />
+        <Route
+          path="/info"
+          component={InfoPage}
+        />
+      </Switch>
+    </Router>
+  </div>
+);
 
 export default App;
