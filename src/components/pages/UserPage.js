@@ -68,14 +68,14 @@ UserPage.propTypes = {
   fetchUser: PropTypes.func,
   logoutUser: PropTypes.func,
   user: PropTypes.shape({ userName: PropTypes.string, isLoading: PropTypes.bool }),
-//   history: PropTypes.arrayOf(PropTypes.string),
+  history: PropTypes.shape({ push: PropTypes.func }),
 };
 
 UserPage.defaultProps = {
   fetchUser: () => {},
   logoutUser: () => {},
   user: { userName: 'Unkown User', isLoading: true },
-//   history: [],
+  history: { push: () => {} },
 };
 
 const mapStateToProps = state => ({
