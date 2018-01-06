@@ -12,16 +12,16 @@ const userName = (state = null, action) => {
   }
 };
 
-const isAuthenticated = (state = null, action) => {
-  switch (action.type) {
-    case USER_ACTIONS.SET_USER:
-      return true;
-    case USER_ACTIONS.UNSET_USER:
-      return false;
-    default:
-      return state;
-  }
-};
+// const isAuthenticated = (state = null, action) => {
+//   switch (action.type) {
+//     case USER_ACTIONS.SET_USER:
+//       return true;
+//     case USER_ACTIONS.UNSET_USER:
+//       return false;
+//     default:
+//       return state;
+//   }
+// };
 
 const isLoading = (state = false, action) => {
   switch (action.type) {

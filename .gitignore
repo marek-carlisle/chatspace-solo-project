@@ -65,4 +65,3 @@ typings/
 .env
 
 # not tracking package-lock.json because it can cause issues
-package-lock.json
