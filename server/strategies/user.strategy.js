@@ -5,12 +5,9 @@ const pool = require('../modules/pool');
 
 passport.serializeUser((user, done) => {
   done(null, user.id);
-  console.log('serialized ---------');
 });
 
 passport.deserializeUser((id, done) => {
-  console.log('called deserializeUser - pg');
-
   pool.query('SELECT * FROM person WHERE id = $1', [id]).then((result) => {
     // Handle Errors
     const user = result.rows[0];
@@ -20,7 +17,6 @@ passport.deserializeUser((id, done) => {
       done(null, false, { message: 'Incorrect credentials.' });
     } else {
       // user found
-      console.log('User row ', user);
       done(null, user);
     }
   }).catch((err) => {
