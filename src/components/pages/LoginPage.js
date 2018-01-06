@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import CONSTANTS from '../../constants/';
 
@@ -124,3 +125,11 @@ export default class LoginPage extends Component {
     );
   }
 }
+
+LoginPage.propTypes = {
+  history: PropTypes.shape({ push: PropTypes.func }),
+};
+
+LoginPage.defaultProps = {
+  history: { push: () => {} },
+};
