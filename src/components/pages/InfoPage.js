@@ -3,57 +3,60 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import Nav from '../../components/Nav';
-import UserService from '../../services/UserService';
 import { fetchUser } from '../../redux/actions/userActions';
 
 class InfoPage extends Component {
+  componentDidMount() {
+    this.props.fetchUser();
+  }
 
-    static propTypes = {
-        fetchUser: PropTypes.func,
-        user: PropTypes.object
+  componentDidUpdate() {
+    if (!this.props.user.isLoading && this.props.user.userName === null) {
+      console.log('not loading or logged in');
+      this.props.history.push('home');
+    }
+  }
+
+  render() {
+    let content = null;
+
+    if (this.props.user.userName) {
+      content = (
+        <div className="container">
+          <p>
+            Info Page
+          </p>
+        </div>
+      );
     }
 
-    componentDidMount = (props, state) => {
-        this.props.fetchUser();
-    }
-
-    componentDidUpdate = () => {
-        if (!this.props.user.isLoading && this.props.user.userName === null) {
-            console.log('not loading or logged in');
-            this.props.history.push('home');
-        }
-    }
-
-    render() {
-        let content = null;
-
-        if (this.props.user.userName) {
-            content = (
-                <div className="container">
-                    <p>
-                        Info Page
-                    </p>
-                </div>
-            );
-        }
-
-        return (
-            <div>
-                <Nav />
-                { content }
-            </div>
-        );
-    }
+    return (
+      <div>
+        <Nav />
+        { content }
+      </div>
+    );
+  }
 }
 
-const mapStateToProps = (state, props) => {
-    return {
-        user: state.user
-    };
+InfoPage.propTypes = {
+  fetchUser: PropTypes.func,
+  user: PropTypes.shape({ userName: PropTypes.string, isLoading: PropTypes.bool }),
+  history: PropTypes.shape({ push: PropTypes.func }),
 };
 
+InfoPage.defaultProps = {
+  fetchUser: () => {},
+  user: { userName: null, isLoading: true },
+  history: { push: () => {} },
+};
+
+const mapStateToProps = state => ({
+  user: state.user,
+});
+
 const mapDispatchToProps = {
-    fetchUser
+  fetchUser,
 };
 
 // this allows us to use <App /> in index.js

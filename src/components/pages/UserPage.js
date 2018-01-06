@@ -74,7 +74,7 @@ UserPage.propTypes = {
 UserPage.defaultProps = {
   fetchUser: () => {},
   logoutUser: () => {},
-  user: { userName: 'Unkown User', isLoading: true },
+  user: { userName: null, isLoading: true },
   history: { push: () => {} },
 };
 
