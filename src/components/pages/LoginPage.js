@@ -26,7 +26,6 @@ export default class LoginPage extends Component {
         message: 'Enter your username and password!',
       });
     } else {
-      console.log('sending to server...', this.state);
       const request = new Request(`${CONSTANTS.apiBaseUrl}/authenticate`, {
         method: 'POST',
         headers: new Headers({ 'Content-Type': 'application/json' }),
@@ -41,17 +40,14 @@ export default class LoginPage extends Component {
       fetch(request)
         .then((response) => {
           if (response.status === 200) {
-            console.log('success: ', response);
             this.props.history.push('/user');
           } else {
-            console.log('failure error: ', response);
             this.setState({
               message: 'Wrong!!',
             });
           }
         })
-        .catch((error) => {
-          console.log('failure error: ', error);
+        .catch(() => {
           this.setState({
             message: 'Wrong!!',
           });

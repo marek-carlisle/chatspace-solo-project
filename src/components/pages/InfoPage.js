@@ -12,7 +12,6 @@ class InfoPage extends Component {
 
   componentDidUpdate() {
     if (!this.props.user.isLoading && this.props.user.userName === null) {
-      console.log('not loading or logged in');
       this.props.history.push('home');
     }
   }

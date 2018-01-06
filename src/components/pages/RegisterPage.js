@@ -26,7 +26,6 @@ export default class RegisterPage extends Component {
         message: 'Choose a username and password!',
       });
     } else {
-      console.log('sending to server...', this.state);
       const request = new Request(`${CONSTANTS.apiBaseUrl}/register`, {
         method: 'POST',
         headers: new Headers({ 'Content-Type': 'application/json' }),
@@ -40,17 +39,14 @@ export default class RegisterPage extends Component {
       fetch(request)
         .then((response) => {
           if (response.status === 201) {
-            console.log('success: ', response);
             this.props.history.push('/home');
           } else {
-            console.log('failure error: ', response);
             this.setState({
               message: 'Please try again.',
             });
           }
         })
-        .catch((error) => {
-          console.log('failure error: ', error);
+        .catch(() => {
           this.setState({
             message: 'Please try again.',
           });
