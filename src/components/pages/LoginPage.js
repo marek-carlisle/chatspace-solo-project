@@ -12,6 +12,9 @@ export default class LoginPage extends Component {
       password: '',
       message: '',
     };
+
+    this.login = this.login.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   login(event) {
@@ -42,23 +45,23 @@ export default class LoginPage extends Component {
           } else {
             console.log('failure error: ', response);
             this.setState({
-                        	message: 'Wrong!!',
+              message: 'Wrong!!',
             });
           }
-              	})
-              	.catch((error) => {
-                  	console.log('failure error: ', error);
-                  	this.setState({
-                  		message: 'Wrong!!',
-                  	});
-              	});
-      	}
+        })
+        .catch((error) => {
+          console.log('failure error: ', error);
+          this.setState({
+            message: 'Wrong!!',
+          });
+        });
+    }
   }
 
   handleInputChange(event) {
-    const target = event.target;
+    const { target } = event;
     const value = target.type === 'checkbox' ? target.checked : target.value;
-    const name = target.name;
+    const { name } = target;
 
     this.setState({
       [name]: value,
