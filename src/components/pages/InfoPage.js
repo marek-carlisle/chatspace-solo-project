@@ -6,7 +6,7 @@ import Nav from '../../components/Nav';
 import UserService from '../../services/UserService';
 import { fetchUser } from '../../redux/actions/userActions';
 
-class UserPage extends Component {
+class InfoPage extends Component {
 
     static propTypes = {
         fetchUser: PropTypes.func,
@@ -57,4 +57,4 @@ const mapDispatchToProps = {
 };
 
 // this allows us to use <App /> in index.js
-export default connect(mapStateToProps, mapDispatchToProps)(UserPage);
+export default connect(mapStateToProps, mapDispatchToProps)(InfoPage);
