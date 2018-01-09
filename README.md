@@ -1,6 +1,14 @@
 # Express/Passport with React
 This version uses React to control the login requests and redirection in coordination with client-side routing.
 
+### Prerequisites
+
+Before you get started, make sure you have the following software installed on your computer:
+
+- [Node.js](https://nodejs.org/en/)
+- [PostrgeSQL](https://www.postgresql.org/)
+- [Nodemon](https://nodemon.io/)
+
 ## Starting the project
 
 ### Create database and table
@@ -16,6 +24,7 @@ CREATE TABLE person (
 ```
 
 ### Development Setup Instructions
+
 * Run `npm install`
 * Create a `.env` file at the root of the project and paste this line into the file:
     ```
@@ -28,11 +37,13 @@ CREATE TABLE person (
 * Navigate to `localhost:3000`
 
 ### Production Build
+
 * Start postgres if not running already by using `brew services start postgresql`
 * Run `npm start`
 * Navigate to `localhost:5000`
 
 ## Lay of the Land
+
 * `src/` contains the React application
 * `public/` contains static assets for the client-side
 * `build/` contains the transpiled code from `src/` and `public/` that will be viewed on the production site
