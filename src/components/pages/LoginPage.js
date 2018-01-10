@@ -4,7 +4,15 @@ import PropTypes from 'prop-types';
 
 import CONSTANTS from '../../constants/';
 
-export default class LoginPage extends Component {
+const propTypes = {
+  history: PropTypes.shape({ push: PropTypes.func }),
+};
+
+const defaultProps = {
+  history: { push: () => {} },
+};
+
+class LoginPage extends Component {
   constructor(props) {
     super(props);
 
@@ -122,10 +130,7 @@ export default class LoginPage extends Component {
   }
 }
 
-LoginPage.propTypes = {
-  history: PropTypes.shape({ push: PropTypes.func }),
-};
+LoginPage.propTypes = propTypes; 
+LoginPage.defaultProps = defaultProps;
 
-LoginPage.defaultProps = {
-  history: { push: () => {} },
-};
+export default LoginPage;

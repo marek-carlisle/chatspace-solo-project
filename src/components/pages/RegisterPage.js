@@ -4,7 +4,15 @@ import PropTypes from 'prop-types';
 
 import CONSTANTS from '../../constants/';
 
-export default class RegisterPage extends Component {
+const propTypes = {
+  history: PropTypes.shape({ push: PropTypes.func }),
+};
+
+const defaultProps = {
+  history: { push: () => { } },
+};
+
+class RegisterPage extends Component {
   constructor(props) {
     super(props);
 
@@ -71,7 +79,7 @@ export default class RegisterPage extends Component {
           className="lead alert alert-danger"
           role="alert"
         >
-          { this.state.message }
+          {this.state.message}
         </h2>
       );
     }
@@ -82,12 +90,12 @@ export default class RegisterPage extends Component {
     return (
       <div className="container">
         <h1 className="lead">Register User</h1>
-        { this.renderAlert() }
+        {this.renderAlert()}
         <form onSubmit={this.registerUser}>
           <div>
             <label htmlFor="username">
               Username:
-              <input
+            <input
                 type="text"
                 name="username"
                 value={this.state.username}
@@ -98,7 +106,7 @@ export default class RegisterPage extends Component {
           <div>
             <label htmlFor="password">
               Password:
-              <input
+            <input
                 type="password"
                 name="password"
                 value={this.state.password}
@@ -121,11 +129,8 @@ export default class RegisterPage extends Component {
   }
 }
 
-RegisterPage.propTypes = {
-  history: PropTypes.shape({ push: PropTypes.func }),
-};
+RegisterPage.propTypes = proptypes;
+RegisterPage.defaultProps = defaultProps;
 
-RegisterPage.defaultProps = {
-  history: { push: () => {} },
-};
+export default RegisterPage;
 

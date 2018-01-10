@@ -1,6 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+const propTypes = {
+  title: PropTypes.string,
+};
+
+const defaultProps = {
+  title: '',
+};
+
 const Header = ({ title }) => (
   <div className="instructions">
     <div className="container">
@@ -9,12 +17,7 @@ const Header = ({ title }) => (
   </div>
 );
 
-Header.propTypes = {
-  title: PropTypes.string,
-};
-
-Header.defaultProps = {
-  title: '',
-};
+Header.propTypes = propTypes; 
+Header.defaultProps = defaultProps;
 
 export default Header;

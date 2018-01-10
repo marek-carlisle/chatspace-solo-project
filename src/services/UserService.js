@@ -1,6 +1,14 @@
 import PropTypes from 'prop-types';
 import CONSTANTS from '../constants/';
 
+const propTypes = {
+  userObject: PropTypes.shape({ userName: PropTypes.string, isLoading: PropTypes.bool }),
+};
+
+const defaultProps = {
+  userObject: null,
+};
+
 class UserService {
   getUser() {
     const request = new Request(`${CONSTANTS.apiBaseUrl}/user`, {
@@ -44,12 +52,7 @@ class UserService {
   }
 }
 
-UserService.propTypes = {
-  userObject: PropTypes.shape({ userName: PropTypes.string, isLoading: PropTypes.bool }),
-};
-
-UserService.defaultProps = {
-  userObject: null,
-};
+UserService.propTypes = propTypes; 
+UserService.defaultProps = defaultProps;
 
 export default new UserService();
