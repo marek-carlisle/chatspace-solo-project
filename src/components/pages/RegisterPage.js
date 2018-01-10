@@ -129,7 +129,7 @@ class RegisterPage extends Component {
   }
 }
 
-RegisterPage.propTypes = proptypes;
+RegisterPage.propTypes = propTypes;
 RegisterPage.defaultProps = defaultProps;
 
 export default RegisterPage;
