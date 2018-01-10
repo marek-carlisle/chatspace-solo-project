@@ -10,6 +10,29 @@ import {
   logoutUser,
 } from '../../redux/actions/userActions';
 
+const propTypes = {
+  fetchUser: PropTypes.func,
+  logoutUser: PropTypes.func,
+  user: PropTypes.shape({ userName: PropTypes.string, isLoading: PropTypes.bool }),
+  history: PropTypes.shape({ push: PropTypes.func }),
+};
+
+const defaultProps =  {
+  fetchUser: () => {},
+  logoutUser: () => {},
+  user: { userName: null, isLoading: true },
+  history: { push: () => {} },
+};
+
+const mapStateToProps = state => ({
+  user: state.user,
+});
+
+const mapDispatchToProps = dispatch => ({
+  fetchUser: () => dispatch(fetchUser()),
+  logoutUser: () => { dispatch(logoutUser()); },
+});
+
 class UserPage extends Component {
   constructor(props) {
     super(props);
@@ -64,28 +87,8 @@ class UserPage extends Component {
   }
 }
 
-UserPage.propTypes = {
-  fetchUser: PropTypes.func,
-  logoutUser: PropTypes.func,
-  user: PropTypes.shape({ userName: PropTypes.string, isLoading: PropTypes.bool }),
-  history: PropTypes.shape({ push: PropTypes.func }),
-};
-
-UserPage.defaultProps = {
-  fetchUser: () => {},
-  logoutUser: () => {},
-  user: { userName: null, isLoading: true },
-  history: { push: () => {} },
-};
-
-const mapStateToProps = state => ({
-  user: state.user,
-});
-
-const mapDispatchToProps = dispatch => ({
-  fetchUser: () => dispatch(fetchUser()),
-  logoutUser: () => { dispatch(logoutUser()); },
-});
+UserPage.propTypes = propTypes; 
+UserPage.defaultProps = defaultProps;
 
 // this allows us to use <App /> in index.js
 export default connect(mapStateToProps, mapDispatchToProps)(UserPage);
