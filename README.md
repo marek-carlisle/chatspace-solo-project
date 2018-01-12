@@ -51,6 +51,12 @@ If you would like to name your database something else, you will need to change 
 * `build/` contains the transpiled code from `src/` and `public/` that will be viewed on the production site
 * `server/` contains the Express App
 
+## Linting
+
+The Airbnb ESLint for react is a part of this project. If you would like to take advantage of this in VS Code, you can add the `ESLint` extension. Click the `Extensions` button (the button right below the `Debug`) and search for `ESLint`. Click `install` for the first result and then click `Reload`. Then it should be all set up!
+
+![VSCode Extensions](documentation/images/vscode-extension.png)
+
 ## Deployment
 
 1. Create a new Heroku project
