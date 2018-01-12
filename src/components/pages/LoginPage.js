@@ -34,7 +34,7 @@ class LoginPage extends Component {
         message: 'Enter your username and password!',
       });
     } else {
-      const request = new Request(`${CONSTANTS.apiBaseUrl}/authenticate`, {
+      const request = new Request(`${CONSTANTS.apiBaseUrl}/user/login`, {
         method: 'POST',
         headers: new Headers({ 'Content-Type': 'application/json' }),
         body: JSON.stringify({
@@ -130,7 +130,7 @@ class LoginPage extends Component {
   }
 }
 
-LoginPage.propTypes = propTypes; 
+LoginPage.propTypes = propTypes;
 LoginPage.defaultProps = defaultProps;
 
 export default LoginPage;
