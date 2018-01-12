@@ -23,6 +23,8 @@ CREATE TABLE person (
 );
 ```
 
+If you would like to name your database something else, you will need to change `prime_app` to the name of your new database name in `server/modules/pool.js`
+
 ### Development Setup Instructions
 
 * Run `npm install`
