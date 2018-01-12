@@ -34,7 +34,7 @@ class RegisterPage extends Component {
         message: 'Choose a username and password!',
       });
     } else {
-      const request = new Request(`${CONSTANTS.apiBaseUrl}/register`, {
+      const request = new Request(`${CONSTANTS.apiBaseUrl}/user/register`, {
         method: 'POST',
         headers: new Headers({ 'Content-Type': 'application/json' }),
         body: JSON.stringify({
@@ -95,7 +95,7 @@ class RegisterPage extends Component {
           <div>
             <label htmlFor="username">
               Username:
-            <input
+              <input
                 type="text"
                 name="username"
                 value={this.state.username}
@@ -106,7 +106,7 @@ class RegisterPage extends Component {
           <div>
             <label htmlFor="password">
               Password:
-            <input
+              <input
                 type="password"
                 name="password"
                 value={this.state.password}
