@@ -1,6 +1,7 @@
 // No changes should be required in this file
 
 const cookieSession = require('cookie-session');
+const warnings = require('./warnings');
 
 /*
   The cookie session makes it so a user can enters their username and password one time,
@@ -12,8 +13,17 @@ const cookieSession = require('cookie-session');
   `application` ->  `storage` -> `cookies` section of the chrome debugger
 */
 
+const serverSessionSecret = () => {
+  if (!process.env.SERVER_SESSION_SECRET || process.env.SERVER_SESSION_SECRET === 'superDuperSecret') {
+    // Warning if user doesn't have a good secret
+    console.log(warnings.badSecret);
+  }
+
+  return process.env.SERVER_SESSION_SECRET;
+};
+
 module.exports = cookieSession({
-  secret: process.env.SERVER_SESSION_SECRET || 'secret', // please set this in your .env file
+  secret: serverSessionSecret() || 'secret', // please set this in your .env file
   key: 'user', // this is the name of the req.variable. 'user' is convention, but not required
   resave: 'true',
   saveUninitialized: false,
