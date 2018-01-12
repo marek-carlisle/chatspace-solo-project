@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
+import logger from 'redux-logger';
 
 import reducer from './redux/reducers';
 
@@ -12,7 +13,18 @@ import App from './App';
 // preload your redux state with initial values (from localStorage, perhaps)
 const preloadedState = {};
 
-const store = createStore(reducer, preloadedState, applyMiddleware(thunk));
+const middlewares = [];
+
+if (process.env.NODE_ENV === 'development') {
+  middlewares.push(logger);
+}
+middlewares.push(thunk);
+
+const store = createStore(
+  reducer,
+  preloadedState,
+  applyMiddleware(...middlewares),
+);
 
 ReactDOM.render(
   <Provider store={store}>
