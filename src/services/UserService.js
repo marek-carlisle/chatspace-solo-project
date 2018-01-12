@@ -52,7 +52,7 @@ class UserService {
   }
 }
 
-UserService.propTypes = propTypes; 
+UserService.propTypes = propTypes;
 UserService.defaultProps = defaultProps;
 
 export default new UserService();

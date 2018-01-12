@@ -17,7 +17,7 @@ const propTypes = {
   history: PropTypes.shape({ push: PropTypes.func }),
 };
 
-const defaultProps =  {
+const defaultProps = {
   fetchUser: () => {},
   logoutUser: () => {},
   user: { userName: null, isLoading: true },
@@ -87,7 +87,7 @@ class UserPage extends Component {
   }
 }
 
-UserPage.propTypes = propTypes; 
+UserPage.propTypes = propTypes;
 UserPage.defaultProps = defaultProps;
 
 // this allows us to use <App /> in index.js
