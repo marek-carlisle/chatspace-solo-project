@@ -9,7 +9,7 @@ export function callLogin(payload) {
       username: payload.username,
       password: payload.password,
     }),
-    withCredentials: true,
+    credentials: 'include',
   };
 
   return axios.post(`${CONSTANTS.apiBaseUrl}/user/login`, config)
