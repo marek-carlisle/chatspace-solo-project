@@ -30,7 +30,6 @@ passport.use('local', new LocalStrategy({
   passReqToCallback: true,
   usernameField: 'username',
 }, ((req, username, password, done) => {
-    console.log('start req', req)
     pool.query('SELECT * FROM person WHERE username = $1', [username])
       .then((result) => {
         const user = result.rows[0];
