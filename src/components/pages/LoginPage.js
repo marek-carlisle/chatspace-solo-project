@@ -1,16 +1,23 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-
-import CONSTANTS from '../../constants/';
+import { triggerLogin } from '../../redux/actions/loginActions';
 
 const propTypes = {
-  history: PropTypes.shape({ push: PropTypes.func }),
+  dispatch: PropTypes.func,
+  // triggerLogin: PropTypes.func.isRequired,
+  // history: PropTypes.shape({ push: PropTypes.func }),
 };
 
 const defaultProps = {
-  history: { push: () => {} },
+  dispatch: () => {},
+  // history: { push: () => {} },
 };
+
+const mapStateToProps = state => ({
+
+});
 
 class LoginPage extends Component {
   constructor(props) {
@@ -21,7 +28,7 @@ class LoginPage extends Component {
       password: '',
       message: '',
     };
-
+    // this.triggerLogin = this.props.triggerLogin;
     this.login = this.login.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
   }
@@ -34,32 +41,8 @@ class LoginPage extends Component {
         message: 'Enter your username and password!',
       });
     } else {
-      const request = new Request(`${CONSTANTS.apiBaseUrl}/user/login`, {
-        method: 'POST',
-        headers: new Headers({ 'Content-Type': 'application/json' }),
-        body: JSON.stringify({
-          username: this.state.username,
-          password: this.state.password,
-        }),
-        credentials: 'include',
-      });
-
-      // making the request to the server to post the country
-      fetch(request)
-        .then((response) => {
-          if (response.status === 200) {
-            this.props.history.push('/user');
-          } else {
-            this.setState({
-              message: 'Wrong!!',
-            });
-          }
-        })
-        .catch(() => {
-          this.setState({
-            message: 'Wrong!!',
-          });
-        });
+      this.props.dispatch(triggerLogin(this.state.username, this.state.password));
+      // this.props.history.push('/user');
     }
   }
 
@@ -133,4 +116,4 @@ class LoginPage extends Component {
 LoginPage.propTypes = propTypes;
 LoginPage.defaultProps = defaultProps;
 
-export default LoginPage;
+export default connect(mapStateToProps)(LoginPage);

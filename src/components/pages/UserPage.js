@@ -11,15 +11,15 @@ import {
 } from '../../redux/actions/userActions';
 
 const propTypes = {
-  fetchUser: PropTypes.func,
   logoutUser: PropTypes.func,
+  dispatch: PropTypes.func,
   user: PropTypes.shape({ userName: PropTypes.string, isLoading: PropTypes.bool }),
   history: PropTypes.shape({ push: PropTypes.func }),
 };
 
 const defaultProps = {
-  fetchUser: () => {},
   logoutUser: () => {},
+  dispatch: () => {},
   user: { userName: null, isLoading: true },
   history: { push: () => {} },
 };
@@ -28,10 +28,10 @@ const mapStateToProps = state => ({
   user: state.user,
 });
 
-const mapDispatchToProps = dispatch => ({
-  fetchUser: () => dispatch(fetchUser()),
-  logoutUser: () => { dispatch(logoutUser()); },
-});
+// const mapDispatchToProps = dispatch => ({
+//   fetchUser: () => dispatch(fetchUser()),
+//   logoutUser: () => { dispatch(logoutUser()); },
+// });
 
 class UserPage extends Component {
   constructor(props) {
@@ -40,7 +40,7 @@ class UserPage extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchUser();
+    this.props.dispatch(fetchUser());
   }
 
   componentDidUpdate() {
@@ -50,10 +50,8 @@ class UserPage extends Component {
   }
 
   logout() {
-    UserService.logout().then(() => {
-      this.props.logoutUser();
-      this.props.history.push('home');
-    });
+    this.props.dispatch(logoutUser());
+    this.props.history.push('home');
   }
 
   render() {
@@ -91,5 +89,5 @@ UserPage.propTypes = propTypes;
 UserPage.defaultProps = defaultProps;
 
 // this allows us to use <App /> in index.js
-export default connect(mapStateToProps, mapDispatchToProps)(UserPage);
+export default connect(mapStateToProps)(UserPage);
 
