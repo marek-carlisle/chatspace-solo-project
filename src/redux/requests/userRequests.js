@@ -4,7 +4,7 @@ import CONSTANTS from '../../constants';
 export function callUser() {
   const config = {
     headers: { 'Content-Type': 'application/json' },
-    withCredentials: true,
+    credentials: 'include',
   };
 
   return axios.get(`${CONSTANTS.apiBaseUrl}/user`, config)
