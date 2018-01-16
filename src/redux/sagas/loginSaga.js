@@ -73,8 +73,8 @@ function* loginUser(action) {
   dispatched while a fetch is already pending, that pending fetch is cancelled
   and only the latest one will be run.
 */
-function* userSaga() {
+function* loginSaga() {
   yield takeLatest(LOGIN_ACTIONS.LOGIN, loginUser);
 }
 
-export default userSaga;
+export default loginSaga;
