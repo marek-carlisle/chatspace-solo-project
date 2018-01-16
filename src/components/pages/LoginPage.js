@@ -51,13 +51,13 @@ class LoginPage extends Component {
             this.props.history.push('/user');
           } else {
             this.setState({
-              message: 'Wrong!!',
+              message: 'Ooops! The username and password didn\'t match. Try again!',
             });
           }
         })
         .catch(() => {
           this.setState({
-            message: 'Wrong!!',
+            message: 'Ooops! Something went wrong! Is the server running?',
           });
         });
     }
