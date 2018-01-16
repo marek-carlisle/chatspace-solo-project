@@ -2,7 +2,7 @@
 
 // check the environment, heroku will be 'production' which means it won't allow CORS
 const cors = require('cors');
-const warnings = require('./warnings');
+const warnings = require('../constants/warnings');
 
 // check the environment
 const environment = process.env.NODE_ENV || 'development';
