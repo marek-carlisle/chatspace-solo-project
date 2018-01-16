@@ -1,5 +1,6 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { LOGIN_ACTIONS } from '../actions/loginActions';
+import { USER_ACTIONS } from '../actions/userActions';
 import { callLogin } from '../requests/loginRequests';
 
 // worker Saga: will be fired on FETCH_USER actions
@@ -14,6 +15,9 @@ function* loginUser(action) {
     // });
     yield put({
       type: LOGIN_ACTIONS.LOGIN_REQUEST_DONE,
+    });
+    yield put({
+      type: USER_ACTIONS.FETCH_USER,
     });
     // yield put({ type: USER_ACTIONS.USER_FETCH_SUCCEEDED, user });
   } catch (e) {

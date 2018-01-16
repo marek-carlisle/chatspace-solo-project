@@ -1,12 +1,12 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { USER_ACTIONS } from '../actions/userActions';
-import userRequests from '../requests/userRequests';
+import { callUser } from '../requests/userRequests';
 
 // worker Saga: will be fired on FETCH_USER actions
-function* fetchUser(action) {
+function* fetchUser() {
   try {
     yield put({ type: USER_ACTIONS.REQUEST_START });
-    const user = yield call(userRequests.callUser, action.payload.userId);
+    const user = yield call(callUser);
     yield put({
       type: USER_ACTIONS.SET_USER,
       user,
