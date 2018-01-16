@@ -14,7 +14,6 @@ function* fetchUser() {
     yield put({
       type: USER_ACTIONS.REQUEST_DONE,
     });
-    yield put({ type: USER_ACTIONS.USER_FETCH_SUCCEEDED, user });
   } catch (e) {
     yield put({
       type: USER_ACTIONS.REQUEST_DONE,

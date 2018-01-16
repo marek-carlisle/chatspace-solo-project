@@ -7,16 +7,16 @@ import { triggerLogin } from '../../redux/actions/loginActions';
 const propTypes = {
   dispatch: PropTypes.func,
   // triggerLogin: PropTypes.func.isRequired,
-  // history: PropTypes.shape({ push: PropTypes.func }),
+  history: PropTypes.shape({ push: PropTypes.func }),
 };
 
 const defaultProps = {
   dispatch: () => {},
-  // history: { push: () => {} },
+  history: { push: () => {} },
 };
 
 const mapStateToProps = state => ({
-
+  user: state.user,
 });
 
 class LoginPage extends Component {
@@ -33,6 +33,11 @@ class LoginPage extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.user.userName) {
+      this.props.history.push('/user');
+    }
+  }
   login(event) {
     event.preventDefault();
 
