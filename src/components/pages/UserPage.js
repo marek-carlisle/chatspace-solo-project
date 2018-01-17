@@ -4,21 +4,20 @@ import { connect } from 'react-redux';
 
 import Nav from '../../components/Nav';
 
-import UserService from '../../services/UserService';
 import {
   fetchUser,
   logoutUser,
 } from '../../redux/actions/userActions';
 
 const propTypes = {
-  logoutUser: PropTypes.func,
+  logout: PropTypes.func,
   dispatch: PropTypes.func,
   user: PropTypes.shape({ userName: PropTypes.string, isLoading: PropTypes.bool }),
   history: PropTypes.shape({ push: PropTypes.func }),
 };
 
 const defaultProps = {
-  logoutUser: () => {},
+  logout: () => {},
   dispatch: () => {},
   user: { userName: null, isLoading: true },
   history: { push: () => {} },
@@ -27,11 +26,6 @@ const defaultProps = {
 const mapStateToProps = state => ({
   user: state.user,
 });
-
-// const mapDispatchToProps = dispatch => ({
-//   fetchUser: () => dispatch(fetchUser()),
-//   logoutUser: () => { dispatch(logoutUser()); },
-// });
 
 class UserPage extends Component {
   constructor(props) {
