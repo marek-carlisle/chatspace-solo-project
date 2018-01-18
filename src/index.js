@@ -29,7 +29,6 @@ const store = createStore(
 
 sagaMiddleware.run(rootSaga);
 
-
 ReactDOM.render(
   <Provider store={store}>
     <App />

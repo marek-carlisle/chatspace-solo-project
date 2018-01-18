@@ -18,7 +18,6 @@ export function triggerLogin(username, password) {
   };
 }
 
-
 export const triggerLogout = () => ({
   type: LOGIN_ACTIONS.LOGOUT,
 });
