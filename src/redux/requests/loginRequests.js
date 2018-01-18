@@ -10,7 +10,7 @@ export function callLogin(payload) {
 
   const config = {
     headers: { 'Content-Type': 'application/json' },
-    credentials: 'include',
+    withCredentials: true,
   };
 
   return axios.post(`${CONSTANTS.apiBaseUrl}/user/login`, body, config)
@@ -20,6 +20,10 @@ export function callLogin(payload) {
     });
 }
 
-export function anotherThing() {
-  console.log('placeholder');
+export function callLogout() {
+  axios.get(`${CONSTANTS.apiBaseUrl}/user/logout`)
+    .then(response => response.data)
+    .catch((e) => {
+      throw e.response || e;
+    });
 }
