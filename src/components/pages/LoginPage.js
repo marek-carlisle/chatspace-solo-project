@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { triggerLogin } from '../../redux/actions/loginActions';
+import { triggerLogin, formError } from '../../redux/actions/loginActions';
 
 const propTypes = {
   dispatch: PropTypes.func,
-  // triggerLogin: PropTypes.func.isRequired,
   history: PropTypes.shape({ push: PropTypes.func }),
 };
 
@@ -17,6 +16,7 @@ const defaultProps = {
 
 const mapStateToProps = state => ({
   user: state.user,
+  login: state.login,
 });
 
 class LoginPage extends Component {
@@ -26,9 +26,7 @@ class LoginPage extends Component {
     this.state = {
       username: '',
       password: '',
-      message: '',
     };
-    // this.triggerLogin = this.props.triggerLogin;
     this.login = this.login.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
   }
@@ -42,12 +40,9 @@ class LoginPage extends Component {
     event.preventDefault();
 
     if (this.state.username === '' || this.state.password === '') {
-      this.setState({
-        message: 'Enter your username and password!',
-      });
+      this.props.dispatch(formError());
     } else {
       this.props.dispatch(triggerLogin(this.state.username, this.state.password));
-      // this.props.history.push('/user');
     }
   }
 
@@ -62,13 +57,13 @@ class LoginPage extends Component {
   }
 
   renderAlert() {
-    if (this.state.message !== '') {
+    if (this.props.login.message !== '') {
       return (
         <h2
           className="lead alert alert-danger"
           role="alert"
         >
-          { this.state.message }
+          { this.props.login.message }
         </h2>
       );
     }

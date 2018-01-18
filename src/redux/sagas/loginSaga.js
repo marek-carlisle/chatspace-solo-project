@@ -9,54 +9,30 @@ function* loginUser(action) {
     yield put({ type: LOGIN_ACTIONS.REQUEST_START });
     const response = yield call(callLogin, action.payload);
     console.log('good login', response);
-    // yield put({
-    //   type: USER_ACTIONS.SET_USER,
-    //   user,
-    // });
     yield put({
       type: LOGIN_ACTIONS.LOGIN_REQUEST_DONE,
     });
     yield put({
       type: USER_ACTIONS.FETCH_USER,
     });
-    // yield put({ type: USER_ACTIONS.USER_FETCH_SUCCEEDED, user });
   } catch (e) {
     console.log('bad login', e);
     yield put({
       type: LOGIN_ACTIONS.LOGIN_REQUEST_DONE,
     });
-    yield put({
-      type: LOGIN_ACTIONS.LOGIN_FAILED,
-      message: e.message,
-    });
+    if (e.status === 401) {
+      yield put({
+        type: LOGIN_ACTIONS.LOGIN_FAILED,
+        message: e.message,
+      });
+    } else {
+      yield put({
+        type: LOGIN_ACTIONS.LOGIN_FAILED_NO_CODE,
+        message: e.message,
+      });
+    }
   }
 }
-// const request = new Request(`${CONSTANTS.apiBaseUrl}/user/login`, {
-//   method: 'POST',
-//   headers: new Headers({ 'Content-Type': 'application/json' }),
-//   body: JSON.stringify({
-//     username: this.state.username,
-//     password: this.state.password,
-//   }),
-//   credentials: 'include',
-// });
-
-// // making the request to the server to post the country
-// fetch(request)
-//   .then((response) => {
-//     if (response.status === 200) {
-//       this.props.history.push('/user');
-//     } else {
-//       this.setState({
-//         message: 'Wrong!!',
-//       });
-//     }
-//   })
-//   .catch(() => {
-//     this.setState({
-//       message: 'Wrong!!',
-//     });
-//   });
 
 /*
   Starts fetchUser on each dispatched `USER_FETCH_REQUESTED` action.

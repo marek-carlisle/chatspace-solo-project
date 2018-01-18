@@ -15,7 +15,9 @@ export function callLogin(payload) {
 
   return axios.post(`${CONSTANTS.apiBaseUrl}/user/login`, body, config)
     .then(response => response.data)
-    .catch((errResponse) => { throw errResponse; });
+    .catch((e) => {
+      throw e.response || e;
+    });
 }
 
 export function anotherThing() {
