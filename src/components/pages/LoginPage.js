@@ -60,7 +60,7 @@ class LoginPage extends Component {
     if (this.props.login.message !== '') {
       return (
         <h2
-          className="lead alert alert-danger"
+          className="alert"
           role="alert"
         >
           { this.props.login.message }
@@ -72,10 +72,10 @@ class LoginPage extends Component {
 
   render() {
     return (
-      <div className="container">
-        <h1 className="lead">Login</h1>
+      <div>
         { this.renderAlert() }
         <form onSubmit={this.login}>
+          <h1>Login</h1>
           <div>
             <label htmlFor="username">
               Username:
@@ -100,7 +100,6 @@ class LoginPage extends Component {
           </div>
           <div>
             <input
-              className="btn btn-default"
               type="submit"
               name="submit"
               value="Log In"

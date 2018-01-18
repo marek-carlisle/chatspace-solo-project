@@ -52,15 +52,13 @@ class UserPage extends Component {
 
     if (this.props.user.userName) {
       content = (
-        <div className="container">
+        <div>
           <h1
             id="welcome"
-            className="lead"
           >
             Welcome, { this.props.user.userName }!
           </h1>
           <button
-            className="btn btn-default"
             onClick={this.logout}
           >
             Log Out

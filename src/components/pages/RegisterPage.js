@@ -76,7 +76,7 @@ class RegisterPage extends Component {
     if (this.state.message !== '') {
       return (
         <h2
-          className="lead alert alert-danger"
+          className="alert"
           role="alert"
         >
           {this.state.message}
@@ -88,10 +88,10 @@ class RegisterPage extends Component {
 
   render() {
     return (
-      <div className="container">
-        <h1 className="lead">Register User</h1>
+      <div>
         {this.renderAlert()}
         <form onSubmit={this.registerUser}>
+          <h1>Register User</h1>
           <div>
             <label htmlFor="username">
               Username:
@@ -116,7 +116,6 @@ class RegisterPage extends Component {
           </div>
           <div>
             <input
-              className="btn btn-default"
               type="submit"
               name="submit"
               value="Register"
