@@ -16,7 +16,7 @@ import './styles/main.css';
 
 const App = () => (
   <div>
-    <Header title="Passport Authentication" />
+    <Header title="Project Base" />
     <Router>
       <Switch>
         <Redirect exact from="/" to="/home" />
