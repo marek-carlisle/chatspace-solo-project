@@ -9,7 +9,7 @@
        "type": "node",
        "request": "attach",
        "name": "Attach",
-       "port": 12345
+       "port": 5000
    },
     {
         "type": "node",
