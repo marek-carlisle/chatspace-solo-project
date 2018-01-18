@@ -14,13 +14,13 @@ function* fetchUser() {
     yield put({
       type: USER_ACTIONS.REQUEST_DONE,
     });
-  } catch (e) {
+  } catch (error) {
     yield put({
       type: USER_ACTIONS.REQUEST_DONE,
     });
     yield put({
       type: USER_ACTIONS.USER_FETCH_FAILED,
-      message: e.message,
+      message: error.message,
     });
   }
 }

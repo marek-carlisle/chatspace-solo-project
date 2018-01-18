@@ -14,19 +14,19 @@ function* loginUser(action) {
     yield put({
       type: USER_ACTIONS.FETCH_USER,
     });
-  } catch (e) {
+  } catch (error) {
     yield put({
       type: LOGIN_ACTIONS.LOGIN_REQUEST_DONE,
     });
-    if (e.status === 401) {
+    if (error.status === 401) {
       yield put({
         type: LOGIN_ACTIONS.LOGIN_FAILED,
-        message: e.message,
+        message: error.message,
       });
     } else {
       yield put({
         type: LOGIN_ACTIONS.LOGIN_FAILED_NO_CODE,
-        message: e.message,
+        message: error.message,
       });
     }
   }
@@ -38,8 +38,8 @@ function* logoutUser(action) {
     yield put({
       type: USER_ACTIONS.UNSET_USER,
     });
-  } catch (e) {
-    console.log('LOGOUT FAILED -- CHECK YOUR SERVER', e);
+  } catch (error) {
+    console.log('LOGOUT FAILED -- CHECK YOUR SERVER', error);
   }
 }
 
