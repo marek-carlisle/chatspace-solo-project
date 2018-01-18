@@ -9,7 +9,7 @@ export function callUser() {
 
   return axios.get(`${CONSTANTS.apiBaseUrl}/user`, config)
     .then(response => response.data)
-    .catch((errResponse) => { throw errResponse; });
+    .catch((error) => { throw error; });
 }
 
 export function placeholder() {

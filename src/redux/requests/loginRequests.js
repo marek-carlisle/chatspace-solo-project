@@ -15,8 +15,8 @@ export function callLogin(payload) {
 
   return axios.post(`${CONSTANTS.apiBaseUrl}/user/login`, body, config)
     .then(response => response.data)
-    .catch((e) => {
-      throw e.response || e;
+    .catch((error) => {
+      throw error.response || error;
     });
 }
 
@@ -28,7 +28,7 @@ export function callLogout() {
 
   return axios.get(`${CONSTANTS.apiBaseUrl}/user/logout`, config)
     .then(response => response.data)
-    .catch((e) => {
-      throw e.response || e;
+    .catch((error) => {
+      throw error.response || error;
     });
 }
