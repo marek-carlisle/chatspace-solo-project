@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
     res.send(req.user);
   } else {
     // failure best handled on the server. do redirect here.
-    res.send(false);
+    res.sendStatus(403);
   }
 });
 

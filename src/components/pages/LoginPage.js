@@ -1,16 +1,23 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-
-import CONSTANTS from '../../constants/';
+import { triggerLogin, formError } from '../../redux/actions/loginActions';
 
 const propTypes = {
+  dispatch: PropTypes.func,
   history: PropTypes.shape({ push: PropTypes.func }),
 };
 
 const defaultProps = {
+  dispatch: () => {},
   history: { push: () => {} },
 };
+
+const mapStateToProps = state => ({
+  user: state.user,
+  login: state.login,
+});
 
 class LoginPage extends Component {
   constructor(props) {
@@ -19,47 +26,23 @@ class LoginPage extends Component {
     this.state = {
       username: '',
       password: '',
-      message: '',
     };
-
     this.login = this.login.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.user.userName) {
+      this.props.history.push('/user');
+    }
+  }
   login(event) {
     event.preventDefault();
 
     if (this.state.username === '' || this.state.password === '') {
-      this.setState({
-        message: 'Enter your username and password!',
-      });
+      this.props.dispatch(formError());
     } else {
-      const request = new Request(`${CONSTANTS.apiBaseUrl}/user/login`, {
-        method: 'POST',
-        headers: new Headers({ 'Content-Type': 'application/json' }),
-        body: JSON.stringify({
-          username: this.state.username,
-          password: this.state.password,
-        }),
-        credentials: 'include',
-      });
-
-      // making the request to the server to post the country
-      fetch(request)
-        .then((response) => {
-          if (response.status === 200) {
-            this.props.history.push('/user');
-          } else {
-            this.setState({
-              message: 'Ooops! The username and password didn\'t match. Try again!',
-            });
-          }
-        })
-        .catch(() => {
-          this.setState({
-            message: 'Ooops! Something went wrong! Is the server running?',
-          });
-        });
+      this.props.dispatch(triggerLogin(this.state.username, this.state.password));
     }
   }
 
@@ -74,13 +57,13 @@ class LoginPage extends Component {
   }
 
   renderAlert() {
-    if (this.state.message !== '') {
+    if (this.props.login.message !== '') {
       return (
         <h2
           className="lead alert alert-danger"
           role="alert"
         >
-          { this.state.message }
+          { this.props.login.message }
         </h2>
       );
     }
@@ -133,4 +116,4 @@ class LoginPage extends Component {
 LoginPage.propTypes = propTypes;
 LoginPage.defaultProps = defaultProps;
 
-export default LoginPage;
+export default connect(mapStateToProps)(LoginPage);
