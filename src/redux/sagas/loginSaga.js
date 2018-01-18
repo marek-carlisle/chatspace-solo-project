@@ -1,14 +1,13 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { LOGIN_ACTIONS } from '../actions/loginActions';
 import { USER_ACTIONS } from '../actions/userActions';
-import { callLogin } from '../requests/loginRequests';
+import { callLogin, callLogout } from '../requests/loginRequests';
 
 // worker Saga: will be fired on FETCH_USER actions
 function* loginUser(action) {
   try {
     yield put({ type: LOGIN_ACTIONS.REQUEST_START });
-    const response = yield call(callLogin, action.payload);
-    console.log('good login', response);
+    yield call(callLogin, action.payload);
     yield put({
       type: LOGIN_ACTIONS.LOGIN_REQUEST_DONE,
     });
@@ -16,7 +15,6 @@ function* loginUser(action) {
       type: USER_ACTIONS.FETCH_USER,
     });
   } catch (e) {
-    console.log('bad login', e);
     yield put({
       type: LOGIN_ACTIONS.LOGIN_REQUEST_DONE,
     });
@@ -31,6 +29,17 @@ function* loginUser(action) {
         message: e.message,
       });
     }
+  }
+}
+
+function* logoutUser(action) {
+  try {
+    yield call(callLogout, action);
+    yield put({
+      type: USER_ACTIONS.UNSET_USER,
+    });
+  } catch (e) {
+    console.log('LOGOUT FAILED -- CHECK YOUR SERVER', e);
   }
 }
 
@@ -51,6 +60,7 @@ function* loginUser(action) {
 */
 function* loginSaga() {
   yield takeLatest(LOGIN_ACTIONS.LOGIN, loginUser);
+  yield takeLatest(LOGIN_ACTIONS.LOGOUT, logoutUser);
 }
 
 export default loginSaga;

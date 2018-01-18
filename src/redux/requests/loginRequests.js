@@ -21,7 +21,12 @@ export function callLogin(payload) {
 }
 
 export function callLogout() {
-  axios.get(`${CONSTANTS.apiBaseUrl}/user/logout`)
+  const config = {
+    headers: { 'Content-Type': 'application/json' },
+    withCredentials: true,
+  };
+
+  return axios.get(`${CONSTANTS.apiBaseUrl}/user/logout`, config)
     .then(response => response.data)
     .catch((e) => {
       throw e.response || e;

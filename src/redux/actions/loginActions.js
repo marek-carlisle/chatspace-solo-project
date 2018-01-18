@@ -5,6 +5,7 @@ export const LOGIN_ACTIONS = {
   LOGIN_FAILED: 'LOGIN_FAILED',
   LOGIN_FAILED_NO_CODE: 'LOGIN_FAILED_NO_CODE',
   INPUT_ERROR: 'INPUT_ERROR',
+  LOGOUT: 'LOGOUT',
 };
 
 export function triggerLogin(username, password) {
@@ -16,6 +17,11 @@ export function triggerLogin(username, password) {
     },
   };
 }
+
+
+export const triggerLogout = () => ({
+  type: LOGIN_ACTIONS.LOGOUT,
+});
 
 export function formError() {
   return {

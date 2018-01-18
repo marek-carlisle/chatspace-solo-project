@@ -6,18 +6,17 @@ import Nav from '../../components/Nav';
 
 import {
   fetchUser,
-  logoutUser,
 } from '../../redux/actions/userActions';
 
+import { triggerLogout } from '../../redux/actions/loginActions';
+
 const propTypes = {
-  logout: PropTypes.func,
   dispatch: PropTypes.func,
   user: PropTypes.shape({ userName: PropTypes.string, isLoading: PropTypes.bool }),
   history: PropTypes.shape({ push: PropTypes.func }),
 };
 
 const defaultProps = {
-  logout: () => {},
   dispatch: () => {},
   user: { userName: null, isLoading: true },
   history: { push: () => {} },
@@ -44,8 +43,8 @@ class UserPage extends Component {
   }
 
   logout() {
-    this.props.dispatch(logoutUser());
-    this.props.history.push('home');
+    this.props.dispatch(triggerLogout());
+    // this.props.history.push('home');
   }
 
   render() {
