@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import Nav from '../components/Nav';
+import Nav from '../components/Nav/Nav';
 import { fetchUser } from '../redux/actions/userActions';
 
 const propTypes = {
