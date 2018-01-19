@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import Nav from '../../components/Nav';
-import { fetchUser } from '../../redux/actions/userActions';
+import Nav from '../components/Nav';
+import { fetchUser } from '../redux/actions/userActions';
 
 const propTypes = {
   fetchUser: PropTypes.func,
