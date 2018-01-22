@@ -6,6 +6,7 @@ import { callLogin, callLogout } from '../requests/loginRequests';
 // worker Saga: will be fired on FETCH_USER actions
 function* loginUser(action) {
   try {
+    yield put({ type: LOGIN_ACTIONS.CLEAR_LOGIN_ERROR });
     yield put({ type: LOGIN_ACTIONS.REQUEST_START });
     yield call(callLogin, action.payload);
     yield put({
