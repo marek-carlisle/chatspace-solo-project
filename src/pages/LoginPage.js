@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { triggerLogin, formError } from '../redux/actions/loginActions';
+import { triggerLogin, formError, clearError } from '../redux/actions/loginActions';
 
 const propTypes = {
   dispatch: PropTypes.func,
@@ -31,11 +31,16 @@ class LoginPage extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
+  componentDidMount() {
+    this.props.dispatch(clearError());
+  }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.user.userName) {
       this.props.history.push('/user');
     }
   }
+
   login(event) {
     event.preventDefault();
 
