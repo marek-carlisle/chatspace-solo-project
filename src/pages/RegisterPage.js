@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import CONSTANTS from '../../constants/';
+import CONSTANTS from '../constants/';
 
 const propTypes = {
   history: PropTypes.shape({ push: PropTypes.func }),
