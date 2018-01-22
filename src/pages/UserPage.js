@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import Nav from '../../components/Nav';
+import Nav from '../components/Nav/Nav';
 
 import {
   fetchUser,
-} from '../../redux/actions/userActions';
+} from '../redux/actions/userActions';
 
-import { triggerLogout } from '../../redux/actions/loginActions';
+import { triggerLogout } from '../redux/actions/loginActions';
 
 const propTypes = {
   dispatch: PropTypes.func,
