@@ -25,6 +25,12 @@ CREATE TABLE person (
 
 If you would like to name your database something else, you will need to change `prime_app` to the name of your new database name in `server/modules/pool.js`
 
+## Download (Don't Clone) This Repository
+
+* Don't Fork or Clone. Instead, click the `Clone or Download` button and select `Download Zip`.
+* Unzip the project and start with the code in that folder.
+* Create a new GitHub project and push this code to the new repository.
+
 ## Development Setup Instructions
 
 * Run `npm install`
