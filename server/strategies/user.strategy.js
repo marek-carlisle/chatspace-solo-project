@@ -32,7 +32,7 @@ passport.use('local', new LocalStrategy({
 }, ((req, username, password, done) => {
     pool.query('SELECT * FROM person WHERE username = $1', [username])
       .then((result) => {
-        const user = result.rows[0];
+        const user = result && result.rows && result.rows[0];
         if (user && encryptLib.comparePassword(password, user.password)) {
           // all good! Passwords match!
           done(null, user);
