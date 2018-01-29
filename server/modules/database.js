@@ -20,12 +20,10 @@ if (process.env.MONGODB_URI) {
 
 mongoose.connect(mongoURI);
 
-mongoose.connection.on('error', (err) => {
-  if (err) {
-    console.log('MONGO ERROR: ', err);
-  }
+mongoose.connection.once('open', () => {
+  console.log('Mongo connected');
 });
 
-mongoose.connection.once('open', () => {
-  console.log('Connected to Mongo, meow!');
+mongoose.connection.on('error', (err) => {
+  console.log('Error on mongoose connection: ', err);
 });
