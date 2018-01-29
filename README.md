@@ -8,7 +8,7 @@ We **STONGLY** recommend following these instructions carefully. It's a lot, and
 Before you get started, make sure you have the following software installed on your computer:
 
 - [Node.js](https://nodejs.org/en/)
-- [PostrgeSQL](https://www.postgresql.org/)
+- [MongoDB](https://www.mongodb.com/)
 - [Nodemon](https://nodemon.io/)
 
 ## Create database and table
@@ -23,7 +23,7 @@ CREATE TABLE person (
 );
 ```
 
-If you would like to name your database something else, you will need to change `prime_app` to the name of your new database name in `server/modules/pool.js`
+If you would like to name your database something other than `prime_app`, you will need to change `prime_app` to the name of your new database name in `server/modules/database.js`
 
 ## Download (Don't Clone) This Repository
 

@@ -7,6 +7,9 @@ const bodyParser = require('body-parser');
 const corsIfInDevelopment = require('./modules/cors-if-on-development');
 const sessionMiddleware = require('./modules/session-middleware');
 
+// start up the mongo database
+require('./modules/database');
+
 const passport = require('./strategies/user.strategy');
 
 // Route includes
