@@ -63,6 +63,3 @@ typings/
 
 # dotenv environment variables file
 .env
-
-# not tracking package-lock.json because it can cause issues
-package-lock.json
