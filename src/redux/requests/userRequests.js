@@ -1,5 +1,4 @@
 import axios from 'axios';
-import CONSTANTS from '../../constants';
 
 export function callUser() {
   const config = {
@@ -7,7 +6,7 @@ export function callUser() {
     withCredentials: true,
   };
 
-  return axios.get(`${CONSTANTS.apiBaseUrl}/user`, config)
+  return axios.get('api/user', config)
     .then(response => response.data)
     .catch((error) => { throw error; });
 }
