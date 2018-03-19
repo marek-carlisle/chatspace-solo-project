@@ -1,4 +1,5 @@
 const express = require('express');
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 const encryptLib = require('../modules/encryption');
 const Person = require('../models/Person');
 const userStrategy = require('../strategies/user.strategy');
@@ -6,15 +7,9 @@ const userStrategy = require('../strategies/user.strategy');
 const router = express.Router();
 
 // Handles Ajax request for user information if user is authenticated
-router.get('/', (req, res) => {
-  // check if logged in
-  if (req.isAuthenticated()) {
-    // send back user object from database
-    res.send(req.user);
-  } else {
-    // failure best handled on the server. do redirect here.
-    res.sendStatus(403);
-  }
+router.get('/', rejectUnauthenticated, (req, res) => {
+  // Send back user object from database
+  res.send(req.user);
 });
 
 // Handles POST request with new user data

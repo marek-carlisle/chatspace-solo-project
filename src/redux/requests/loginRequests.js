@@ -1,6 +1,4 @@
 import axios from 'axios';
-import CONSTANTS from '../../constants';
-
 
 export function callLogin(payload) {
   const body = ({
@@ -13,7 +11,7 @@ export function callLogin(payload) {
     withCredentials: true,
   };
 
-  return axios.post(`${CONSTANTS.apiBaseUrl}/user/login`, body, config)
+  return axios.post('api/user/login', body, config)
     .then(response => response.data)
     .catch((error) => {
       throw error.response || error;
@@ -26,7 +24,7 @@ export function callLogout() {
     withCredentials: true,
   };
 
-  return axios.get(`${CONSTANTS.apiBaseUrl}/user/logout`, config)
+  return axios.get('api/user/logout', config)
     .then(response => response.data)
     .catch((error) => {
       throw error.response || error;

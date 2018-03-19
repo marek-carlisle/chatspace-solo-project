@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import CONSTANTS from '../constants/';
-
 const propTypes = {
   history: PropTypes.shape({ push: PropTypes.func }),
 };
@@ -34,7 +32,7 @@ class RegisterPage extends Component {
         message: 'Choose a username and password!',
       });
     } else {
-      const request = new Request(`${CONSTANTS.apiBaseUrl}/user/register`, {
+      const request = new Request('api/user/register', {
         method: 'POST',
         headers: new Headers({ 'Content-Type': 'application/json' }),
         body: JSON.stringify({
