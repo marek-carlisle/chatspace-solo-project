@@ -19,12 +19,9 @@ class RegisterPage extends Component {
       password: '',
       message: '',
     };
-
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.registerUser = this.registerUser.bind(this);
   }
 
-  registerUser(event) {
+  registerUser = (event) => {
     event.preventDefault();
 
     if (this.state.username === '' || this.state.password === '') {
@@ -60,7 +57,7 @@ class RegisterPage extends Component {
     }
   }
 
-  handleInputChange(event) {
+  handleInputChange = (event) => {
     const { target } = event;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const { name } = target;
