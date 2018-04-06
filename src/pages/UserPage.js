@@ -4,9 +4,7 @@ import { connect } from 'react-redux';
 
 import Nav from '../components/Nav/Nav';
 
-import {
-  fetchUser,
-} from '../redux/actions/userActions';
+import { fetchUser } from '../redux/actions/userActions';
 
 import { triggerLogout } from '../redux/actions/loginActions';
 
@@ -27,11 +25,6 @@ const mapStateToProps = state => ({
 });
 
 class UserPage extends Component {
-  constructor(props) {
-    super(props);
-    this.logout = this.logout.bind(this);
-  }
-
   componentDidMount() {
     this.props.dispatch(fetchUser());
   }
@@ -42,7 +35,7 @@ class UserPage extends Component {
     }
   }
 
-  logout() {
+  logout = () => {
     this.props.dispatch(triggerLogout());
     // this.props.history.push('home');
   }
