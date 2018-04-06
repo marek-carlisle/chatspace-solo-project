@@ -7,6 +7,8 @@ import { triggerLogin, formError, clearError } from '../redux/actions/loginActio
 const propTypes = {
   dispatch: PropTypes.func,
   history: PropTypes.shape({ push: PropTypes.func }),
+  user: PropTypes.shape({ userName: PropTypes.string }).isRequired,
+  login: PropTypes.shape({ message: PropTypes.string }).isRequired,
 };
 
 const defaultProps = {
@@ -27,8 +29,6 @@ class LoginPage extends Component {
       username: '',
       password: '',
     };
-    this.login = this.login.bind(this);
-    this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   componentDidMount() {
@@ -41,7 +41,7 @@ class LoginPage extends Component {
     }
   }
 
-  login(event) {
+  login = (event) => {
     event.preventDefault();
 
     if (this.state.username === '' || this.state.password === '') {
@@ -51,7 +51,7 @@ class LoginPage extends Component {
     }
   }
 
-  handleInputChange(event) {
+  handleInputChange = (event) => {
     const { target } = event;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const { name } = target;
@@ -61,7 +61,7 @@ class LoginPage extends Component {
     });
   }
 
-  renderAlert() {
+  renderAlert = () => {
     if (this.props.login.message !== '') {
       return (
         <h2
