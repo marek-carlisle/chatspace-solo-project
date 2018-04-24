@@ -2,17 +2,19 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import Nav from '../components/Nav/Nav';
-import { fetchUser } from '../redux/actions/userActions';
+import Nav from '../../components/Nav/Nav';
+
+import { fetchUser } from '../../redux/actions/userActions';
+import { triggerLogout } from '../../redux/actions/loginActions';
 
 const propTypes = {
-  fetchUser: PropTypes.func,
+  dispatch: PropTypes.func,
   user: PropTypes.shape({ userName: PropTypes.string, isLoading: PropTypes.bool }),
   history: PropTypes.shape({ push: PropTypes.func }),
 };
 
 const defaultProps = {
-  fetchUser: () => {},
+  dispatch: () => {},
   user: { userName: null, isLoading: true },
   history: { push: () => {} },
 };
@@ -21,13 +23,9 @@ const mapStateToProps = state => ({
   user: state.user,
 });
 
-const mapDispatchToProps = {
-  fetchUser,
-};
-
-class InfoPage extends Component {
+class UserPage extends Component {
   componentDidMount() {
-    this.props.fetchUser();
+    this.props.dispatch(fetchUser());
   }
 
   componentDidUpdate() {
@@ -36,15 +34,27 @@ class InfoPage extends Component {
     }
   }
 
+  logout = () => {
+    this.props.dispatch(triggerLogout());
+    // this.props.history.push('home');
+  }
+
   render() {
     let content = null;
 
     if (this.props.user.userName) {
       content = (
         <div>
-          <p>
-            Info Page
-          </p>
+          <h1
+            id="welcome"
+          >
+            Welcome, { this.props.user.userName }!
+          </h1>
+          <button
+            onClick={this.logout}
+          >
+            Log Out
+          </button>
         </div>
       );
     }
@@ -58,8 +68,9 @@ class InfoPage extends Component {
   }
 }
 
-InfoPage.propTypes = propTypes;
-InfoPage.defaultProps = defaultProps;
+UserPage.propTypes = propTypes;
+UserPage.defaultProps = defaultProps;
 
 // this allows us to use <App /> in index.js
-export default connect(mapStateToProps, mapDispatchToProps)(InfoPage);
+export default connect(mapStateToProps)(UserPage);
+
