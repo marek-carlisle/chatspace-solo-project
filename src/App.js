@@ -37,7 +37,7 @@ const App = () => (
           component={InfoPage}
         />
         {/* OTHERWISE (no path!) */}
-        <Route component={NoMatch} />
+        <Route render={() => <h1>404</h1>} />
 
       </Switch>
     </Router>
