@@ -5,29 +5,13 @@ import { connect } from 'react-redux';
 import Nav from '../../components/Nav/Nav';
 import { fetchUser } from '../../redux/actions/userActions';
 
-const propTypes = {
-  fetchUser: PropTypes.func,
-  user: PropTypes.shape({ userName: PropTypes.string, isLoading: PropTypes.bool }),
-  history: PropTypes.shape({ push: PropTypes.func }),
-};
-
-const defaultProps = {
-  fetchUser: () => {},
-  user: { userName: null, isLoading: true },
-  history: { push: () => {} },
-};
-
 const mapStateToProps = state => ({
   user: state.user,
 });
 
-const mapDispatchToProps = {
-  fetchUser,
-};
-
 class InfoPage extends Component {
   componentDidMount() {
-    this.props.fetchUser();
+    this.props.dispatch(fetchUser());
   }
 
   componentDidUpdate() {
@@ -58,8 +42,5 @@ class InfoPage extends Component {
   }
 }
 
-InfoPage.propTypes = propTypes;
-InfoPage.defaultProps = defaultProps;
-
 // this allows us to use <App /> in index.js
-export default connect(mapStateToProps, mapDispatchToProps)(InfoPage);
+export default connect(mapStateToProps)(InfoPage);
