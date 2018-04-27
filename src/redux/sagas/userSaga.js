@@ -1,4 +1,4 @@
-import { call, put, takeLatest } from 'redux-saga/effects';
+import { put, takeLatest } from 'redux-saga/effects';
 import { USER_ACTIONS } from '../actions/userActions';
 import { callUser } from '../requests/userRequests';
 
@@ -6,7 +6,7 @@ import { callUser } from '../requests/userRequests';
 function* fetchUser() {
   try {
     yield put({ type: USER_ACTIONS.REQUEST_START });
-    const user = yield call(callUser);
+    const user = yield callUser();
     yield put({
       type: USER_ACTIONS.SET_USER,
       user,
