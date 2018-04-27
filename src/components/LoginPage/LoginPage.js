@@ -52,13 +52,9 @@ class LoginPage extends Component {
     }
   }
 
-  handleInputChange = (event) => {
-    const { target } = event;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    const { name } = target;
-
+  handleInputChangeFor = propertyName => (event) => {
     this.setState({
-      [name]: value,
+      [propertyName]: event.target.value,
     });
   }
 
@@ -89,7 +85,7 @@ class LoginPage extends Component {
                 type="text"
                 name="username"
                 value={this.state.username}
-                onChange={this.handleInputChange}
+                onChange={this.handleInputChangeFor('username')}
               />
             </label>
           </div>
@@ -100,7 +96,7 @@ class LoginPage extends Component {
                 type="password"
                 name="password"
                 value={this.state.password}
-                onChange={this.handleInputChange}
+                onChange={this.handleInputChangeFor('password')}
               />
             </label>
           </div>
