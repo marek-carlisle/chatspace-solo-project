@@ -20,7 +20,7 @@ function* fetchUser() {
     });
     yield put({
       type: USER_ACTIONS.USER_FETCH_FAILED,
-      message: error.message,
+      message: error.data || "FORBIDDEN",
     });
   }
 }

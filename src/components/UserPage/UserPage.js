@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import Nav from '../../components/Nav/Nav';
 
-import { fetchUser } from '../../redux/actions/userActions';
+import { USER_ACTIONS } from '../../redux/actions/userActions';
 import { triggerLogout } from '../../redux/actions/loginActions';
 
 
@@ -13,7 +13,7 @@ const mapStateToProps = state => ({
 
 class UserPage extends Component {
   componentDidMount() {
-    this.props.dispatch(fetchUser());
+    this.props.dispatch({ type: USER_ACTIONS.FETCH_USER });
   }
 
   componentDidUpdate() {

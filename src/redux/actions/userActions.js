@@ -5,9 +5,7 @@ export const USER_ACTIONS = {
   REQUEST_START: 'REQUEST_START_USER_ACTION',
   REQUEST_DONE: 'REQUEST_DONE_USER_ACTION',
   LOGOUT: 'LOGOUT',
+  USER_FETCH_FAILED: 'USER_FETCH_FAILED',
 };
 
-export function fetchUser() {
-  return { type: USER_ACTIONS.FETCH_USER };
-}
 

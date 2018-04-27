@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import Nav from '../../components/Nav/Nav';
-import { fetchUser } from '../../redux/actions/userActions';
+import { USER_ACTIONS } from '../../redux/actions/userActions';
 
 const mapStateToProps = state => ({
   user: state.user,
@@ -11,7 +10,7 @@ const mapStateToProps = state => ({
 
 class InfoPage extends Component {
   componentDidMount() {
-    this.props.dispatch(fetchUser());
+    this.props.dispatch({type: USER_ACTIONS.FETCH_USER});
   }
 
   componentDidUpdate() {
