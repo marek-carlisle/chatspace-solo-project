@@ -8,7 +8,7 @@ export function callUser() {
 
   return axios.get('api/user', config)
     .then(response => response.data)
-    .catch((error) => { throw error; });
+    .catch((error) => { throw error.response || error; });
 }
 
 export function placeholder() {
