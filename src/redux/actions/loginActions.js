@@ -21,10 +21,6 @@ export const triggerLogin = (username, password) => ({
   },
 });
 
-export const triggerLogout = () => ({
-  type: LOGIN_ACTIONS.LOGOUT,
-});
-
 export function formError() {
   return {
     type: LOGIN_ACTIONS.INPUT_ERROR,

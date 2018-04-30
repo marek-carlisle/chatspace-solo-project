@@ -1,24 +1,12 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import Nav from '../components/Nav/Nav';
+import Nav from '../../components/Nav/Nav';
 
-import { fetchUser } from '../redux/actions/userActions';
+import { USER_ACTIONS } from '../../redux/actions/userActions';
 
-import { triggerLogout } from '../redux/actions/loginActions';
+import { LOGIN_ACTIONS } from '../../redux/actions/loginActions';
 
-const propTypes = {
-  dispatch: PropTypes.func,
-  user: PropTypes.shape({ userName: PropTypes.string, isLoading: PropTypes.bool }),
-  history: PropTypes.shape({ push: PropTypes.func }),
-};
-
-const defaultProps = {
-  dispatch: () => {},
-  user: { userName: null, isLoading: true },
-  history: { push: () => {} },
-};
 
 const mapStateToProps = state => ({
   user: state.user,
@@ -26,7 +14,9 @@ const mapStateToProps = state => ({
 
 class UserPage extends Component {
   componentDidMount() {
-    this.props.dispatch(fetchUser());
+    this.props.dispatch({
+      type: USER_ACTIONS.FETCH_USER
+    });
   }
 
   componentDidUpdate() {
@@ -36,7 +26,9 @@ class UserPage extends Component {
   }
 
   logout = () => {
-    this.props.dispatch(triggerLogout());
+    this.props.dispatch({
+      type: LOGIN_ACTIONS.LOGOUT
+    });
     // this.props.history.push('home');
   }
 
@@ -68,9 +60,6 @@ class UserPage extends Component {
     );
   }
 }
-
-UserPage.propTypes = propTypes;
-UserPage.defaultProps = defaultProps;
 
 // this allows us to use <App /> in index.js
 export default connect(mapStateToProps)(UserPage);

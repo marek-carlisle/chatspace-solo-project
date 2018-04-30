@@ -1,20 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { triggerLogin, formError, clearError } from '../redux/actions/loginActions';
-
-const propTypes = {
-  dispatch: PropTypes.func,
-  history: PropTypes.shape({ push: PropTypes.func }),
-  user: PropTypes.shape({ userName: PropTypes.string }).isRequired,
-  login: PropTypes.shape({ message: PropTypes.string }).isRequired,
-};
-
-const defaultProps = {
-  dispatch: () => {},
-  history: { push: () => {} },
-};
+import { triggerLogin, formError, clearError } from '../../redux/actions/loginActions';
 
 const mapStateToProps = state => ({
   user: state.user,
@@ -117,7 +104,5 @@ class LoginPage extends Component {
   }
 }
 
-LoginPage.propTypes = propTypes;
-LoginPage.defaultProps = defaultProps;
 
 export default connect(mapStateToProps)(LoginPage);
