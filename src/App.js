@@ -7,10 +7,10 @@ import {
 } from 'react-router-dom';
 
 import Header from './components/Header/Header';
-import LoginPage from './pages/LoginPage';
-import RegisterPage from './pages/RegisterPage';
-import UserPage from './pages/UserPage';
-import InfoPage from './pages/InfoPage';
+import LoginPage from './components/LoginPage/LoginPage';
+import RegisterPage from './components/RegisterPage/RegisterPage';
+import UserPage from './components/UserPage/UserPage';
+import InfoPage from './components/InfoPage/InfoPage';
 
 import './styles/main.css';
 
