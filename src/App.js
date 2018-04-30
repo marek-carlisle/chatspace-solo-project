@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  HashRouter as Router,
+  BrowserRouter as Router,
   Route,
   Redirect,
   Switch,
@@ -35,6 +35,10 @@ const App = () => (
         <Route
           path="/info"
           component={InfoPage}
+        />
+        {/* OTHERWISE no path */}
+        <Route
+          render={() => <h1>404</h1>}
         />
       </Switch>
     </Router>
