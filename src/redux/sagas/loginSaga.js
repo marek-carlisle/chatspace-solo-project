@@ -8,7 +8,7 @@ function* loginUser(action) {
   try {
     yield put({ type: LOGIN_ACTIONS.CLEAR_LOGIN_ERROR });
     yield put({ type: LOGIN_ACTIONS.REQUEST_START });
-    yield call(callLogin, action.payload);
+    yield callLogin(action.payload);
     yield put({
       type: LOGIN_ACTIONS.LOGIN_REQUEST_DONE,
     });
@@ -36,7 +36,7 @@ function* loginUser(action) {
 // worker Saga: will be fired on "LOGOUT" actions
 function* logoutUser(action) {
   try {
-    yield call(callLogout, action);
+    yield callLogout(action);
     yield put({
       type: USER_ACTIONS.UNSET_USER,
     });
