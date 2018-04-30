@@ -7,7 +7,3 @@ export const USER_ACTIONS = {
   LOGOUT: 'LOGOUT',
 };
 
-export function fetchUser() {
-  return { type: USER_ACTIONS.FETCH_USER };
-}
-
