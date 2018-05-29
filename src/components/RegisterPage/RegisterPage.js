@@ -20,17 +20,13 @@ class RegisterPage extends Component {
         message: 'Choose a username and password!',
       });
     } else {
-      const request = new Request('api/user/register', {
-        method: 'POST',
-        headers: new Headers({ 'Content-Type': 'application/json' }),
-        body: JSON.stringify({
-          username: this.state.username,
-          password: this.state.password,
-        }),
-      });
+      const body = {
+        username: this.state.username,
+        password: this.state.password,
+      };
 
-      // making the request to the server to post the country
-      fetch(request)
+      // making the request to the server to post the new user's registration
+      axios.post('/api/user/register/', body)
         .then((response) => {
           if (response.status === 201) {
             this.props.history.push('/home');
