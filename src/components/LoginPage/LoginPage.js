@@ -23,6 +23,7 @@ class LoginPage extends Component {
     this.props.dispatch(clearError());
   }
 
+  
   componentWillReceiveProps(nextProps) {
     if (nextProps.user.userName) {
       this.props.history.push('/user');
