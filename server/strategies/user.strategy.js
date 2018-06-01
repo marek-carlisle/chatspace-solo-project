@@ -17,7 +17,14 @@ passport.deserializeUser((id, done) => {
       done(null, false, { message: 'Incorrect credentials.' });
     } else {
       // user found
-      done(null, user);
+      const userInfo = {
+        username: user.username,
+        _id: user._id,
+      };
+      
+      console.log('user info: ', userInfo);
+      
+      done(null, userInfo);
     }
   }).catch((err) => {
     console.log('query err ', err);
