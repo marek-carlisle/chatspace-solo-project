@@ -62,7 +62,7 @@ The Airbnb ESLint for react is a part of this project. If you would like to take
 
 ## Production Build
 
-This is the build Heroku will run, but during development, you will likely not need to use it.
+Before pushing to Heroku, run `npm run build` in terminal. This will create a build folder that contains the code Heroku will be pointed at. You can test this build by typing `npm start`. Keep in mind that `npm start` will let you preview the production build but will **not** auto update.
 
 * Start postgres if not running already by using `brew services start postgresql`
 * Run `npm start`
