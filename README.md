@@ -54,11 +54,6 @@ Then make sure `Launch Program` is selected from the dropdown, then click the gr
 
 ![VSCode Debug Bar](documentation/images/vscode-debug-bar.png)
 
-## Linting
-
-The Airbnb ESLint for react is a part of this project. If you would like to take advantage of this in VS Code, you can add the `ESLint` extension. Click the `Extensions` button (the button right below the `Debug`) and search for `ESLint`. Click `install` for the first result and then click `Reload`. Then it should be all set up!
-
-![VSCode Toolbar](documentation/images/vscode-toolbar.png)
 
 ## Production Build
 
