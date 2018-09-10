@@ -1,38 +1,40 @@
-# Express/Passport with React
-This version uses React to control the login requests and redirection in coordination with client-side routing.
+# REACT AUTH SHELF
 
-We **STONGLY** recommend following these instructions carefully. It's a lot, and will take some time to set up, but your life will be much easier this way in the long run.
+Our client, Prime Digital Academy: Room 2, has asked for an app to simulate the behavior of their shelf. That is, a list of items placed on the classroom shelf. More details about each of the features are listed below in the README.md.
 
-## Prerequisites
+This will require some research, design, an implementation. Update this README.md to include the names of the group members and your team name/number. As well as any planning/docs. These can be in digital format or even pics of whiteboard/notebook sketches.
 
-Before you get started, make sure you have the following software installed on your computer:
+## DOWNLOAD THIS REPOSITORY
 
-- [Node.js](https://nodejs.org/en/)
-- [PostrgeSQL](https://www.postgresql.org/)
-- [Nodemon](https://nodemon.io/)
+> NOTE: Do not clone this repository.
 
-## Create database and table
+* Don't Fork or Clone. Instead, have one memeber of your group click the `Clone or Download` button and select `Download Zip`.
+* Unzip the project and start with the code in that folder.
+* Create a new GitHub project and push this code to the new repository.
+* Add members of your group to the repository.
 
-Create a new database called `prime_app` and create a `person` table:
+## CREATE DATABASE AND TABLE
+
+Create a new database called `auth_shelf` and create a `person` table:
 
 ```SQL
-CREATE TABLE person (
-    id SERIAL PRIMARY KEY,
-    username VARCHAR (80) UNIQUE NOT NULL,
-    password VARCHAR (1000) NOT NULL
+CREATE TABLE "person" (
+    "id" SERIAL PRIMARY KEY,
+    "username" VARCHAR (80) UNIQUE NOT NULL,
+    "password" VARCHAR (1000) NOT NULL
+);
+
+CREATE TABLE "item" (
+    "id" SERIAL PRIMARY KEY,
+    "description" VARCHAR (80) NOT NULL,
+    "image_url" VARCHAR (2083),
+    "person_id" INT REFERENCES "person"
 );
 ```
 
-If you would like to name your database something else, you will need to change `prime_app` to the name of your new database name in `server/modules/pool.js`
+## DEVELOPMENT SETUP
 
-## Download (Don't Clone) This Repository
-
-* Don't Fork or Clone. Instead, click the `Clone or Download` button and select `Download Zip`.
-* Unzip the project and start with the code in that folder.
-* Create a new GitHub project and push this code to the new repository.
-
-## Development Setup Instructions
-
+* Clone the repository for your group
 * Run `npm install`
 * Create a `.env` file at the root of the project and paste this line into the file:
     ```
@@ -44,38 +46,31 @@ If you would like to name your database something else, you will need to change 
 * Run `npm run client`
 * Navigate to `localhost:3000`
 
-## Debugging
+## FEATURES
 
-To debug, you will need to run the client-side separately from the server. Start the client by running the command `npm run dev:client`. Start the debugging server by selecting the Debug button.
+We recommend working in groups of 4 or 6 and pair programming for this project. Each pair should take on one of the following features. You will want to identify any tasks that need to be finished in a particular order as a group to avoid merge conflicts. Each of the following features should be on a separate route.
 
-![VSCode Toolbar](documentation/images/vscode-toolbar.png)
+### View Shelf
 
-Then make sure `Launch Program` is selected from the dropdown, then click the green play arrow.
+All logged in users should be able to view ALL items on the shelf (even items added by other users). On the view shelf page there should also be an option to delete items on the shelf.
 
-![VSCode Debug Bar](documentation/images/vscode-debug-bar.png)
+### Add Items to the Shelf
+
+> NOTE: Image url should be a full path to an existing image on the web. You should not attempt to implement image upload for this.
+
+This page should include a form that allows user to add items to the shelf. Each item should have a description and an image url.
 
 
-## Production Build
+### Total Number of Items by User
 
-Before pushing to Heroku, run `npm run build` in terminal. This will create a build folder that contains the code Heroku will be pointed at. You can test this build by typing `npm start`. Keep in mind that `npm start` will let you preview the production build but will **not** auto update.
+> NOTE: In a group of six, this feature should be completed as base functionality. In a group of four or five, this would be a stretch goal.
 
-* Start postgres if not running already by using `brew services start postgresql`
-* Run `npm start`
-* Navigate to `localhost:5000`
+This page should display a list of users along with the total number of items they have added to the shelf. Users with 0 items on the shelf should be displayed as well! 
 
-## Lay of the Land
+### Stretch Goals
 
-* `src/` contains the React application
-* `public/` contains static assets for the client-side
-* `build/` after you build the project, contains the transpiled code from `src/` and `public/` that will be viewed on the production site
-* `server/` contains the Express App
-
-## Deployment
-
-1. Create a new Heroku project
-1. Link the Heroku project to the project GitHub Repo
-1. Create an Herkoku Postgres database
-1. Connect to the Heroku Postgres database from Postico
-1. Create the necessary tables
-1. Add an environment variable for `SERVER_SESSION_SECRET` with a nice random string for security
-1. In the deploy section, select manual deploy
+- Ability to edit an existing item on the shelf from the view page.
+- Have anyone, not just logged in users, be able to see what is on the shelf, but not edit, remove, nor add.
+- A new route to display all items for a specific user. `/shelf/2` would display items uploaded by user with the id of `2`.
+- Filestack for image upload on the add page.
+- Style with Material-UI
