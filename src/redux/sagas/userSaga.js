@@ -5,16 +5,19 @@ import { callUser } from '../requests/userRequests';
 // worker Saga: will be fired on "FETCH_USER" actions
 function* fetchUser() {
   try {
+    // sets that the async request is in progress
     yield put({ type: USER_ACTIONS.REQUEST_START });
     const user = yield callUser();
     yield put({
       type: USER_ACTIONS.SET_USER,
       user,
     });
+    // sets that the async request is finished
     yield put({
       type: USER_ACTIONS.REQUEST_DONE,
     });
   } catch (error) {
+    // sets that the async request is finished
     yield put({
       type: USER_ACTIONS.REQUEST_DONE,
     });
