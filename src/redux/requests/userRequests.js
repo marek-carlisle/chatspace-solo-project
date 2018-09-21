@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+//calls /user on our server to retrieve user data
 export function callUser() {
   const config = {
     headers: { 'Content-Type': 'application/json' },
