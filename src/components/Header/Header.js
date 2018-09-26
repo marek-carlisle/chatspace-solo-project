@@ -1,5 +1,6 @@
 import React from 'react';
 
+//title is being destructured from props
 const Header = ({ title }) => (
   <div className="instructions">
     <div>
