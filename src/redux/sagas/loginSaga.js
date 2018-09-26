@@ -7,8 +7,10 @@ import { callLogin, callLogout } from '../requests/loginRequests';
 function* loginUser(action) {
   try {
     yield put({ type: LOGIN_ACTIONS.CLEAR_LOGIN_ERROR });
+    // sets that we are starting an async request
     yield put({ type: LOGIN_ACTIONS.REQUEST_START });
     yield callLogin(action.payload);
+    // sets that the async request is finished
     yield put({
       type: LOGIN_ACTIONS.LOGIN_REQUEST_DONE,
     });
@@ -16,6 +18,7 @@ function* loginUser(action) {
       type: USER_ACTIONS.FETCH_USER,
     });
   } catch (error) {
+    // sets that the async request is finished
     yield put({
       type: LOGIN_ACTIONS.LOGIN_REQUEST_DONE,
     });
