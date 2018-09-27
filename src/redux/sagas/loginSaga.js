@@ -10,13 +10,16 @@ function* loginUser(action) {
     // sets that we are starting an async request
     yield put({ type: LOGIN_ACTIONS.REQUEST_START });
     yield callLogin(action.payload);
+    
+    yield put({
+      type: USER_ACTIONS.FETCH_USER,
+    });
+    
     // sets that the async request is finished
     yield put({
       type: LOGIN_ACTIONS.LOGIN_REQUEST_DONE,
     });
-    yield put({
-      type: USER_ACTIONS.FETCH_USER,
-    });
+    
   } catch (error) {
     // sets that the async request is finished
     yield put({
