@@ -20,20 +20,6 @@ class LoginPage extends Component {
     };
   }
 
-  
-  // componentDidMount() {
-  //   // starts request for server to check that we are logged in
-  //   this.props.dispatch({ type: USER_ACTIONS.FETCH_USER });
-  //   this.props.dispatch(clearError());
-  // }
-
-  // componentDidUpdate() {
-  //   // if we have a response from the server and the user is logged in, redirect to the /user URL
-  //   if (!this.props.user.isLoading && this.props.user.userName !== null) {
-  //     this.props.history.push('/user');
-  //   }
-  // }
-
   login = (event) => {
     event.preventDefault();
 
