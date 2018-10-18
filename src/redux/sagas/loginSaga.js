@@ -1,6 +1,5 @@
 import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
-import { callLogin, callLogout } from '../requests/loginRequests';
 
 // worker Saga: will be fired on "LOGIN" actions
 function* loginUser(action) {
@@ -17,17 +16,12 @@ function* loginUser(action) {
       withCredentials: true,
     };
 
-    yield axios.post('api/user/login', body, config)
-      .then(response => response.data)
-      .catch((error) => {
-        throw error.response || error;
-      });;
+    yield axios.post('api/user/login', body, config);
     
-    yield put({
-      type: 'FETCH_USER',
-    });
+    yield put({type: 'FETCH_USER'});
   } catch (error) {
-    if (error.status === 401) {
+    console.log('Error with user login:', error);
+    if (error.response.status === 401) {
       yield put({
         type: 'LOGIN_FAILED',
         message: error.message,
@@ -49,15 +43,12 @@ function* logoutUser(action) {
       withCredentials: true,
     };
 
-    yield axios.get('api/user/logout', config)
-      .then(response => response.data)
-      .catch((error) => {
-        throw error.response || error;
-      });
+    yield axios.get('api/user/logout', config);
 
     yield put({ type: 'UNSET_USER' });
 
   } catch (error) {
+    console.log('Error with user logout:', error);
     console.log('LOGOUT FAILED -- CHECK YOUR SERVER', error);
   }
 }

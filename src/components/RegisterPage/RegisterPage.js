@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import {connect} from 'react-redux';
-import axios from 'axios';
 
 class RegisterPage extends Component {
   state = {
@@ -13,19 +12,15 @@ class RegisterPage extends Component {
     event.preventDefault();
 
     if (this.state.username && this.state.password) {
-      const body = {
-        username: this.state.username,
-        password: this.state.password,
-      };
-
-      // making the request to the server to post the new user's registration
-      axios.post('/api/user/register/', body)
-        .then((response) => {
-          this.props.history.push('/home');
-        })
-        .catch(() => {
-          this.props.dispatch({type: 'REGISTRATION_FAILED'});
-        });
+      this.props.dispatch({
+        type: 'REGISTER',
+        payload: {
+          username: this.state.username,
+          password: this.state.password,
+        },
+        push: this.props.history.push,
+        path: '/home',
+      });
     } else {
       this.props.dispatch({type: 'REGISTRATION_INPUT_ERROR'});
     }
