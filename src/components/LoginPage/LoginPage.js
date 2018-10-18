@@ -11,12 +11,7 @@ class LoginPage extends Component {
   login = (event) => {
     event.preventDefault();
 
-    if (this.state.username === '' || this.state.password === '') {
-      this.props.dispatch({
-        type: 'INPUT_ERROR',
-        payload: 'Enter your username and password!',
-      });
-    } else {
+    if (this.state.username && this.state.password) {
       this.props.dispatch({
         type: 'LOGIN',
         payload: {
@@ -24,6 +19,8 @@ class LoginPage extends Component {
           password: this.state.password,
         },
       });
+    } else {
+      this.props.dispatch({ type: 'LOGIN_INPUT_ERROR' });
     }
   }
 
@@ -36,12 +33,12 @@ class LoginPage extends Component {
   render() {
     return (
       <div>
-        {this.props.login.message && (
+        {this.props.errors.loginMessage && (
           <h2
             className="alert"
             role="alert"
           >
-            {this.props.login.message}
+            {this.props.errors.loginMessage}
           </h2>
         )}
         <form onSubmit={this.login}>
@@ -84,7 +81,7 @@ class LoginPage extends Component {
 
 const mapStateToProps = state => ({
   user: state.user,
-  login: state.login,
+  errors: state.errors,
 });
 
 export default connect(mapStateToProps)(LoginPage);

@@ -1,22 +1,18 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import {connect} from 'react-redux';
 import axios from 'axios';
 
 class RegisterPage extends Component {
   state = {
     username: '',
     password: '',
-    message: '',
   };
 
   registerUser = (event) => {
     event.preventDefault();
 
-    if (this.state.username === '' || this.state.password === '') {
-      this.setState({
-        message: 'Choose a username and password!',
-      });
-    } else {
+    if (this.state.username && this.state.password) {
       const body = {
         username: this.state.username,
         password: this.state.password,
@@ -25,19 +21,13 @@ class RegisterPage extends Component {
       // making the request to the server to post the new user's registration
       axios.post('/api/user/register/', body)
         .then((response) => {
-          if (response.status === 201) {
-            this.props.history.push('/home');
-          } else {
-            this.setState({
-              message: 'Ooops! That didn\'t work. The username might already be taken. Try again!',
-            });
-          }
+          this.props.history.push('/home');
         })
         .catch(() => {
-          this.setState({
-            message: 'Ooops! Something went wrong! Is the server running?',
-          });
+          this.props.dispatch({type: 'REGISTRATION_FAILED'});
         });
+    } else {
+      this.props.dispatch({type: 'REGISTRATION_INPUT_ERROR'});
     }
   } // end registerUser
 
@@ -50,12 +40,12 @@ class RegisterPage extends Component {
   render() {
     return (
       <div>
-        {this.state.message && (
+        {this.props.errors.registrationMessage && (
           <h2
             className="alert"
             role="alert"
           >
-            {this.state.message}
+            {this.props.errors.registrationMessage}
           </h2>
         )}
         <form onSubmit={this.registerUser}>
@@ -96,5 +86,9 @@ class RegisterPage extends Component {
   }
 }
 
-export default RegisterPage;
+const mapStateToProps = state => ({
+  errors: state.errors,
+});
+
+export default connect(mapStateToProps)(RegisterPage);
 
