@@ -9,14 +9,10 @@ const mapStateToProps = state => ({
 });
 
 class LoginPage extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      username: '',
-      password: '',
-    };
-  }
+  state = {
+    username: '',
+    password: '',
+  };
 
   login = (event) => {
     event.preventDefault();

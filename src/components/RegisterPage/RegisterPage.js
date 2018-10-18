@@ -3,15 +3,11 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 class RegisterPage extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      username: '',
-      password: '',
-      message: '',
-    };
-  }
+  state = {
+    username: '',
+    password: '',
+    message: '',
+  };
 
   registerUser = (event) => {
     event.preventDefault();

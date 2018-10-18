@@ -13,8 +13,8 @@ const id = (state = null, action) => {
   }
 };
 
-//userName holds onto the user.username from passport/database
-const userName = (state = null, action) => {
+//username holds onto the user.username from passport/database
+const username = (state = null, action) => {
   switch (action.type) {
     case USER_ACTIONS.SET_USER:
       return action.user.username || state;
@@ -40,6 +40,6 @@ const isLoading = (state = false, action) => {
 //make one object that has keys id, username, isLoading
 export default combineReducers({
   id,
-  userName,
+  username,
   isLoading,
 });

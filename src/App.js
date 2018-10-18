@@ -20,11 +20,7 @@ import InfoPage from './components/InfoPage/InfoPage';
 import './styles/main.css';
 
 class App extends Component {
-  
-  //Constructor is the best place to initialize dependent data
-  //Will fire before render, insuring that our call is at least pending
-  constructor(props) {
-    super(props);
+  componentDidMount () {
     props.dispatch({type: USER_ACTIONS.FETCH_USER})
   }
 
