@@ -1,38 +1,36 @@
 import { put, takeLatest } from 'redux-saga/effects';
-import { LOGIN_ACTIONS } from '../actions/loginActions';
-import { USER_ACTIONS } from '../actions/userActions';
 import { callLogin, callLogout } from '../requests/loginRequests';
 
 // worker Saga: will be fired on "LOGIN" actions
 function* loginUser(action) {
   try {
-    yield put({ type: LOGIN_ACTIONS.CLEAR_LOGIN_ERROR });
+    yield put({ type: 'CLEAR_LOGIN_ERROR' });
     // sets that we are starting an async request
-    yield put({ type: LOGIN_ACTIONS.REQUEST_START });
+    yield put({ type: 'REQUEST_START' });
     yield callLogin(action.payload);
     
     yield put({
-      type: USER_ACTIONS.FETCH_USER,
+      type: 'FETCH_USER',
     });
     
     // sets that the async request is finished
     yield put({
-      type: LOGIN_ACTIONS.LOGIN_REQUEST_DONE,
+      type: 'LOGIN_REQUEST_DONE',
     });
     
   } catch (error) {
     // sets that the async request is finished
     yield put({
-      type: LOGIN_ACTIONS.LOGIN_REQUEST_DONE,
+      type: 'LOGIN_REQUEST_DONE',
     });
     if (error.status === 401) {
       yield put({
-        type: LOGIN_ACTIONS.LOGIN_FAILED,
+        type: 'LOGIN_FAILED',
         message: error.message,
       });
     } else {
       yield put({
-        type: LOGIN_ACTIONS.LOGIN_FAILED_NO_CODE,
+        type: 'LOGIN_FAILED_NO_CODE',
         message: error.message,
       });
     }
@@ -44,7 +42,7 @@ function* logoutUser(action) {
   try {
     yield callLogout(action);
     yield put({
-      type: USER_ACTIONS.UNSET_USER,
+      type: 'UNSET_USER',
     });
   } catch (error) {
     console.log('LOGOUT FAILED -- CHECK YOUR SERVER', error);
@@ -52,8 +50,8 @@ function* logoutUser(action) {
 }
 
 function* loginSaga() {
-  yield takeLatest(LOGIN_ACTIONS.LOGIN, loginUser);
-  yield takeLatest(LOGIN_ACTIONS.LOGOUT, logoutUser);
+  yield takeLatest('LOGIN', loginUser);
+  yield takeLatest('LOGOUT', logoutUser);
 }
 
 export default loginSaga;

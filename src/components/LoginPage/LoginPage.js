@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { triggerLogin, formError, clearError } from '../../redux/actions/loginActions';
-import { USER_ACTIONS } from '../../redux/actions/userActions';
 
 
 const mapStateToProps = state => ({
@@ -24,9 +22,18 @@ class LoginPage extends Component {
     event.preventDefault();
 
     if (this.state.username === '' || this.state.password === '') {
-      this.props.dispatch(formError());
+      this.props.dispatch({
+        type: 'INPUT_ERROR',
+        payload: 'Enter your username and password!',
+      });
     } else {
-      this.props.dispatch(triggerLogin(this.state.username, this.state.password));
+      this.props.dispatch({
+        type: 'LOGIN',
+        payload: {
+          username: this.state.username,
+          password: this.state.password,
+        },
+      });
       this.props.history.push('/user')
     }
   }
