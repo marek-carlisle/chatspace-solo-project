@@ -30,7 +30,6 @@ class LoginPage extends Component {
           password: this.state.password,
         },
       });
-      this.props.history.push('/user')
     }
   }
 

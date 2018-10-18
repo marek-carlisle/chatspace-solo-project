@@ -7,7 +7,6 @@ import {
 } from 'react-router-dom';
 
 import {connect} from 'react-redux';
-import {USER_ACTIONS} from './redux/actions/userActions'
 
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 
@@ -21,7 +20,7 @@ import './styles/main.css';
 
 class App extends Component {
   componentDidMount () {
-    props.dispatch({type: USER_ACTIONS.FETCH_USER})
+    this.props.dispatch({type: 'FETCH_USER'})
   }
 
   render() {
@@ -32,15 +31,11 @@ class App extends Component {
         <Switch>
           <Redirect exact from="/" to="/home" />
           <Route
-            path="/home"
-            component={LoginPage}
-          />
-          <Route
             path="/register"
             component={RegisterPage}
           />
           <ProtectedRoute
-            path="/user"
+            path="/home"
             component={UserPage}
           />
           <ProtectedRoute

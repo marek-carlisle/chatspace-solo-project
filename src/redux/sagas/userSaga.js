@@ -1,28 +1,27 @@
 import { put, takeLatest } from 'redux-saga/effects';
-import { USER_ACTIONS } from '../actions/userActions';
 import { callUser } from '../requests/userRequests';
 
 // worker Saga: will be fired on "FETCH_USER" actions
 function* fetchUser() {
   try {
     // sets that the async request is in progress
-    yield put({ type: USER_ACTIONS.REQUEST_START });
+    yield put({ type: 'REQUEST_START' });
     const user = yield callUser();
     yield put({
-      type: USER_ACTIONS.SET_USER,
+      type: 'SET_USER',
       user,
     });
     // sets that the async request is finished
     yield put({
-      type: USER_ACTIONS.REQUEST_DONE,
+      type: 'REQUEST_DONE',
     });
   } catch (error) {
     // sets that the async request is finished
     yield put({
-      type: USER_ACTIONS.REQUEST_DONE,
+      type: 'REQUEST_DONE',
     });
     yield put({
-      type: USER_ACTIONS.USER_FETCH_FAILED,
+      type: 'USER_FETCH_FAILED',
       message: error.data || "FORBIDDEN",
     });
   }
@@ -43,7 +42,7 @@ function* fetchUser() {
   and only the latest one will be run.
 */
 function* userSaga() {
-  yield takeLatest(USER_ACTIONS.FETCH_USER, fetchUser);
+  yield takeLatest('FETCH_USER', fetchUser);
 }
 
 export default userSaga;
