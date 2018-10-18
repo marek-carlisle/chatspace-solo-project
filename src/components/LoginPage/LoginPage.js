@@ -2,12 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-
-const mapStateToProps = state => ({
-  user: state.user,
-  login: state.login,
-});
-
 class LoginPage extends Component {
   state = {
     username: '',
@@ -39,24 +33,17 @@ class LoginPage extends Component {
     });
   }
 
-  renderAlert() {
-    if (this.props.login.message !== '') {
-      return (
-        <h2
-          className="alert"
-          role="alert"
-        >
-          {this.props.login.message}
-        </h2>
-      );
-    }
-    return (<span />);
-  }
-
   render() {
     return (
       <div>
-        {this.renderAlert()}
+        {this.props.login.message && (
+          <h2
+            className="alert"
+            role="alert"
+          >
+            {this.props.login.message}
+          </h2>
+        )}
         <form onSubmit={this.login}>
           <h1>Login</h1>
           <div>
@@ -94,5 +81,10 @@ class LoginPage extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  user: state.user,
+  login: state.login,
+});
 
 export default connect(mapStateToProps)(LoginPage);

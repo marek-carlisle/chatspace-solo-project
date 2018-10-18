@@ -47,24 +47,17 @@ class RegisterPage extends Component {
     });
   }
 
-  renderAlert() {
-    if (this.state.message !== '') {
-      return (
-        <h2
-          className="alert"
-          role="alert"
-        >
-          {this.state.message}
-        </h2>
-      );
-    }
-    return (<span />);
-  }
-
   render() {
     return (
       <div>
-        {this.renderAlert()}
+        {this.state.message && (
+          <h2
+            className="alert"
+            role="alert"
+          >
+            {this.state.message}
+          </h2>
+        )}
         <form onSubmit={this.registerUser}>
           <h1>Register User</h1>
           <div>
