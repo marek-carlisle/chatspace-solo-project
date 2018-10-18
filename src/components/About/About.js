@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 const AboutPage = () => (
   <div>
@@ -8,7 +7,6 @@ const AboutPage = () => (
         This about page is for anyone to read!
       </p>
     </div>
-    <Link to="/about">About</Link>
   </div>
 );
 

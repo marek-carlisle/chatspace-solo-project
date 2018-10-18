@@ -4,6 +4,7 @@ import {
   Route,
   Redirect,
   Switch,
+  Link
 } from 'react-router-dom';
 
 import {connect} from 'react-redux';
@@ -24,29 +25,33 @@ class App extends Component {
 
   render() {
     return (
-    <div>
-      <Header title="Project Base" />
       <Router>
-        <Switch>
-          <Redirect exact from="/" to="/home" />
-          <Route
-            path="/about"
-            component={AboutPage}
-          />
-          <ProtectedRoute
-            path="/home"
-            component={UserPage}
-          />
-          <ProtectedRoute
-            path="/info"
-            component={InfoPage}
-          />
-          {/* OTHERWISE (no path!) */}
-          <Route render={() => <h1>404</h1>} />
-
-        </Switch>
+        <div>
+          <Header title="Project Base" />
+          <Switch>
+            <Redirect exact from="/" to="/home" />
+            <Route
+              path="/about"
+              component={AboutPage}
+            />
+            <ProtectedRoute
+              path="/home"
+              component={UserPage}
+            />
+            <ProtectedRoute
+              path="/info"
+              component={InfoPage}
+            />
+            {/* OTHERWISE (no path!) */}
+            <Route render={() => <h1>404</h1>} />
+          </Switch>
+          <footer>
+            <Link to='/home'>Home</Link>
+            {' '}
+            <Link to='/about'>About</Link>
+          </footer>
+        </div>
       </Router>
-    </div>
   )}
 }
 
