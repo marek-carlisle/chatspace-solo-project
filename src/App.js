@@ -11,7 +11,7 @@ import {connect} from 'react-redux';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 
 import Header from './components/Header/Header';
-import RegisterPage from './components/RegisterPage/RegisterPage';
+import AboutPage from './components/About/About';
 import UserPage from './components/UserPage/UserPage';
 import InfoPage from './components/InfoPage/InfoPage';
 
@@ -30,8 +30,8 @@ class App extends Component {
         <Switch>
           <Redirect exact from="/" to="/home" />
           <Route
-            path="/register"
-            component={RegisterPage}
+            path="/about"
+            component={AboutPage}
           />
           <ProtectedRoute
             path="/home"

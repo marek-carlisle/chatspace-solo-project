@@ -1,12 +1,14 @@
 import { combineReducers } from 'redux';
-import user from './userReducer';
 import errors from './errorsReducer';
+import loginMode from './loginModeReducer';
+import user from './userReducer';
 
 //Lets make a bigger object for our store, with the objects from our reducers.
 //This is why we get this.props.reduxStore.user.isLoading
 const store = combineReducers({
-  user,
   errors,
+  loginMode,
+  user,
 });
 
 export default store;

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Route} from 'react-router-dom'
 import {connect} from 'react-redux';
 import LoginPage from '../LoginPage/LoginPage';
+import RegisterPage from '../RegisterPage/RegisterPage';
 
 
 //A Custom Wrapper Component -- This will keep our code DRY.
@@ -16,8 +17,10 @@ class ProtectedRoute extends Component {
           path={this.props.path}
           render={() => (
             this.props.user.id ?
-            <ComponentToProtect /> : 
-            <LoginPage />
+            <ComponentToProtect /> :
+            this.props.loginMode === 'login' ?
+            <LoginPage /> :
+            <RegisterPage />
           )}
         />
     )
@@ -27,6 +30,7 @@ class ProtectedRoute extends Component {
 const mapStateToProps = (state) => {
   return {
     user: state.user,
+    loginMode: state.loginMode,
   }
 }
 

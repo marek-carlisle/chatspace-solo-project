@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import About from '../About/About';
 import {connect} from 'react-redux';
 
 class RegisterPage extends Component {
@@ -18,8 +18,6 @@ class RegisterPage extends Component {
           username: this.state.username,
           password: this.state.password,
         },
-        push: this.props.history.push,
-        path: '/home',
       });
     } else {
       this.props.dispatch({type: 'REGISTRATION_INPUT_ERROR'});
@@ -73,9 +71,11 @@ class RegisterPage extends Component {
               name="submit"
               value="Register"
             />
-            <Link to="/home">Cancel</Link>
           </div>
         </form>
+        <center>
+          <button type="button" className="linkButton" onClick={() => {this.props.dispatch({type: 'SET_TO_LOGIN_MODE'})}}>Login</button>
+        </center>
       </div>
     );
   }
