@@ -1,28 +1,32 @@
 import { put, takeLatest } from 'redux-saga/effects';
+import axios from 'axios';
 import { callLogin, callLogout } from '../requests/loginRequests';
 
 // worker Saga: will be fired on "LOGIN" actions
 function* loginUser(action) {
   try {
     yield put({ type: 'CLEAR_LOGIN_ERROR' });
-    // sets that we are starting an async request
-    yield put({ type: 'REQUEST_START' });
-    yield callLogin(action.payload);
+
+    const body = {
+      username: action.payload.username,
+      password: action.payload.password,
+    };
+
+    const config = {
+      headers: { 'Content-Type': 'application/json' },
+      withCredentials: true,
+    };
+
+    yield axios.post('api/user/login', body, config)
+      .then(response => response.data)
+      .catch((error) => {
+        throw error.response || error;
+      });;
     
     yield put({
       type: 'FETCH_USER',
     });
-    
-    // sets that the async request is finished
-    yield put({
-      type: 'LOGIN_REQUEST_DONE',
-    });
-    
   } catch (error) {
-    // sets that the async request is finished
-    yield put({
-      type: 'LOGIN_REQUEST_DONE',
-    });
     if (error.status === 401) {
       yield put({
         type: 'LOGIN_FAILED',
@@ -40,10 +44,19 @@ function* loginUser(action) {
 // worker Saga: will be fired on "LOGOUT" actions
 function* logoutUser(action) {
   try {
-    yield callLogout(action);
-    yield put({
-      type: 'UNSET_USER',
-    });
+    const config = {
+      headers: { 'Content-Type': 'application/json' },
+      withCredentials: true,
+    };
+
+    yield axios.get('api/user/logout', config)
+      .then(response => response.data)
+      .catch((error) => {
+        throw error.response || error;
+      });
+
+    yield put({ type: 'UNSET_USER' });
+
   } catch (error) {
     console.log('LOGOUT FAILED -- CHECK YOUR SERVER', error);
   }

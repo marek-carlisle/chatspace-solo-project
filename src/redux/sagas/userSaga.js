@@ -1,46 +1,27 @@
+import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
-import { callUser } from '../requests/userRequests';
 
 // worker Saga: will be fired on "FETCH_USER" actions
 function* fetchUser() {
   try {
-    // sets that the async request is in progress
-    yield put({ type: 'REQUEST_START' });
-    const user = yield callUser();
+    const config = {
+      headers: { 'Content-Type': 'application/json' },
+      withCredentials: true,
+    };
+
+    const user = yield axios.get('api/user', config)
+      .then(response => response.data)
+      .catch((error) => { throw error.response || error; });
+
     yield put({
       type: 'SET_USER',
       user,
     });
-    // sets that the async request is finished
-    yield put({
-      type: 'REQUEST_DONE',
-    });
   } catch (error) {
-    // sets that the async request is finished
-    yield put({
-      type: 'REQUEST_DONE',
-    });
-    yield put({
-      type: 'USER_FETCH_FAILED',
-      message: error.data || "FORBIDDEN",
-    });
+    console.log('User get request failed', error);
   }
 }
-/*
-  Starts fetchUser on each dispatched `FETCH_USER` action.
-  Allows concurrent fetches of user.
-*/
-// function* userSaga() {
-//   yield takeEvery('FETCH_USER', fetchUser);
-// }
 
-/*
-  Alternatively you may use takeLatest.
-
-  Does not allow concurrent fetches of user. If "FETCH_USER" gets
-  dispatched while a fetch is already pending, that pending fetch is cancelled
-  and only the latest one will be run.
-*/
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
 }
