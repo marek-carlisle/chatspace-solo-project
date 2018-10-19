@@ -49,7 +49,6 @@ function* logoutUser(action) {
 
   } catch (error) {
     console.log('Error with user logout:', error);
-    console.log('LOGOUT FAILED -- CHECK YOUR SERVER', error);
   }
 }
 
