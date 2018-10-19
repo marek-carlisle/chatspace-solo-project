@@ -2,16 +2,40 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
 
-.instructions h1 {
+.navTitle {
     font-size: 24px;
     font-weight: 700;
+    display: inline-block;
 }
 
-.instructions {
-    background-color: #00acb0;
-    padding: 5px;
-    color: #ece7e7;
+.nav {
+  overflow: hidden;
+  background-color: #00acb0;
 }
+
+.nav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.nav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.nav a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.nav-right {
+  float: right;
+}
+
 
 form {
     background-color: #dbd5d5;
@@ -47,38 +71,6 @@ input[type="submit"] {
     background-color: #f8f8f8;
 }
 
-.navbar {
-  background-color: #00acb0;
-  width: 100%;
-  border-radius: 0px;
-}
-
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-}
-
-li {
-    float: left;
-}
-
-li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-
-}
-
-/* Change the link color to #111 (black) on hover */
-li a:hover {
-    text-decoration: underline;
-    color: #eee;
-}
-
 .linkButton {
     background:none!important;
     color:inherit;
@@ -91,5 +83,5 @@ li a:hover {
 }
 
 footer {
-    margin-top: 30px;
+    margin-top: 80px;
 }

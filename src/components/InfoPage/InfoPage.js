@@ -1,15 +1,10 @@
 import React from 'react';
 
-import Nav from '../../components/Nav/Nav';
-
 const InfoPage = () => (
   <div>
-    <Nav />
-    <div>
-      <p>
-        Info Page
-      </p>
-    </div>
+    <p>
+      Info Page
+    </p>
   </div>
 );
 

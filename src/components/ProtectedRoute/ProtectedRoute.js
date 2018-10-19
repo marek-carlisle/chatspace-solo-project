@@ -14,6 +14,7 @@ class ProtectedRoute extends Component {
 
     return (
         <Route
+          exact={this.props.exact}
           path={this.props.path}
           render={() => (
             this.props.user.id ?
