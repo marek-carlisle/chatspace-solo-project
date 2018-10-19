@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import LogOutButton from '../LogOutButton/LogOutButton';
 
 class UserPage extends Component {
   logout = () => {
@@ -13,9 +14,7 @@ class UserPage extends Component {
           Welcome, { this.props.user.username }!
         </h1>
         <p>Your ID is: {this.props.user.id}</p>
-        <button onClick={this.logout} >
-          Log Out
-        </button>
+        <LogOutButton className="log-in" />
       </div>
     );
   }
