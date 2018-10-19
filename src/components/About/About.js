@@ -10,5 +10,4 @@ const AboutPage = () => (
   </div>
 );
 
-// this allows us to use <App /> in index.js
 export default AboutPage;

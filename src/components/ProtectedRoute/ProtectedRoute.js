@@ -10,12 +10,13 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 //API for this component is the same as a regular route
 class ProtectedRoute extends Component {
   render() {
-    const ComponentToProtect = this.props.component;
+    // makes ComponentToProtect from component prop
+    // grabs all other props and passes them along to route
+    const {component: ComponentToProtect, ...props} = this.props;
 
     return (
         <Route
-          exact={this.props.exact}
-          path={this.props.path}
+          {...props}
           render={() => (
             this.props.user.id ?
             <ComponentToProtect /> :
