@@ -10,22 +10,17 @@ import reducer from './redux/reducers'; // imports ./redux/reducers/index.js
 import App from './components/App/App';
 import rootSaga from './redux/sagas'; // imports ./redux/sagas/index.js
 
-// Initializing to an empty object, but here is where you could
-// preload your redux state with initial values (from localStorage, perhaps)
-const preloadedState = {};
-const middlewares = [];
 const sagaMiddleware = createSagaMiddleware();
-middlewares.push(sagaMiddleware);
 
-// flag to only use the logger if in development mode
-if (process.env.NODE_ENV === 'development') {
-  middlewares.push(logger);
-}
+// this line creates an array of all of redux middleware you want to use
+// if your in development mode, logger will be added to your project
+const middlewareList = process.env.NODE_ENV === 'development' ?
+  [sagaMiddleware, logger] :
+  [sagaMiddleware];
 
 const store = createStore(
   reducer,
-  preloadedState,
-  applyMiddleware(...middlewares),
+  applyMiddleware(...middlewareList),
 );
 
 sagaMiddleware.run(rootSaga);
