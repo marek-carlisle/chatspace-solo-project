@@ -43,7 +43,7 @@ function* logoutUser(action) {
       withCredentials: true,
     };
 
-    yield axios.get('api/user/logout', config);
+    yield axios.post('api/user/logout', config);
 
     yield put({ type: 'UNSET_USER' });
 
