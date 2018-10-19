@@ -12,29 +12,25 @@
 }
 
 .nav-link {
-    float: left;
-    color: #f2f2f2;
-    background-color: #00acb0;
-    text-align: center;
-    padding: 24px 10px;
-    text-decoration: none;
-    font-size: 15px;
-  
-    /* these last two make the logout button in
-    the nav bar look like another link */
-    border:none;
-    cursor: pointer;
-  }
-  
-  .nav-link:hover {
-    background-color: #008183;
-  }
-  
-  .nav-link.active {
-    background-color: #4CAF50;
-    color: white;
-  }
-  
-  .nav-right {
-    float: right;
-  }
+  float: left;
+  color: #f2f2f2;
+  background-color: #00acb0;
+  text-align: center;
+  padding: 24px 10px;
+  text-decoration: none;
+  font-size: 15px;
+
+  /* these last two make the logout button in
+  the nav bar look like another link */
+  border:none;
+  cursor: pointer;
+  outline:0;
+}
+
+.nav-link:hover {
+  background-color: #008183;
+}
+
+.nav-right {
+  float: right;
+}
