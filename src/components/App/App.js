@@ -9,16 +9,16 @@ import {
 
 import {connect} from 'react-redux';
 
-import Nav from './components/Nav/Nav';
-import Footer from './components/Footer/Footer';
+import Nav from '../Nav/Nav';
+import Footer from '../Footer/Footer';
 
-import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 
-import AboutPage from './components/About/About';
-import UserPage from './components/UserPage/UserPage';
-import InfoPage from './components/InfoPage/InfoPage';
+import AboutPage from '../About/About';
+import UserPage from '../UserPage/UserPage';
+import InfoPage from '../InfoPage/InfoPage';
 
-import './styles/main.css';
+import './App.css';
 
 class App extends Component {
   componentDidMount () {

@@ -7,7 +7,7 @@ import logger from 'redux-logger';
 
 import reducer from './redux/reducers'; // imports ./redux/reducers/index.js
 
-import App from './App';
+import App from './components/App/App';
 import rootSaga from './redux/sagas'; // imports ./redux/sagas/index.js
 
 // Initializing to an empty object, but here is where you could
