@@ -1,7 +1,7 @@
 # Express/Passport with React
 This version uses React to control the login requests and redirection in coordination with client-side routing.
 
-We **STONGLY** recommend following these instructions carefully. It's a lot, and will take some time to set up, but your life will be much easier this way in the long run.
+We **STRONGLY** recommend following these instructions carefully. It's a lot, and will take some time to set up, but your life will be much easier this way in the long run.
 
 ## Prerequisites
 
