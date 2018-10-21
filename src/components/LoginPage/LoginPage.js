@@ -21,7 +21,7 @@ class LoginPage extends Component {
     } else {
       this.props.dispatch({ type: 'LOGIN_INPUT_ERROR' });
     }
-  }
+  } // end login
 
   handleInputChangeFor = propertyName => (event) => {
     this.setState({
@@ -81,8 +81,10 @@ class LoginPage extends Component {
   }
 }
 
+// Instead of taking everything from state, we just want the error messages.
+// if you wanted you could write this code like this:
+// const mapStateToProps = ({errors}) => ({ errors });
 const mapStateToProps = state => ({
-  user: state.user,
   errors: state.errors,
 });
 
