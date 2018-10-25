@@ -5,29 +5,30 @@ import { Provider } from 'react-redux';
 import createSagaMiddleware from 'redux-saga';
 import logger from 'redux-logger';
 
-import reducer from './redux/reducers'; // imports ./redux/reducers/index.js
-
-import App from './App';
+import rootReducer from './redux/reducers'; // imports ./redux/reducers/index.js
 import rootSaga from './redux/sagas'; // imports ./redux/sagas/index.js
 
-// Initializing to an empty object, but here is where you could
-// preload your redux state with initial values (from localStorage, perhaps)
-const preloadedState = {};
-const middlewares = [];
-const sagaMiddleware = createSagaMiddleware();
-middlewares.push(sagaMiddleware);
+import App from './components/App/App';
 
-// flag to only use the logger if in development mode
-if (process.env.NODE_ENV === 'development') {
-  middlewares.push(logger);
-}
+const sagaMiddleware = createSagaMiddleware();
+
+// this line creates an array of all of redux middleware you want to use
+// we don't want a whole ton of console logs in our production code
+// logger will only be added to your project if your in development mode
+const middlewareList = process.env.NODE_ENV === 'development' ?
+  [sagaMiddleware, logger] :
+  [sagaMiddleware];
 
 const store = createStore(
-  reducer,
-  preloadedState,
-  applyMiddleware(...middlewares),
+  // tells the saga middleware to use the rootReducer
+  // rootSaga contains all of our other reducers
+  rootReducer,
+  // adds all middleware to our project including saga and logger
+  applyMiddleware(...middlewareList),
 );
 
+// tells the saga middleware to use the rootSaga
+// rootSaga contains all of our other sagas
 sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(

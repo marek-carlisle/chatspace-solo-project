@@ -1,49 +1,31 @@
+import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
-import { USER_ACTIONS } from '../actions/userActions';
-import { callUser } from '../requests/userRequests';
 
 // worker Saga: will be fired on "FETCH_USER" actions
 function* fetchUser() {
   try {
-    // sets that the async request is in progress
-    yield put({ type: USER_ACTIONS.REQUEST_START });
-    const user = yield callUser();
-    yield put({
-      type: USER_ACTIONS.SET_USER,
-      user,
-    });
-    // sets that the async request is finished
-    yield put({
-      type: USER_ACTIONS.REQUEST_DONE,
-    });
+    const config = {
+      headers: { 'Content-Type': 'application/json' },
+      withCredentials: true,
+    };
+
+    // the config includes credentials which
+    // allow the server session to recognize the user
+    // If a user is logged in, this will return their information
+    // from the server session (req.user)
+    const response = yield axios.get('api/user', config);
+
+    // now that the session has given us a user object
+    // with an id and username set the client-side user object to let
+    // the client-side code know the user is logged in
+    yield put({ type: 'SET_USER', payload: response.data });
   } catch (error) {
-    // sets that the async request is finished
-    yield put({
-      type: USER_ACTIONS.REQUEST_DONE,
-    });
-    yield put({
-      type: USER_ACTIONS.USER_FETCH_FAILED,
-      message: error.data || "FORBIDDEN",
-    });
+    console.log('User get request failed', error);
   }
 }
-/*
-  Starts fetchUser on each dispatched `FETCH_USER` action.
-  Allows concurrent fetches of user.
-*/
-// function* userSaga() {
-//   yield takeEvery('FETCH_USER', fetchUser);
-// }
 
-/*
-  Alternatively you may use takeLatest.
-
-  Does not allow concurrent fetches of user. If "FETCH_USER" gets
-  dispatched while a fetch is already pending, that pending fetch is cancelled
-  and only the latest one will be run.
-*/
 function* userSaga() {
-  yield takeLatest(USER_ACTIONS.FETCH_USER, fetchUser);
+  yield takeLatest('FETCH_USER', fetchUser);
 }
 
 export default userSaga;

@@ -1,48 +1,27 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { triggerLogin, formError, clearError } from '../../redux/actions/loginActions';
-import { USER_ACTIONS } from '../../redux/actions/userActions';
-
-
-const mapStateToProps = state => ({
-  user: state.user,
-  login: state.login,
-});
 
 class LoginPage extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      username: '',
-      password: '',
-    };
-  }
-
-  
-  componentDidMount() {
-    // starts request for server to check that we are logged in
-    this.props.dispatch({ type: USER_ACTIONS.FETCH_USER });
-    this.props.dispatch(clearError());
-  }
-
-  componentDidUpdate() {
-    // if we have a response from the server and the user is logged in, redirect to the /user URL
-    if (!this.props.user.isLoading && this.props.user.userName !== null) {
-      this.props.history.push('/user');
-    }
-  }
+  state = {
+    username: '',
+    password: '',
+  };
 
   login = (event) => {
     event.preventDefault();
 
-    if (this.state.username === '' || this.state.password === '') {
-      this.props.dispatch(formError());
+    if (this.state.username && this.state.password) {
+      this.props.dispatch({
+        type: 'LOGIN',
+        payload: {
+          username: this.state.username,
+          password: this.state.password,
+        },
+      });
     } else {
-      this.props.dispatch(triggerLogin(this.state.username, this.state.password));
+      this.props.dispatch({ type: 'LOGIN_INPUT_ERROR' });
     }
-  }
+  } // end login
 
   handleInputChangeFor = propertyName => (event) => {
     this.setState({
@@ -50,24 +29,17 @@ class LoginPage extends Component {
     });
   }
 
-  renderAlert() {
-    if (this.props.login.message !== '') {
-      return (
-        <h2
-          className="alert"
-          role="alert"
-        >
-          {this.props.login.message}
-        </h2>
-      );
-    }
-    return (<span />);
-  }
-
   render() {
     return (
       <div>
-        {this.renderAlert()}
+        {this.props.errors.loginMessage && (
+          <h2
+            className="alert"
+            role="alert"
+          >
+            {this.props.errors.loginMessage}
+          </h2>
+        )}
         <form onSubmit={this.login}>
           <h1>Login</h1>
           <div>
@@ -94,16 +66,32 @@ class LoginPage extends Component {
           </div>
           <div>
             <input
+              className="log-in"
               type="submit"
               name="submit"
               value="Log In"
             />
-            <Link to="/register">Register</Link>
           </div>
         </form>
+        <center>
+          <button
+            type="button"
+            className="link-button"
+            onClick={() => {this.props.dispatch({type: 'SET_TO_REGISTER_MODE'})}}
+          >
+            Register
+          </button>
+        </center>
       </div>
     );
   }
 }
+
+// Instead of taking everything from state, we just want the error messages.
+// if you wanted you could write this code like this:
+// const mapStateToProps = ({errors}) => ({ errors });
+const mapStateToProps = state => ({
+  errors: state.errors,
+});
 
 export default connect(mapStateToProps)(LoginPage);
