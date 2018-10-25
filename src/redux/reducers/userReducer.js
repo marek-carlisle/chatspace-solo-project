@@ -1,29 +1,14 @@
-import { combineReducers } from 'redux';
-import { USER_ACTIONS } from '../actions/userActions';
-
-const userName = (state = null, action) => {
+const userReducer = (state = {}, action) => {
   switch (action.type) {
-    case USER_ACTIONS.SET_USER:
-      return action.user.username || state;
-    case USER_ACTIONS.UNSET_USER:
-      return null;
+    case 'SET_USER':
+      return action.payload;
+    case 'UNSET_USER':
+      return {};
     default:
       return state;
   }
 };
 
-const isLoading = (state = false, action) => {
-  switch (action.type) {
-    case USER_ACTIONS.REQUEST_START:
-      return true;
-    case USER_ACTIONS.REQUEST_DONE:
-      return false;
-    default:
-      return state;
-  }
-};
-
-export default combineReducers({
-  userName,
-  isLoading,
-});
+// user will be on the redux state at:
+// state.user
+export default userReducer;

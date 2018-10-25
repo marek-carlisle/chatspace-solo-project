@@ -2,9 +2,6 @@
 .DS_Store
 .DS_STORE/
 
-# React Build Directory
-build/
-
 # Logs
 logs
 *.log
@@ -63,3 +60,6 @@ typings/
 
 # dotenv environment variables file
 .env
+
+# ignore package-lock as it complicates merging
+package-lock.json

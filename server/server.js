@@ -4,16 +4,12 @@ require('dotenv').config();
 
 const app = express();
 const bodyParser = require('body-parser');
-const corsIfInDevelopment = require('./modules/cors-if-on-development');
 const sessionMiddleware = require('./modules/session-middleware');
 
 const passport = require('./strategies/user.strategy');
 
 // Route includes
 const userRouter = require('./routes/user.router');
-
-// allows cross-origin requests from localhost:3000 when on development
-app.use(corsIfInDevelopment);
 
 // Body parser middleware
 app.use(bodyParser.json());
