@@ -1,47 +1,25 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+import {connect} from 'react-redux';
 
 class RegisterPage extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      username: '',
-      password: '',
-      message: '',
-    };
-  }
+  state = {
+    username: '',
+    password: '',
+  };
 
   registerUser = (event) => {
     event.preventDefault();
 
-    if (this.state.username === '' || this.state.password === '') {
-      this.setState({
-        message: 'Choose a username and password!',
+    if (this.state.username && this.state.password) {
+      this.props.dispatch({
+        type: 'REGISTER',
+        payload: {
+          username: this.state.username,
+          password: this.state.password,
+        },
       });
     } else {
-      const body = {
-        username: this.state.username,
-        password: this.state.password,
-      };
-
-      // making the request to the server to post the new user's registration
-      axios.post('/api/user/register/', body)
-        .then((response) => {
-          if (response.status === 201) {
-            this.props.history.push('/home');
-          } else {
-            this.setState({
-              message: 'Ooops! That didn\'t work. The username might already be taken. Try again!',
-            });
-          }
-        })
-        .catch(() => {
-          this.setState({
-            message: 'Ooops! Something went wrong! Is the server running?',
-          });
-        });
+      this.props.dispatch({type: 'REGISTRATION_INPUT_ERROR'});
     }
   } // end registerUser
 
@@ -51,24 +29,17 @@ class RegisterPage extends Component {
     });
   }
 
-  renderAlert() {
-    if (this.state.message !== '') {
-      return (
-        <h2
-          className="alert"
-          role="alert"
-        >
-          {this.state.message}
-        </h2>
-      );
-    }
-    return (<span />);
-  }
-
   render() {
     return (
       <div>
-        {this.renderAlert()}
+        {this.props.errors.registrationMessage && (
+          <h2
+            className="alert"
+            role="alert"
+          >
+            {this.props.errors.registrationMessage}
+          </h2>
+        )}
         <form onSubmit={this.registerUser}>
           <h1>Register User</h1>
           <div>
@@ -95,17 +66,33 @@ class RegisterPage extends Component {
           </div>
           <div>
             <input
+              className="register"
               type="submit"
               name="submit"
               value="Register"
             />
-            <Link to="/home">Cancel</Link>
           </div>
         </form>
+        <center>
+          <button
+            type="button"
+            className="link-button"
+            onClick={() => {this.props.dispatch({type: 'SET_TO_LOGIN_MODE'})}}
+          >
+            Login
+          </button>
+        </center>
       </div>
     );
   }
 }
 
-export default RegisterPage;
+// Instead of taking everything from state, we just want the error messages.
+// if you wanted you could write this code like this:
+// const mapStateToProps = ({errors}) => ({ errors });
+const mapStateToProps = state => ({
+  errors: state.errors,
+});
+
+export default connect(mapStateToProps)(RegisterPage);
 
