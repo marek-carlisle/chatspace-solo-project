@@ -82,11 +82,11 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 
 However, the secrets are not protected by this middleware! When you have protected them correctly, someone visiting `http://localhost:5000/api/secrets` should get a `403` or `forbidden` error instead of seeing the secrets.
 
-A user like `Admiral Greer` with password `tuna` should still be able to visit `http://localhost:3000/secrets` to see all of the secrets.
+A user like `Admiral Greer` with password `tuna` should still be able to visit `http://localhost:3000/#/secrets` to see all of the secrets.
 
 ### No Secrets Above Clearance Level (Authorization)
 
-A user like `Captain Borodin` with password `shark` is be able to visit `http://localhost:3000/secrets` to see all of the secrets! That's no good! There's a secret in there that calls him weird!
+A user like `Captain Borodin` with password `shark` is be able to visit `http://localhost:3000/#/secrets` to see all of the secrets! That's no good! There's a secret in there that calls him weird!
 
 With authenticated, a user should only see secrets with a `secrecy_level` that is equal or less than the user's `clearance_level`. This is called authorization. Authentication is, "You are someone, and you are who you say you are." Authorization is, "You have permission to see this!"
 
@@ -94,7 +94,7 @@ In `user.strategy.js`, we deserialize the user, which means we get information a
 
 A user like `Captain Borodin` with password `shark` should no longer be able to see any secrets above his `clearance_level` which is `10`.
 
-A user like `Admiral Greer` with password `tuna` should still be able to visit `http://localhost:3000/secrets` to see all of the secrets.
+A user like `Admiral Greer` with password `tuna` should still be able to visit `http://localhost:3000/#/secrets` to see all of the secrets.
 
 ## Stretch Goals
 
