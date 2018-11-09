@@ -3,7 +3,9 @@ This version uses React, Redux, Express, Passport, and PostgreSQL (a full list o
 
 We **STRONGLY** recommend following these instructions carefully. It's a lot, and will take some time to set up, but your life will be much easier this way in the long run.
 
-## Prerequisites
+## Set up
+
+### Prerequisites
 
 Before you get started, make sure you have the following software installed on your computer:
 
@@ -11,34 +13,51 @@ Before you get started, make sure you have the following software installed on y
 - [PostrgeSQL](https://www.postgresql.org/)
 - [Nodemon](https://nodemon.io/)
 
-## Create database and table
+### Create Database and Table
 
-Create a new database called `secure_submarine` and create a `person` table:
+Create a new database called `secure_submarine` and create a `person` table and `secret` table:
 
 ```SQL
 CREATE TABLE "person" (
     "id" SERIAL PRIMARY KEY,
     "username" VARCHAR (80) UNIQUE NOT NULL,
-    "password" VARCHAR (1000) NOT NULL
+    "password" VARCHAR (1000) NOT NULL,
+    "clearance_level" INTEGER NOT NULL DEFAULT 0
 );
+
+INSERT INTO "person" ("username", "password", "clearance_level")
+VALUES ('Admiral Greer', 'fishy', 18),
+('Captain Borodin', 'shark', 10),
+('Lieutenant Ryan', 'tuna', 4),
+('Lieutenant Nguyen', 'tuna', 4);
+
+
+CREATE TABLE "secret" (
+    "id" SERIAL PRIMARY KEY,
+    "content" VARCHAR (80) UNIQUE NOT NULL,
+    "secrecy_level" INTEGER NOT NULL DEFAULT 0
+);
+
+INSERT INTO "secret" ("content", "secrecy_level")
+VALUES ('Admirals Only: Captain Borodin is totally weird.', 13),
+('Captains Or Above: Lieutenant Ryan is looking fly.', 6),
+('Lieutenants Or Above: We are heading to the Bahamas.', 3);
 ```
 
-If you would like to name your database something else, you will need to change `secure_submarine` to the name of your new database name in `server/modules/pool.js`
-
-## Download (Don't Clone) This Repository
+### Download (Don't Clone) This Repository
 
 * Don't Fork or Clone. Instead, click the `Clone or Download` button and select `Download Zip`.
 * Unzip the project and start with the code in that folder.
 * Create a new GitHub project and push this code to the new repository.
 
-## Development Setup Instructions
+### Start the Application
 
 * Start postgres if not running already by using `brew services start postgresql`
 * Run `npm run server`
 * Run `npm run client`
 * Navigate to `localhost:3000`
 
-## Debugging
+### Debugging
 
 To debug, you will need to run the client-side separately from the server. Start the client by running the command `npm run dev:client`. Start the debugging server by selecting the Debug button.
 
@@ -48,7 +67,7 @@ Then make sure `Launch Program` is selected from the dropdown, then click the gr
 
 ![VSCode Debug Bar](documentation/images/vscode-debug-bar.png)
 
-## Lay of the Land
+### Lay of the Land
 
 * `src/` contains the React application
 * `public/` contains static assets for the client-side
@@ -69,7 +88,18 @@ This code is also heavily commented. We recommend reading through the comments, 
   * LogOutButton/LogOutButton
   * ProtectedRoute/ProtectedRoute
 
+## Base Mode
+
+On the Secure Submarine, there are many secrets.
+
+Without authentication, a user should see no secrets.
+With authentication, a user should only see secrets with a `secrecy_level` that is equal or less than the user's `clearance_level`
+
 ## Stretch Goals
+
+### Hashing
+
+### Salting
 
 ### Create an Environment Variable
 `SERVER_SESSION_SECRET` is supposed to be a secret, but right now we are pushing it to GitHub! Let's create an environment variable so that we don't do this.
