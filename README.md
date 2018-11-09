@@ -90,7 +90,7 @@ This code is also heavily commented. We recommend reading through the comments, 
 
 ## Base Mode
 
-On the Secure Submarine, there are many secrets.
+On the Secure Submarine, there are many secrets, but our enemies are out to steal our secrets! We just realized that our Secure Submarine web portal (the portal for all of the hottest gossip on the secure submarine) is compromised! Anyone, logged in or not, can visit `http://localhost:5000/api/secret` to see all of the secrets for the entire crew!
 
 Without authentication, a user should see no secrets.
 With authentication, a user should only see secrets with a `secrecy_level` that is equal or less than the user's `clearance_level`
