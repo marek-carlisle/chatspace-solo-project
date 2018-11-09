@@ -77,6 +77,7 @@ This code is also heavily commented. We recommend reading through the comments, 
 * Uncomment `// return process.env.SERVER_SESSION_SECRET;` in `session-middleware.js`
 * Run `npm install dotenv` to get the node module that can create environment variables
 * Add the line `require('dotenv').config();` to the top of `server.js` to use the module
+* add `.env` to your `.gitignore` file
 * Create a `.env` file at the root of the project and paste this line into the file:
     ```
     SERVER_SESSION_SECRET=superDuperSecret
