@@ -70,7 +70,7 @@ On the Secure Submarine, there are many secrets, but our enemies are out to stea
 
 ### No Secrets for the Unauthenticated (Authentication)
 
-Only users who are authenticated should any secrets. Without authentication, a user should see no secrets.
+> Task: Only users who are authenticated should any secrets. Without authentication, a user should see no secrets.
 
 The user router is protected from unauthenticated requests thanks to the `rejectUnauthenticated` middleware:
 
@@ -80,21 +80,19 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 });
 ```
 
-However, the secrets are not protected by this middleware! When you have protected them correctly, someone visiting `http://localhost:5000/api/secrets` should get a `403` or `forbidden` error instead of seeing the secrets.
-
-A user like `Admiral Greer` with password `tuna` should still be able to visit `http://localhost:3000/#/secrets` to see all of the secrets.
+- [ ] An unauthenticated user visiting `http://localhost:5000/api/secrets` should get a `403` or `forbidden` error instead of seeing the secrets.
+- [ ] A user like `Admiral Greer` with password `tuna` should still be able to visit `http://localhost:3000/#/secrets` to see all of the secrets.
 
 ### No Secrets Above Clearance Level (Authorization)
 
-A user like `Captain Borodin` with password `shark` is be able to visit `http://localhost:3000/#/secrets` to see all of the secrets! That's no good! There's a secret in there that calls him weird!
+> Task: When authenticated, a user should only see secrets with a `secrecy_level` that is equal or less than the user's `clearance_level`.
 
-With authenticated, a user should only see secrets with a `secrecy_level` that is equal or less than the user's `clearance_level`. This is called authorization. Authentication is, "You are someone, and you are who you say you are." Authorization is, "You have permission to see this!"
+A user like `Captain Borodin` with password `shark` is be to visit `http://localhost:3000/#/secrets` to see all of the secrets! That's no good! There's a secret in there that calls him weird!
 
-In `user.strategy.js`, we deserialize the user, which means we get information about the user on the server side. Just like `req.body` is something we have access to anywhere, `req.user` is also something we will now have access to anywhere as well! However, we're missing a critical piece of information. Instead of the query `'SELECT id, username FROM person WHERE id = $1'`, we also now need to include their `clearance_level`. If you have done that correctly, you should now be able to log `req.user` and see the clearance level inside of secrets GET request in `secrets.router.js`. Now fix the query in `secrets.router.js` so that it uses the clearance level to determine which secrets to return.
+You should see the clearance level in the console log inside of secrets GET request in `secrets.router.js`. Now fix the query in `secrets.router.js` so that it uses the clearance level to determine which secrets to return.
 
-A user like `Captain Borodin` with password `shark` should no longer be able to see any secrets above his `clearance_level` which is `10`.
-
-A user like `Admiral Greer` with password `tuna` should still be able to visit `http://localhost:3000/#/secrets` to see all of the secrets.
+- [ ] A user like `Captain Borodin` with password `shark` should no longer be able to see any secrets above his `clearance_level` which is `10`.
+- [ ] A user like `Admiral Greer` with password `tuna` should still be able to visit `http://localhost:3000/#/secrets` to see all of the secrets.
 
 ## Stretch Goals
 
