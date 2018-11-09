@@ -8,7 +8,7 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser((id, done) => {
-  pool.query('SELECT id, username FROM person WHERE id = $1', [id]).then((result) => {
+  pool.query('SELECT * FROM person WHERE id = $1', [id]).then((result) => {
     // Handle Errors
     const user = result && result.rows && result.rows[0];
 
@@ -17,6 +17,7 @@ passport.deserializeUser((id, done) => {
       done(null, false, { message: 'Incorrect credentials.' });
     } else {
       // user found
+      delete user.password; // remove password so it doesn't get sent
       done(null, user);
     }
   }).catch((err) => {

@@ -2,8 +2,6 @@
 
 Our client, Prime Digital Academy: Room 2, has asked for an app to simulate the behavior of their shelf. That is, a list of items placed on the classroom shelf. More details about each of the features are listed below in the README.md.
 
-This will require some research, design, an implementation. Update this README.md to include the names of the group members and your team name/number. As well as any planning/docs. These can be in digital format or even pics of whiteboard/notebook sketches.
-
 ## DOWNLOAD THIS REPOSITORY
 
 > NOTE: Do not clone this repository.
