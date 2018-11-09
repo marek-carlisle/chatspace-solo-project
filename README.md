@@ -13,7 +13,7 @@ Before you get started, make sure you have the following software installed on y
 
 ## Create database and table
 
-Create a new database called `prime_app` and create a `person` table:
+Create a new database called `secure_submarine` and create a `person` table:
 
 ```SQL
 CREATE TABLE person (
@@ -23,7 +23,7 @@ CREATE TABLE person (
 );
 ```
 
-If you would like to name your database something else, you will need to change `prime_app` to the name of your new database name in `server/modules/pool.js`
+If you would like to name your database something else, you will need to change `secure_submarine` to the name of your new database name in `server/modules/pool.js`
 
 ## Download (Don't Clone) This Repository
 
