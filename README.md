@@ -92,8 +92,33 @@ This code is also heavily commented. We recommend reading through the comments, 
 
 On the Secure Submarine, there are many secrets, but our enemies are out to steal our secrets! We just realized that our Secure Submarine web portal (the portal for all of the hottest gossip on the secure submarine) is compromised! Anyone, logged in or not, can visit `http://localhost:5000/api/secret` to see all of the secrets for the entire crew!
 
-Without authentication, a user should see no secrets.
-With authentication, a user should only see secrets with a `secrecy_level` that is equal or less than the user's `clearance_level`
+### No Secrets for the Unauthenticated (Authentication)
+
+Only users who are authenticated should any secrets. Without authentication, a user should see no secrets.
+
+The user router is protected from unauthenticated requests thanks to the `rejectUnauthenticated` middleware:
+
+```JavaScript
+router.get('/', rejectUnauthenticated, (req, res) => {
+  res.send(req.user);
+});
+```
+
+However, the secrets are not protected by this middleware! When you have protected them correctly, someone visiting `http://localhost:5000/api/secrets` should get a `403` or `forbidden` error instead of seeing the secrets.
+
+A user like `Admiral Greer` with password `tuna` should still be able to visit `http://localhost:3000/secrets` to see all of the secrets.
+
+### No Secrets Above Clearance Level (Authorization)
+
+A user like `Captain Borodin` with password `shark` is be able to visit `http://localhost:3000/secrets` to see all of the secrets! That's no good! There's a secret in there that calls him weird!
+
+With authenticated, a user should only see secrets with a `secrecy_level` that is equal or less than the user's `clearance_level`. This is called authorization. Authentication is, "You are someone, and you are who you say you are." Authorization is, "You have permission to see this!"
+
+In `user.strategy.js`, we deserialize the user, which means we get information about the user on the server side. Just like `req.body` is something we have access to anywhere, `req.user` is also something we will now have access to anywhere as well! However, we're missing a critical piece of information. Instead of the query `'SELECT id, username FROM person WHERE id = $1'`, we also now need to include their `clearance_level`. If you have done that correctly, you should now be able to log `req.user` and see the clearance level inside of secrets GET request in `secrets.router.js`. Now fix the query in `secrets.router.js` so that it uses the clearance level to determine which secrets to return.
+
+A user like `Captain Borodin` with password `shark` should no longer be able to see any secrets above his `clearance_level` which is `10`.
+
+A user like `Admiral Greer` with password `tuna` should still be able to visit `http://localhost:3000/secrets` to see all of the secrets.
 
 ## Stretch Goals
 
@@ -114,7 +139,6 @@ Because the database doesn't store the actual password, we can't just check to s
 ```JavaScript
 return bcrypt.compareSync(candidatePassword, storedPassword);
 ```
-
 
 New users will now have their passwords hashed!
 
