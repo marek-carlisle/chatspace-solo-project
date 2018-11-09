@@ -3,6 +3,12 @@ This version uses React, Redux, Express, Passport, and PostgreSQL (a full list o
 
 We **STRONGLY** recommend following these instructions carefully. It's a lot, and will take some time to set up, but your life will be much easier this way in the long run.
 
+## Download (Don't Clone) This Repository
+
+* Don't Fork or Clone. Instead, click the `Clone or Download` button and select `Download Zip`.
+* Unzip the project and start with the code in that folder.
+* Create a new GitHub project and push this code to the new repository.
+
 ## Prerequisites
 
 Before you get started, make sure you have the following software installed on your computer:
@@ -24,12 +30,6 @@ CREATE TABLE "person" (
 ```
 
 If you would like to name your database something else, you will need to change `prime_app` to the name of your new database name in `server/modules/pool.js`
-
-## Download (Don't Clone) This Repository
-
-* Don't Fork or Clone. Instead, click the `Clone or Download` button and select `Download Zip`.
-* Unzip the project and start with the code in that folder.
-* Create a new GitHub project and push this code to the new repository.
 
 ## Development Setup Instructions
 
