@@ -3,6 +3,12 @@ This version uses React, Redux, Express, Passport, and PostgreSQL (a full list o
 
 We **STRONGLY** recommend following these instructions carefully. It's a lot, and will take some time to set up, but your life will be much easier this way in the long run.
 
+## Download (Don't Clone) This Repository
+
+* Don't Fork or Clone. Instead, click the `Clone or Download` button and select `Download Zip`.
+* Unzip the project and start with the code in that folder.
+* Create a new GitHub project and push this code to the new repository.
+
 ## Set up
 
 ### Prerequisites
@@ -52,41 +58,11 @@ VALUES ('Admirals Only: Captain Borodin is totally weird.', 13),
 
 ### Start the Application
 
+* Run `npm install`
 * Start postgres if not running already by using `brew services start postgresql`
 * Run `npm run server`
 * Run `npm run client`
 * Navigate to `localhost:3000`
-
-### Debugging
-
-To debug, you will need to run the client-side separately from the server. Start the client by running the command `npm run dev:client`. Start the debugging server by selecting the Debug button.
-
-![VSCode Toolbar](documentation/images/vscode-toolbar.png)
-
-Then make sure `Launch Program` is selected from the dropdown, then click the green play arrow.
-
-![VSCode Debug Bar](documentation/images/vscode-debug-bar.png)
-
-### Lay of the Land
-
-* `src/` contains the React application
-* `public/` contains static assets for the client-side
-* `build/` after you build the project, contains the transpiled code from `src/` and `public/` that will be viewed on the production site
-* `server/` contains the Express App
-
-This code is also heavily commented. We recommend reading through the comments, getting a lay of the land, and becoming comfortable with how the code works before you start making too many changes. If you're wondering where to start, consider reading through component file comments in the following order:
-
-* src/components
-  * App/App
-  * Footer/Footer
-  * Nav/Nav
-  * AboutPage/AboutPage
-  * SecretsPage/SecretsPage
-  * UserPage/UserPage
-  * LoginPage/LoginPage
-  * RegisterPage/RegisterPage
-  * LogOutButton/LogOutButton
-  * ProtectedRoute/ProtectedRoute
 
 ## Base Mode
 
