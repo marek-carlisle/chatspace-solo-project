@@ -66,7 +66,7 @@ VALUES ('Admirals Only: Captain Borodin is totally weird.', 13),
 
 ## Base Mode
 
-On the Secure Submarine, there are many secrets, but our enemies are out to steal our secrets! We just realized that our Secure Submarine web portal (the portal for all of the hottest gossip on the secure submarine) is compromised! Anyone, logged in or not, can visit `http://localhost:5000/api/secret` to see all of the secrets for the entire crew!
+On the Secure Submarine, there are many secrets, but our enemies are out to steal our secrets! We just realized that our Secure Submarine web portal (the portal for all of the hottest gossip on the secure submarine) is compromised! Anyone, logged in or not, can visit `http://localhost:5000/api/secrets` to see all of the secrets for the entire crew!
 
 ### No Secrets for the Unauthenticated (Authentication)
 
