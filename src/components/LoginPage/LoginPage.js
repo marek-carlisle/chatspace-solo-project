@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import submarineLogo from './submarine.svg';
+
 class LoginPage extends Component {
   state = {
     username: '',
@@ -81,6 +83,9 @@ class LoginPage extends Component {
           >
             Register
           </button>
+        </center>
+        <center>
+          <img src={submarineLogo} height="200px" />
         </center>
       </div>
     );
