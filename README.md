@@ -70,7 +70,7 @@ On the Secure Submarine, there are many secrets, but our enemies are out to stea
 
 ### No Secrets for the Unauthenticated (Authentication)
 
-> Task: Only users who are authenticated should any secrets. Without authentication, a user should see no secrets.
+> Task: Only users who are authenticated should see any secrets.
 
 The user router is protected from unauthenticated requests thanks to the `rejectUnauthenticated` middleware:
 
@@ -79,6 +79,8 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   res.send(req.user);
 });
 ```
+
+Do this for the secrets route to achieve these results:
 
 - [ ] An unauthenticated user visiting `http://localhost:5000/api/secrets` should get a `403` or `forbidden` error instead of seeing the secrets.
 - [ ] A user like `Admiral Greer` with password `tuna` should still be able to visit `http://localhost:3000/#/secrets` to see all of the secrets.
