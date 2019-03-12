@@ -15,39 +15,37 @@ passport.deserializeUser((id, done) => {
     if (user) {
       // user found
       delete user.password; // remove password so it doesn't get sent
+      // done takes an error (null in this case) and a user
       done(null, user);
     } else {
       // user not found
-      done(null, false, { message: 'Incorrect credentials.' });
+      // done takes an error (null in this case) and a user (also null in this case)
+      done(null, null);
     }
-  }).catch((err) => {
-    console.log('query err ', err);
-    done(err);
+  }).catch((error) => {
+    console.log('Error with query during deserializing user ', error);
+    done(error);
   });
 });
 
 // Does actual work of logging in
-passport.use('local', new LocalStrategy({
-  passReqToCallback: true,
-  usernameField: 'username',
-}, ((req, username, password, done) => {
+passport.use('local', new LocalStrategy((username, password, done) => {
     pool.query('SELECT * FROM person WHERE username = $1', [username])
       .then((result) => {
         const user = result && result.rows && result.rows[0];
         if (user && encryptLib.comparePassword(password, user.password)) {
-          // all good! Passwords match!
+          // All good! Passwords match!
+          // done takes an error (null in this case) and a user
           done(null, user);
-        } else if (user) {
-          // not good! Passwords don't match!
-          done(null, false, { message: 'Incorrect credentials.' });
         } else {
-          // not good! No user with that name
-          done(null, false);
+          // Not good! No username and password don't match with that name
+          // done takes an error (null in this case) and a user (also null in this case)
+          done(null, null);
         }
       }).catch((err) => {
         console.log('error', err);
         done(null, {});
       });
-  })));
+  }));
 
 module.exports = passport;
