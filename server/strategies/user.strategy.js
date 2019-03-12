@@ -12,13 +12,13 @@ passport.deserializeUser((id, done) => {
     // Handle Errors
     const user = result && result.rows && result.rows[0];
 
-    if (!user) {
-      // user not found
-      done(null, false, { message: 'Incorrect credentials.' });
-    } else {
+    if (user) {
       // user found
       delete user.password; // remove password so it doesn't get sent
       done(null, user);
+    } else {
+      // user not found
+      done(null, false, { message: 'Incorrect credentials.' });
     }
   }).catch((err) => {
     console.log('query err ', err);
