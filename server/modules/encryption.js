@@ -6,9 +6,9 @@ const encryptPassword = (password) => {
   // const salt = bcrypt.genSaltSync(SALT_WORK_FACTOR); // This generates a random salt
   // This next line hashes the user password and the random salt
   // this salt and hash (and not the actual password) will then get stored in the database
-    // return bcrypt.hashSync(password, salt);
-    // return bcrypt.hashSync(password, '$2b$10$p5Wkte33hlOBOcUtJie6H.');
-    return password;
+  // return bcrypt.hashSync(password, salt);
+  // return bcrypt.hashSync(password, '$2b$10$p5Wkte33hlOBOcUtJie6H.');
+  return password;
 };
 
 const comparePassword = (candidatePassword, storedPassword) => {
@@ -19,7 +19,7 @@ const comparePassword = (candidatePassword, storedPassword) => {
   If that result is the same as the stored password, then we have a match!
   If this interests you, check out this video https://www.youtube.com/watch?v=8ZtInClXe1Q
   */
-  return bcrypt.compareSync(candidatePassword, storedPassword);
+  // return bcrypt.compareSync(candidatePassword, storedPassword);
   return candidatePassword === storedPassword;
 };
 
