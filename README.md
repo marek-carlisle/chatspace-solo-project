@@ -21,17 +21,18 @@ Before you get started, make sure you have the following software installed on y
 
 ### Create Database and Table
 
-Create a new database called `secure_submarine` and create a `person` table and `secret` table:
+Create a new database called `secure_submarine` and create a `user` table and `secret` table:
+
 
 ```SQL
-CREATE TABLE "person" (
+CREATE TABLE "user" (
     "id" SERIAL PRIMARY KEY,
     "username" VARCHAR (80) UNIQUE NOT NULL,
     "password" VARCHAR (1000) NOT NULL,
     "clearance_level" INTEGER NOT NULL DEFAULT 0
 );
 
-INSERT INTO "person" ("username", "password", "clearance_level")
+INSERT INTO "user" ("username", "password", "clearance_level")
 VALUES ('Admiral Greer', 'tuna', 18),
 ('Captain Borodin', 'shark', 10),
 ('Lieutenant Nguyen', 'fishy', 4),
@@ -121,16 +122,16 @@ New users will now have their passwords hashed!
 Run these queries to add your users back to the database with hashed passwords:
 
 ```SQL
-DROP TABLE "person";
+DROP TABLE "user";
 
-CREATE TABLE "person" (
+CREATE TABLE "user" (
     "id" SERIAL PRIMARY KEY,
     "username" VARCHAR (80) UNIQUE NOT NULL,
     "password" VARCHAR (1000) NOT NULL,
     "clearance_level" INTEGER NOT NULL DEFAULT 0
 );
 
-INSERT INTO "person" ("username", "password", "clearance_level")
+INSERT INTO "user" ("username", "password", "clearance_level")
 VALUES ('Admiral Greer', '$2b$10$p5Wkte33hlOBOcUtJie6H.PnCvk8v.KjZspVoAFtT7g5v5xK.EXVG', 18),
 ('Captain Borodin', '$2b$10$p5Wkte33hlOBOcUtJie6H.ZIgFjzr4zY8FItxC8gZyqIWD5gYmL0m', 10),
 ('Lieutenant Nguyen', '$2b$10$p5Wkte33hlOBOcUtJie6H.vaUd5ikB1LWCbVZAA87BR63NiDorn1C', 4),
@@ -155,16 +156,16 @@ New users will now have their passwords salted and hashed!
 Run these queries to add your users back to the database with hashed passwords:
 
 ```SQL
-DROP TABLE "person";
+DROP TABLE "user";
 
-CREATE TABLE "person" (
+CREATE TABLE "user" (
     "id" SERIAL PRIMARY KEY,
     "username" VARCHAR (80) UNIQUE NOT NULL,
     "password" VARCHAR (1000) NOT NULL,
     "clearance_level" INTEGER NOT NULL DEFAULT 0
 );
 
-INSERT INTO "person" ("username", "password", "clearance_level")
+INSERT INTO "user" ("username", "password", "clearance_level")
 VALUES ('Admiral Greer', '$2b$10$uxPm0qeJAz70oqhEg8dX6uXlYc2PWUtPuZhTa65OiDv2LCHA41OLq', 18),
 ('Captain Borodin', '$2b$10$iUCrWSMvLpYuKQLsmmTiNe3gfU6jAdyElCbCLtboVH6DlXJdsuPxG', 10),
 ('Lieutenant Nguyen', '$2b$10$/3yhbbjXPPf3L4Z1gXDA5OJzJkf6b.2CuvIA8OzP6c8jPEQlbo5re', 4),
@@ -197,12 +198,12 @@ Before pushing to Heroku, run `npm run build` in terminal. This will create a bu
 ### Deployment
 
 1. Create a new Heroku project
-1. Link the Heroku project to the project GitHub Repo
-1. Create an Heroku Postgres database
-1. Connect to the Heroku Postgres database from Postico
-1. Create the necessary tables
-1. Add an environment variable for `SERVER_SESSION_SECRET` with a nice random string for security
-1. In the deploy section, select manual deploy
+2. Link the Heroku project to the project GitHub Repo
+3. Create an Heroku Postgres database
+4. Connect to the Heroku Postgres database from Postico
+5. Create the necessary tables
+6. Add an environment variable for `SERVER_SESSION_SECRET` with a nice random string for security
+7. In the deploy section, select manual deploy
 
 ### Update Documentation
 

@@ -1,11 +1,11 @@
-CREATE TABLE "person" (
+CREATE TABLE "user" (
     "id" SERIAL PRIMARY KEY,
     "username" VARCHAR (80) UNIQUE NOT NULL,
     "password" VARCHAR (1000) NOT NULL,
     "clearance_level" INTEGER NOT NULL DEFAULT 0
 );
 
-INSERT INTO "person" ("username", "password", "clearance_level")
+INSERT INTO "user" ("username", "password", "clearance_level")
 VALUES ('Admiral Greer', 'tuna', 18),
 ('Captain Borodin', 'shark', 10),
 ('Lieutenant Nguyen', 'fishy', 4),
