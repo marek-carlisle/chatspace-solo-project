@@ -6,8 +6,9 @@ CREATE TABLE "person" (
 );
 
 INSERT INTO "person" ("username", "password", "clearance_level")
-VALUES ('Admiral Greer', 'fishy', 18),
+VALUES ('Admiral Greer', 'tuna', 18),
 ('Captain Borodin', 'shark', 10),
+('Lieutenant Nguyen', 'fishy', 4),
 ('Lieutenant Ryan', 'tuna', 4);
 
 
