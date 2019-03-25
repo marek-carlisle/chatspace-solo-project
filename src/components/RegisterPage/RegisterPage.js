@@ -1,90 +1,80 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import {connect} from 'react-redux';
 
-class RegisterPage extends Component {
-  state = {
-    username: '',
-    password: '',
-  };
+const RegisterPage = ({dispatch, registrationMessage}) => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
-  registerUser = (event) => {
+  const registerUser = (event) => {
     event.preventDefault();
 
-    if (this.state.username && this.state.password) {
-      this.props.dispatch({
+    if (username && password) {
+      dispatch({
         type: 'REGISTER',
         payload: {
-          username: this.state.username,
-          password: this.state.password,
+          username,
+          password,
         },
       });
     } else {
-      this.props.dispatch({type: 'REGISTRATION_INPUT_ERROR'});
+      dispatch({type: 'REGISTRATION_INPUT_ERROR'});
     }
   } // end registerUser
 
-  handleInputChangeFor = propertyName => (event) => {
-    this.setState({
-      [propertyName]: event.target.value,
-    });
-  }
-
-  render() {
-    return (
-      <div>
-        {this.props.errors.registrationMessage && (
-          <h2
-            className="alert"
-            role="alert"
-          >
-            {this.props.errors.registrationMessage}
-          </h2>
-        )}
-        <form onSubmit={this.registerUser}>
-          <h1>Register User</h1>
-          <div>
-            <label htmlFor="username">
-              Username:
-              <input
-                type="text"
-                name="username"
-                value={this.state.username}
-                onChange={this.handleInputChangeFor('username')}
-              />
-            </label>
-          </div>
-          <div>
-            <label htmlFor="password">
-              Password:
-              <input
-                type="password"
-                name="password"
-                value={this.state.password}
-                onChange={this.handleInputChangeFor('password')}
-              />
-            </label>
-          </div>
-          <div>
+  return (
+    <div>
+      {registrationMessage && (
+        <h2
+          className="alert"
+          role="alert"
+        >
+          {registrationMessage}
+        </h2>
+      )}
+      <form onSubmit={registerUser}>
+        <h1>Register User</h1>
+        <div>
+          <label htmlFor="username">
+            Username:
             <input
-              className="register"
-              type="submit"
-              name="submit"
-              value="Register"
+              type="text"
+              name="username"
+              value={username}
+              onChange={(event) => setUsername(event.target.value)}
             />
-          </div>
-        </form>
-        <center>
-          <button
-            type="button"
-            className="link-button"
-            onClick={() => {this.props.dispatch({type: 'SET_TO_LOGIN_MODE'})}}
-          >
-            Login
-          </button>
-        </center>
-      </div>
-    );
-  }
+          </label>
+        </div>
+        <div>
+          <label htmlFor="password">
+            Password:
+            <input
+              type="password"
+              name="password"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+            />
+          </label>
+        </div>
+        <div>
+          <input
+            className="register"
+            type="submit"
+            name="submit"
+            value="Register"
+          />
+        </div>
+      </form>
+      <center>
+        <button
+          type="button"
+          className="link-button"
+          onClick={() => {dispatch({type: 'SET_TO_LOGIN_MODE'})}}
+        >
+          Login
+        </button>
+      </center>
+    </div>
+  );
 }
 
 // Instead of taking everything from state, we just want the error messages.
