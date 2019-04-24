@@ -55,6 +55,19 @@ Then make sure `Launch Program` is selected from the dropdown, then click the gr
 ![VSCode Debug Bar](documentation/images/vscode-debug-bar.png)
 
 
+## Testing Routes with Postman
+
+If you want to use Postman with this repo, you will need to set up requests in Postman to register a user and login a user at a minimum. Then you'll need to add the `localhost` cookie to each request _after_ logging in.
+
+You can [Import the sample routes JSON file](./PostmanPrimeSoloRoutes.json) by clicking Import in Passport. Select the file. 
+
+This will create a Collection in Postman named 'Prime Solo Routes.' It has three routes defined to get you started:
+
+- `POST /api/user/register` registers a new user, see body to change username/password
+- `POST /api/user/login` will login a user, see body to change username/password
+- `GET /api/user` will get user information, be default it's not very much
+
+
 ## Production Build
 
 Before pushing to Heroku, run `npm run build` in terminal. This will create a build folder that contains the code Heroku will be pointed at. You can test this build by typing `npm start`. Keep in mind that `npm start` will let you preview the production build but will **not** auto update.
