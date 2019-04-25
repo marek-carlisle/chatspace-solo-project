@@ -32,5 +32,6 @@ module.exports = cookieSession({
   key: 'user', // this is the name of the req.variable. 'user' is convention, but not required
   resave: 'false',
   saveUninitialized: false,
-  cookie: { maxage: 60000, secure: false },
+  maxAge: 60000, 
+  secure: false
 });
