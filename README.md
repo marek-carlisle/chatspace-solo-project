@@ -57,15 +57,12 @@ Then make sure `Launch Program` is selected from the dropdown, then click the gr
 
 ## Testing Routes with Postman
 
-If you want to use Postman with this repo, you will need to set up requests in Postman to register a user and login a user at a minimum. Then you'll need to add the `localhost` cookie to each request _after_ logging in.
-
-You can [Import the sample routes JSON file](./PostmanPrimeSoloRoutes.json) by clicking Import in Passport. Select the file. 
-
-This will create a Collection in Postman named 'Prime Solo Routes.' It has three routes defined to get you started:
-
-- `POST /api/user/register` registers a new user, see body to change username/password
-- `POST /api/user/login` will login a user, see body to change username/password
-- `GET /api/user` will get user information, be default it's not very much
+1. Start the server - `npm run server`
+2. [Import the sample routes JSON file](./PostmanPrimeSoloRoutes.json) by clicking `Import` in Passport. Select the file.
+3. Click `Collections` and `Send` the following three calls in order:
+    1. `POST /api/user/register` registers a new user, see body to change username/password
+    2. `POST /api/user/login` will login a user, see body to change username/password
+    3. `GET /api/user` will get user information, by default it's not very much
 
 
 ## Production Build
