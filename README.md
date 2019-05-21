@@ -1,4 +1,4 @@
-# Passport First Look
+# Secure Submarine
 This version uses React, Redux, Express, Passport, and PostgreSQL (a full list of dependencies can be found in `package.json`). This version uses React to control the login requests and redirection in coordination with client-side routing.
 
 
