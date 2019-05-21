@@ -9,9 +9,8 @@ CREATE TABLE "user" (
     "password" VARCHAR (1000) NOT NULL
 );
 
-CREATE TABLE "item" (
+CREATE TABLE "pet" (
     "id" SERIAL PRIMARY KEY,
-    "description" VARCHAR (80) NOT NULL,
-    "image_url" VARCHAR (2083),
+    "firstname" VARCHAR (80) UNIQUE NOT NULL,
     "user_id" INT REFERENCES "user"
 );
