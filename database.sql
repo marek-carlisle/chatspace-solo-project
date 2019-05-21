@@ -27,3 +27,4 @@ INSERT INTO "secret" ("content", "secrecy_level")
 VALUES ('Admirals Only: Captain Borodin is totally weird.', 13),
 ('Captains Or Above: Lieutenant Ryan is looking fly.', 6),
 ('Lieutenants Or Above: We are heading to the Bahamas.', 3);
+

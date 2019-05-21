@@ -1,13 +1,15 @@
-# Prime Project
-This version uses React, Redux, Express, Passport, and PostgreSQL (a full list of dependencies can be found in `package.json`).
+# Passport First Look
+This version uses React, Redux, Express, Passport, and PostgreSQL (a full list of dependencies can be found in `package.json`). This version uses React to control the login requests and redirection in coordination with client-side routing.
 
-We **STRONGLY** recommend following these instructions carefully. It's a lot, and will take some time to set up, but your life will be much easier this way in the long run.
 
-## Download (Don't Clone) This Repository
+## DOWNLOAD THIS REPOSITORY
 
-* Don't Fork or Clone. Instead, click the `Clone or Download` button and select `Download Zip`.
+> NOTE: Do not clone this repository.
+
+* Don't Fork or Clone. Instead, have one memeber of your group click the `Clone or Download` button and select `Download Zip`.
 * Unzip the project and start with the code in that folder.
 * Create a new GitHub project and push this code to the new repository.
+
 
 ## Set up
 
@@ -22,7 +24,6 @@ Before you get started, make sure you have the following software installed on y
 ### Create Database and Table
 
 Create a new database called `secure_submarine` and create a `user` table and `secret` table:
-
 
 ```SQL
 CREATE TABLE "user" (
@@ -207,4 +208,4 @@ Before pushing to Heroku, run `npm run build` in terminal. This will create a bu
 
 ### Update Documentation
 
-Customize this ReadMe and the code comments in this project to read less like a starter repo and more like a project. Here is an example: https://gist.github.com/PurpleBooth/109311bb0361f32d87a2
+
