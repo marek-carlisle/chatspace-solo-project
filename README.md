@@ -67,7 +67,7 @@ We recommend working in groups of 4 or 6 and pair programming for this project. 
 
 ### View Shelf
 
-All logged in users should be able to view ALL items on the shelf (even items added by other users). On the view shelf page there should also be an option to delete items on the shelf.
+All logged in users should be able to view ALL items on the shelf (even items added by other users). On the view shelf page there should also be an option to delete the current users items on the shelf.
 
 ### Add Items to the Shelf
 
