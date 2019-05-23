@@ -74,8 +74,6 @@ All logged in users should be able to view ALL items on the shelf (even items ad
 > NOTE: Image url should be a full path to an existing image on the web. You should not attempt to implement image upload for this.
 
 
-## Production Build
-
 This page should include a form that allows user to add items to the shelf. Each item should have a description and an image url.
 
 
