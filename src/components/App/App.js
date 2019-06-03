@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {useEffect} from 'react';
 import {
   HashRouter as Router,
   Route,
@@ -6,7 +6,7 @@ import {
   Switch,
 } from 'react-router-dom';
 
-import {connect} from 'react-redux';
+import {useDispatch} from 'react-redux';
 
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
@@ -19,12 +19,14 @@ import InfoPage from '../InfoPage/InfoPage';
 
 import './App.css';
 
-class App extends Component {
-  componentDidMount () {
-    this.props.dispatch({type: 'FETCH_USER'})
-  }
+const App = () => {
 
-  render() {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch({type: 'FETCH_USER'})
+  })
+
     return (
       <Router>
         <div>
@@ -61,7 +63,7 @@ class App extends Component {
           <Footer />
         </div>
       </Router>
-  )}
+  )
 }
 
-export default connect()(App);
+export default App;

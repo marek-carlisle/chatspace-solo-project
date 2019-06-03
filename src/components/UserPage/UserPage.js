@@ -1,26 +1,23 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
 
-// this could also be written with destructuring parameters as:
-// const UserPage = ({ user }) => (
-// and then instead of `props.user.username` you could use `user.username`
-const UserPage = (props) => (
-  <div>
-    <h1 id="welcome">
-      Welcome, { props.user.username }!
-    </h1>
-    <p>Your ID is: {props.user.id}</p>
-    <LogOutButton className="log-in" />
-  </div>
-);
 
-// Instead of taking everything from state, we just want the user info.
-// if you wanted you could write this code like this:
-// const mapStateToProps = ({user}) => ({ user });
-const mapStateToProps = state => ({
-  user: state.user,
-});
+const UserPage = (props) => {
+  const user = useSelector((redux) => redux.user)
+
+  return (
+
+    <div>
+      <h1 id="welcome">
+        Welcome, {user.username}!
+    </h1>
+      <p>Your ID is: {user.id}</p>
+      <LogOutButton className="log-in" />
+    </div>
+  );
+}
+
 
 // this allows us to use <App /> in index.js
-export default connect(mapStateToProps)(UserPage);
+export default UserPage;

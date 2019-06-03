@@ -1,6 +1,6 @@
 import React from 'react';
 import {Route} from 'react-router-dom'
-import {connect} from 'react-redux';
+import {useSelector} from 'react-redux';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 
@@ -15,13 +15,15 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 // and by checking req.user for authorization
 
 const ProtectedRoute = (props) => {
+
+  const user = useSelector((state) => state.user);
+  const loginMode = useSelector((state) => state.loginMode);
+
   // Using destructuring, this takes ComponentToProtect from component
   // prop and grabs all other props to pass them along to Route
   const {
     // Alias prop 'component' as 'ComponentToProtect'
     component: ComponentToProtect,
-    user,
-    loginMode,
     ...otherProps
   } = props;
 
@@ -52,17 +54,6 @@ const ProtectedRoute = (props) => {
   )
 }
 
-// Instead of taking everything from state, we just want the user and loginMode
-// to determine which page we should show the user
-// if you wanted you could write this code like this:
-// const mapStateToProps = ({ user, loginMode }) => ({ user, loginMode });
-const mapStateToProps = (state) => {
-  return {
-    user: state.user,
-    loginMode: state.loginMode,
-  }
-}
-
-export default connect(mapStateToProps)(ProtectedRoute)
+export default ProtectedRoute
 
 
