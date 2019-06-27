@@ -65,28 +65,25 @@ After running the login route above, you will be able to try any other route you
 
 We recommend working in groups of 4 or 6 and pair programming for this project. Each pair should take on one of the following features. You will want to identify any tasks that need to be finished in a particular order as a group to avoid merge conflicts. Each of the following features should be on a separate route.
 
-### View Shelf
+### Display all Items
 
-All logged in users should be able to view ALL items on the shelf (even items added by other users). On the view shelf page there should also be an option to delete the current users items on the shelf.
+The shelf (info) page should show all of the items stored in the database in a list or table.
 
 ### Add Items to the Shelf
 
+The Shelf (Info) Page should allow a user to add a new item to the database (which should immediately appear in the list).
+
 > NOTE: Image url should be a full path to an existing image on the web. You should not attempt to implement image upload for this.
 
+### Delete Items from the Shelf
 
-This page should include a form that allows user to add items to the shelf. Each item should have a description and an image url.
+An authenticated user should be able to delete items from the shelf if they were the one who added the item to the shelf.
 
+> NOTE: This should require client and server changes. An unauthenticated attacker from Postman should not be able to delete anything.
 
+## Stretch Goals
 
-### Total Number of Items by User
-
-> NOTE: In a group of six, this feature should be completed as base functionality. In a group of four or five, this would be a stretch goal.
-
-This page should display a list of users along with the total number of items they have added to the shelf. Users with 0 items on the shelf should be displayed as well! 
-
-### Stretch Goals
-
-- Ability to edit an existing item on the shelf from the view page.
+- Ability to edit an existing item on the shelf from the info page.
 - Have anyone, not just logged in users, be able to see what is on the shelf, but not edit, remove, nor add.
 - A new route to display all items for a specific user. `/shelf/2` would display items uploaded by user with the id of `2`.
 - Filestack for image upload on the add page.
