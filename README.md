@@ -53,7 +53,7 @@ To use Postman with this repo, you will need to set up requests in Postman to re
 Keep in mind that once you using the login route, Postman will manage your session cookie for you just like a browser, ensuring it is sent with each subsequent request. If you delete the `localhost` cookie in Postman, it will effectively log you out.
 
 1. Start the server - `npm run server`
-2. [Import the sample routes JSON file](./PostmanPrimeSoloRoutes.json) by clicking `Import` in Passport. Select the file.
+2. [Import the sample routes JSON file](./PostmanPrimeSoloRoutes.json) by clicking `Import` in Postman. Select the file.
 3. Click `Collections` and `Send` the following three calls in order:
     1. `POST /api/user/register` registers a new user, see body to change username/password
     2. `POST /api/user/login` will login a user, see body to change username/password
