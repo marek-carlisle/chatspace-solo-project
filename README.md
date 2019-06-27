@@ -59,7 +59,7 @@ Keep in mind that once you using the login route, Postman will manage your sessi
     2. `POST /api/user/login` will login a user, see body to change username/password
     3. `GET /api/user` will get user information, by default it's not very much
 
-After running the login route above, you can try any other route you've created that requires a logged in user!
+After running the login route above, you will be able to try any other route you create that requires a logged in user!
 
 ## FEATURES
 
