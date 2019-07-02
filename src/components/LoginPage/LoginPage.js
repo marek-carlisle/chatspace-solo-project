@@ -23,7 +23,7 @@ class LoginPage extends Component {
     }
   } // end login
 
-  handleInputChangeFor = propertyName => (event) => {
+  handleInputChangeFor = (propertyName, event) => {
     this.setState({
       [propertyName]: event.target.value,
     });
@@ -49,7 +49,7 @@ class LoginPage extends Component {
                 type="text"
                 name="username"
                 value={this.state.username}
-                onChange={this.handleInputChangeFor('username')}
+                onChange={(event) => this.handleInputChangeFor('username', event)}
               />
             </label>
           </div>
@@ -60,7 +60,7 @@ class LoginPage extends Component {
                 type="password"
                 name="password"
                 value={this.state.password}
-                onChange={this.handleInputChangeFor('password')}
+                onChange={(event) => this.handleInputChangeFor('password', event)}
               />
             </label>
           </div>
