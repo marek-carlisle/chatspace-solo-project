@@ -9,9 +9,9 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 const UserPage = (props) => (
   <div>
     <h1 id="welcome">
-      Welcome, { props.user.username }!
+      Welcome, { props.store.user.username }!
     </h1>
-    <p>Your ID is: {props.user.id}</p>
+    <p>Your ID is: {props.store.user.id}</p>
     <LogOutButton className="log-in" />
   </div>
 );

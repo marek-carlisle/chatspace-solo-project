@@ -21,18 +21,17 @@ const ProtectedRoute = (props) => {
   const {
     // Alias prop 'component' as 'ComponentToProtect'
     component: ComponentToProtect,
-    user,
-    loginMode,
+    store,
     ...otherProps
   } = props;
 
   let ComponentToShow;
 
-  if(user.id) {
+  if(store.user.id) {
     // if the user is logged in (only logged in users have ids)
     // show the component that is protected
     ComponentToShow = ComponentToProtect;
-  } else if (loginMode === 'login') {
+  } else if (store.loginMode === 'login') {
     // if they are not logged in, check the loginMode on Redux State
     // if the mode is 'login', show the LoginPage
     ComponentToShow = LoginPage;
