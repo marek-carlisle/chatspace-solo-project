@@ -53,7 +53,7 @@ class App extends Component {
             Even though it seems like they are different pages, the user is always on localhost:3000/user */}
             <ProtectedRoute
               exact
-              path="/user"
+              path="/admin"
               component={UserPage}
             />
             {/* This works the same as the other protected route, except that if the user is logged in,
@@ -68,13 +68,13 @@ class App extends Component {
             <ProtectedRoute
               exact
               path="/login"
-              authRedirect="/user"
+              authRedirect="/admin"
               component={LoginPage}
             />
             <ProtectedRoute
               exact
               path="/registration"
-              authRedirect="/user"
+              authRedirect="/admin"
               component={RegisterPage}
             />
 
