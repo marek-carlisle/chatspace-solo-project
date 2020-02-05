@@ -13,8 +13,6 @@ const warnings = require('../constants/warnings');
   `application` ->  `storage` -> `cookies` section of the chrome debugger
 */
 
-
-
 const serverSessionSecret = () => {
   if (!process.env.SERVER_SESSION_SECRET ||
       process.env.SERVER_SESSION_SECRET.length < 8 ||
@@ -23,8 +21,7 @@ const serverSessionSecret = () => {
     console.log(warnings.badSecret);
   }
 
-  // return process.env.SERVER_SESSION_SECRET;
-  return '902384uroiwefaj9oq238u9or3ijwefl8u49rw8uefijljwuei';
+  return process.env.SERVER_SESSION_SECRET;
 };
 
 module.exports = cookieSession({
