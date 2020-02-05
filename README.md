@@ -66,6 +66,14 @@ VALUES ('Admirals Only: Captain Borodin is totally weird.', 13),
 * Run `npm run client`
 * Navigate to `localhost:3000`
 
+
+#### OPTIONAL Postman instructions
+1. [Import the sample routes JSON file](./PostmanPrimeSoloRoutes.json) by clicking `Import` in Postman. Select the file.
+2. Click `Collections` and `Send` the following three calls in order:
+    1. `POST /api/user/register` registers a new user, see body to change username/password
+    2. `POST /api/user/login` will login a user, see body to change username/password
+    3. `GET /api/user` will get user information, by default it's not very much
+
 ## Base Mode
 
 On the Secure Submarine, there are many secrets, but our enemies are out to steal our secrets! We just realized that our Secure Submarine web portal (the portal for all of the hottest gossip on the secure submarine) is compromised! Anyone, logged in or not, can visit `http://localhost:5000/api/secrets` to see all of the secrets for the entire crew!
