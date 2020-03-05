@@ -41,7 +41,7 @@ class LoginPage extends Component {
             {this.props.store.errors.loginMessage}
           </h2>
         )}
-        <form onSubmit={this.login}>
+        <form className="formPanel" onSubmit={this.login}>
           <h1>Login</h1>
           <div>
             <label htmlFor="username">
