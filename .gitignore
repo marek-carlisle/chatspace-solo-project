@@ -1,8 +1,6 @@
 # Mac Auto-Generated Files and code editor files
 .DS_Store
 .DS_STORE/
-.vscode
-.vscode/
 
 # Build directories for Front-End Assets
 build/
