@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 // This is one of our simplest components
 // It doesn't have local state, so it can be a function component.
@@ -20,9 +20,7 @@ class InfoPage extends React.Component {
   render() {
     return (
       <div>
-        <p>
-          Info Page
-        </p>
+        <p>Info Page</p>
       </div>
     )
   }
