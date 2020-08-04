@@ -4,14 +4,19 @@ body {
 }
 
 .alert {
-  background-color: #ff4545;
-  margin: 50px;
+  box-sizing: border-box;
+  padding: 15px 10px;
+  margin: 15px 0;
+  border: 2px solid #e01616;
+  background-color: #efefef;
+  border-radius: 3px;
+  color: #e01616;
+  font-size: 0.8rem;
 }
 
 .formPanel {
   background-color: #dbd5d5;
   width: 30%;
-  height: 250px;
   margin: 20px auto;
   padding: 25px;
   border-radius: 2px;
