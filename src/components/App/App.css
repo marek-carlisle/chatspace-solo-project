@@ -8,7 +8,7 @@ body {
     margin: 50px;
 }
 
-form {
+.formPanel {
     background-color: #dbd5d5;
     width: 30%;
     height: 250px;
