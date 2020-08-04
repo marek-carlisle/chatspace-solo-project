@@ -49,6 +49,8 @@ const ProtectedRoute = (props) => {
   // redirect a logged in user if an authRedirect prop has been provided
   if (store.user.id && authRedirect != null) {
     return <Redirect exact from={otherProps.path} to={authRedirect} />;
+  } else if (!store.user.id && authRedirect != null) {
+    ComponentToShow = ComponentToProtect;
   }
 
   // We return a Route component that gets added to our list of routes
