@@ -33,16 +33,16 @@ class LoginPage extends Component {
   render() {
     return (
       <div>
-        {this.props.store.errors.loginMessage && (
-          <h2
-            className="alert"
-            role="alert"
-          >
-            {this.props.store.errors.loginMessage}
-          </h2>
-        )}
         <form className="formPanel" onSubmit={this.login}>
           <h1>Login</h1>
+          {this.props.store.errors.loginMessage && (
+            <h2
+              className="alert"
+              role="alert"
+            >
+              {this.props.store.errors.loginMessage}
+            </h2>
+          )}
           <div>
             <label htmlFor="username">
               Username:
