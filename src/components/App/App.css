@@ -15,11 +15,14 @@ body {
 }
 
 .formPanel {
-  background-color: #dbd5d5;
-  width: 30%;
-  margin: 20px auto;
+  box-sizing: border-box;
+  width: 400px;
+  max-width: 100%;
   padding: 25px;
-  border-radius: 2px;
+  margin: 20px auto;
+  background-color: #efefef;
+  border-radius: 3px;
+  box-shadow: 0 2px 4px rgb(0, 0, 0, 0.3);
 }
 
 input {
