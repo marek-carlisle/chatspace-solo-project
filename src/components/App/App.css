@@ -19,7 +19,7 @@ body {
   width: 400px;
   max-width: 100%;
   padding: 25px;
-  margin: 20px auto;
+  margin: 0 auto 20px;
   background-color: #efefef;
   border-radius: 3px;
   box-shadow: 0 2px 4px rgb(0, 0, 0, 0.3);

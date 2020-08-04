@@ -4,6 +4,9 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 
 import './LandingPage.css';
 
+// CUSTOM COMPONENTS
+import RegisterForm from '../RegisterForm/RegisterForm';
+
 class LandingPage extends Component {
     state = {
         heading: 'Class Component',
@@ -33,13 +36,17 @@ class LandingPage extends Component {
                         </p>
                     </div>
                     <div className="grid-col grid-col_4">
-                        <h3>Already a Member?</h3>
-                        <button
-                            className="btn btn_sizeFull"
-                            onClick={this.onLogin}
-                        >
-                            Login
-                        </button>
+                        <RegisterForm />
+
+                        <center>
+                          <h4>Already a Member?</h4>
+                          <button
+                              className="btn btn_sizeSm"
+                              onClick={this.onLogin}
+                          >
+                              Login
+                          </button>
+                        </center>
                     </div>
                 </div>
             </div>
