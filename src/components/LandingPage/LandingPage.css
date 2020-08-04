@@ -12,6 +12,7 @@ Button
 
 .btn {
   background-color: #00acb0;
+  border-width: 1px 1px 3px 1px;
   border-radius: 4px;
   color: #f8f8f8;
   display: inline-block;
