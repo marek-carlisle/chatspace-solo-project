@@ -13,7 +13,7 @@ const loginMessage = (state = '', action) => {
     case 'LOGIN_FAILED_NO_CODE':
       return 'Oops! Something went wrong! Is the server running?';
     default:
-      return '';
+      return state;
   }
 };
 
