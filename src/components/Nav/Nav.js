@@ -12,7 +12,7 @@ const Nav = (props) => {
   };
 
   if (props.store.user.id != null) {
-    loginLinkData.path = '/admin';
+    loginLinkData.path = '/user';
     loginLinkData.text = 'Home';
   }
 
@@ -34,7 +34,7 @@ const Nav = (props) => {
             <Link className="nav-link" to="/info">
               Info Page
             </Link>
-            <LogOutButton className="nav-link"/>
+            <LogOutButton className="nav-link" />
           </>
         )}
         {/* Always show this link since the about page is not protected */}
