@@ -50,9 +50,9 @@ class App extends Component {
             they will see the info page instead. */}
             <ProtectedRoute exact path="/info" component={InfoPage} />
 
-            {/* This works the same as the other protected routes, except that
-            if the user is logged in, they will be redirected to the path value
-            supplied to authRedirect. */}
+            {/* When a value is supplied for the authRedirect prop the user will
+            be redirected to the path supplied when logged in, otherwise they will
+            be taken to the component and path supplied. */}
             <ProtectedRoute
               exact
               path="/login"
