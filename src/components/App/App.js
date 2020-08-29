@@ -66,22 +66,31 @@ class App extends Component {
             be redirected to the path supplied when logged in, otherwise they will
             be taken to the component and path supplied. */}
             <ProtectedRoute
+              // with authRedirect:
+              // - if logged in, redirects to "/user"
+              // - else shows LoginPage at /login
               exact
               path="/login"
-              authRedirect="/user"
               component={LoginPage}
+              authRedirect="/user"
             />
             <ProtectedRoute
+              // with authRedirect:
+              // - if logged in, redirects to "/user"
+              // - else shows RegisterPage at "/registration"
               exact
               path="/registration"
-              authRedirect="/user"
               component={RegisterPage}
+              authRedirect="/user"
             />
             <ProtectedRoute
+              // with authRedirect:
+              // - if logged in, redirects to "/user"
+              // - else shows LandingPage at "/home"
               exact
               path="/home"
-              authRedirect="/user"
               component={LandingPage}
+              authRedirect="/user"
             />
 
             {/* If none of the other routes matched, we will show a 404. */}
