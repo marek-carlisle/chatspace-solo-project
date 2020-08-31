@@ -1,26 +1,20 @@
-# Prime Project
+# REACT AUTH SHELF
 
-This version uses React, Redux, Express, Passport, and PostgreSQL (a full list of dependencies can be found in `package.json`).
+Our client, Prime Digital Academy: Room 2, has asked for an app to simulate the behavior of their shelf. That is, a list of items placed on the classroom shelf. More details about each of the features are listed below in the README.md.
 
-We **STRONGLY** recommend following these instructions carefully. It's a lot, and will take some time to set up, but your life will be much easier this way in the long run.
+## DOWNLOAD THIS REPOSITORY
 
-## Download (Don't Clone) This Repository
+> NOTE: Do not clone this repository.
 
-- Don't Fork or Clone. Instead, click the `Clone or Download` button and select `Download Zip`.
+- Don't Fork or Clone. Instead, have one memeber of your group click the `Clone or Download` button and select `Download Zip`.
 - Unzip the project and start with the code in that folder.
 - Create a new GitHub project and push this code to the new repository.
+- Add members of your group to the repository.
 
-## Prerequisites
+## CREATE DATABASE AND TABLE
 
-Before you get started, make sure you have the following software installed on your computer:
-
-- [Node.js](https://nodejs.org/en/)
-- [PostrgeSQL](https://www.postgresql.org/)
-- [Nodemon](https://nodemon.io/)
-
-## Create database and table
-
-Create a new database called `prime_app` and create a `user` table:
+Create a new database called `auth_shelf` and create a `user` table:
+user-update
 
 ```SQL
 CREATE TABLE "user" (
@@ -28,12 +22,18 @@ CREATE TABLE "user" (
     "username" VARCHAR (80) UNIQUE NOT NULL,
     "password" VARCHAR (1000) NOT NULL
 );
+
+CREATE TABLE "item" (
+    "id" SERIAL PRIMARY KEY,
+    "description" VARCHAR (80) NOT NULL,
+    "image_url" VARCHAR (2083),
+    "user_id" INT REFERENCES "user"
+);
 ```
 
-If you would like to name your database something else, you will need to change `prime_app` to the name of your new database name in `server/modules/pool.js`
+## DEVELOPMENT SETUP
 
-## Development Setup Instructions
-
+- Clone the repository for your group
 - Run `npm install`
 - Create a `.env` file at the root of the project and paste this line into the file:
   ```
@@ -44,16 +44,6 @@ If you would like to name your database something else, you will need to change 
 - Run `npm run server`
 - Run `npm run client`
 - Navigate to `localhost:3000`
-
-## Debugging
-
-To debug, you will need to run the client-side separately from the server. Start the client by running the command `npm run client`. Start the debugging server by selecting the Debug button.
-
-![VSCode Toolbar](documentation/images/vscode-toolbar.png)
-
-Then make sure `Launch Program` is selected from the dropdown, then click the green play arrow.
-
-![VSCode Debug Bar](documentation/images/vscode-debug-bar.png)
 
 ## Testing Routes with Postman
 
@@ -78,9 +68,7 @@ We recommend working in groups of 4 or 6 and pair programming for this project. 
 
 The shelf (info) page should show all of the items stored in the database in a list or table.
 
-- Start postgres if not running already by using `brew services start postgresql`
-- Run `npm start`
-- Navigate to `localhost:5000`
+### Add Items to the Shelf
 
 The Shelf (Info) Page should allow a user to add a new item to the database (which should immediately appear in the list).
 
