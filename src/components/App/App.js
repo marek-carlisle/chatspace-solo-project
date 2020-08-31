@@ -56,10 +56,10 @@ class App extends Component {
             />
 
             <ProtectedRoute
-              // logged in shows InfoPage else shows LoginPage
+              // logged in shows SecretsPage else shows LoginPage
               exact
-              path="/info"
-              component={InfoPage}
+              path="/secrets"
+              component={SecretsPage}
             />
 
             {/* When a value is supplied for the authRedirect prop the user will
