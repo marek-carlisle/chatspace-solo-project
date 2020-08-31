@@ -80,6 +80,14 @@ Before pushing to Heroku, run `npm run build` in terminal. This will create a bu
 
 ## Lay of the Land
 
+There are a few videos linked below that show a walkthrough the client and sever setup to help acclimatize to the boilerplate. Please take some time to watch the videos in order to get a better understanding of what the boilerplate is like.
+
+- [Initial Set]()
+- [Server Walkthrough]()
+- [Client Walkthrough]()
+
+Directory Structure:
+
 - `src/` contains the React application
 - `public/` contains static assets for the client-side
 - `build/` after you build the project, contains the transpiled code from `src/` and `public/` that will be viewed on the production site
