@@ -68,55 +68,34 @@ Keep in mind that once you using the login route, Postman will manage your sessi
    2. `POST /api/user/login` will login a user, see body to change username/password
    3. `GET /api/user` will get user information, by default it's not very much
 
-After running the login route above, you can try any other route you've created that requires a logged in user!
+After running the login route above, you will be able to try any other route you create that requires a logged in user!
 
-## Production Build
+## FEATURES
 
-Before pushing to Heroku, run `npm run build` in terminal. This will create a build folder that contains the code Heroku will be pointed at. You can test this build by typing `npm start`. Keep in mind that `npm start` will let you preview the production build but will **not** auto update.
+We recommend working in groups of 4 or 6 and pair programming for this project. Each pair should take on one of the following features. You will want to identify any tasks that need to be finished in a particular order as a group to avoid merge conflicts. Each of the following features should be on a separate route.
+
+### Display all Items
+
+The shelf (info) page should show all of the items stored in the database in a list or table.
 
 - Start postgres if not running already by using `brew services start postgresql`
 - Run `npm start`
 - Navigate to `localhost:5000`
 
-## Lay of the Land
+The Shelf (Info) Page should allow a user to add a new item to the database (which should immediately appear in the list).
 
-There are a few videos linked below that show a walkthrough the client and sever setup to help acclimatize to the boilerplate. Please take some time to watch the videos in order to get a better understanding of what the boilerplate is like.
+> NOTE: Image url should be a full path to an existing image on the web. You should not attempt to implement image upload for this.
 
-- [Initial Set](https://vimeo.com/453297271)
-- [Server Walkthrough](https://vimeo.com/453297212)
-- [Client Walkthrough](https://vimeo.com/453297124)
+### Delete Items from the Shelf
 
-Directory Structure:
+An authenticated user should be able to delete items from the shelf if they were the one who added the item to the shelf.
 
-- `src/` contains the React application
-- `public/` contains static assets for the client-side
-- `build/` after you build the project, contains the transpiled code from `src/` and `public/` that will be viewed on the production site
-- `server/` contains the Express App
+> NOTE: This should require client and server changes. An unauthenticated attacker from Postman should not be able to delete anything.
 
-This code is also heavily commented. We recommend reading through the comments, getting a lay of the land, and becoming comfortable with how the code works before you start making too many changes. If you're wondering where to start, consider reading through component file comments in the following order:
+## Stretch Goals
 
-- src/components
-  - App/App
-  - Footer/Footer
-  - Nav/Nav
-  - AboutPage/AboutPage
-  - InfoPage/InfoPage
-  - UserPage/UserPage
-  - LoginPage/LoginPage
-  - RegisterPage/RegisterPage
-  - LogOutButton/LogOutButton
-  - ProtectedRoute/ProtectedRoute
-
-## Deployment
-
-1. Create a new Heroku project
-1. Link the Heroku project to the project GitHub Repo
-1. Create an Heroku Postgres database
-1. Connect to the Heroku Postgres database from Postico
-1. Create the necessary tables
-1. Add an environment variable for `SERVER_SESSION_SECRET` with a nice random string for security
-1. In the deploy section, select manual deploy
-
-## Update Documentation
-
-Customize this ReadMe and the code comments in this project to read less like a starter repo and more like a project. Here is an example: https://gist.github.com/PurpleBooth/109311bb0361f32d87a2
+- Ability to edit an existing item on the shelf from the info page.
+- Have anyone, not just logged in users, be able to see what is on the shelf, but not edit, remove, nor add.
+- A new route to display all items for a specific user. `/shelf/2` would display items uploaded by user with the id of `2`.
+- Filestack for image upload on the add page.
+- Style with Material-UI
