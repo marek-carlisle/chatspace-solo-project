@@ -1,3 +1,5 @@
+// No changes should be required in this file
+
 const bcrypt = require('bcryptjs');
 
 const SALT_WORK_FACTOR = 10; // This determines how secure the salt should be
@@ -7,7 +9,6 @@ const encryptPassword = (password) => {
   // This next line hashes the user password and the random salt
   // this salt and hash (and not the actual password) will then get stored in the database
   // return bcrypt.hashSync(password, salt);
-  // return bcrypt.hashSync(password, '$2b$10$p5Wkte33hlOBOcUtJie6H.');
   return password;
 };
 
