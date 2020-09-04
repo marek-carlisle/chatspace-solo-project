@@ -4,11 +4,10 @@ This version uses React, Redux, Express, Passport, and PostgreSQL (a full list o
 
 We **STRONGLY** recommend following these instructions carefully. It's a lot, and will take some time to set up, but your life will be much easier this way in the long run.
 
-## Download (Don't Clone) This Repository
+## Use the Template for This Repository (Don't Clone) 
 
-- Don't Fork or Clone. Instead, click the `Clone or Download` button and select `Download Zip`.
-- Unzip the project and start with the code in that folder.
-- Create a new GitHub project and push this code to the new repository.
+- Don't Fork or Clone. Instead, click the `Use this Template` button, and make a copy to your personal account.
+
 
 ## Prerequisites
 
