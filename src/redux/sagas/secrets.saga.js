@@ -8,9 +8,9 @@ function* fetchSecrets() {
       headers: { 'Content-Type': 'application/json' },
       withCredentials: true,
     };
-    
+
     const response = yield axios.get('api/secrets', config);
-    
+
     yield put({ type: 'SET_SECRETS', payload: response.data });
   } catch (error) {
     console.log('Secrets get request failed', error);

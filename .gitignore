@@ -1,6 +1,9 @@
-# Mac Auto-Generated Files
+# Mac Auto-Generated Files and code editor files
 .DS_Store
 .DS_STORE/
+
+# Build directories for Front-End Assets
+build/
 
 # Logs
 logs
@@ -59,7 +62,7 @@ typings/
 .yarn-integrity
 
 # dotenv environment variables file
-
+.env
 
 # ignore package-lock as it complicates merging
 package-lock.json

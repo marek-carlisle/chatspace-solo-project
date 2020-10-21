@@ -1,15 +1,14 @@
 # Secure Submarine
-This version uses React, Redux, Express, Passport, and PostgreSQL (a full list of dependencies can be found in `package.json`). This version uses React to control the login requests and redirection in coordination with client-side routing.
 
+This version uses React, Redux, Express, Passport, and PostgreSQL (a full list of dependencies can be found in `package.json`). This version uses React to control the login requests and redirection in coordination with client-side routing.
 
 ## DOWNLOAD THIS REPOSITORY
 
 > NOTE: Do not clone this repository.
 
-* Don't Fork or Clone. Instead, have one memeber of your group click the `Clone or Download` button and select `Download Zip`.
-* Unzip the project and start with the code in that folder.
-* Create a new GitHub project and push this code to the new repository.
-
+- Don't Fork or Clone. Instead, have one memeber of your group click the `Clone or Download` button and select `Download Zip`.
+- Unzip the project and start with the code in that folder.
+- Create a new GitHub project and push this code to the new repository.
 
 ## Set up
 
@@ -54,25 +53,25 @@ VALUES ('Admirals Only: Captain Borodin is totally weird.', 13),
 
 ### Download (Don't Clone) This Repository
 
-* Don't Fork or Clone. Instead, click the `Clone or Download` button and select `Download Zip`.
-* Unzip the project and start with the code in that folder.
-* Create a new GitHub project and push this code to the new repository.
+- Don't Fork or Clone. Instead, click the `Clone or Download` button and select `Download Zip`.
+- Unzip the project and start with the code in that folder.
+- Create a new GitHub project and push this code to the new repository.
 
 ### Start the Application
 
-* Run `npm install`
-* Start postgres if not running already by using `brew services start postgresql`
-* Run `npm run server`
-* Run `npm run client`
-* Navigate to `localhost:3000`
-
+- Run `npm install`
+- Start postgres if not running already by using `brew services start postgresql`
+- Run `npm run server`
+- Run `npm run client`
+- Navigate to `localhost:3000`
 
 #### OPTIONAL Postman instructions
+
 1. [Import the sample routes JSON file](./PostmanPrimeSoloRoutes.json) by clicking `Import` in Postman. Select the file.
 2. Click `Collections` and `Send` the following three calls in order:
-    1. `POST /api/user/register` registers a new user, see body to change username/password
-    2. `POST /api/user/login` will login a user, see body to change username/password
-    3. `GET /api/user` will get user information, by default it's not very much
+   1. `POST /api/user/register` registers a new user, see body to change username/password
+   2. `POST /api/user/login` will login a user, see body to change username/password
+   3. `GET /api/user` will get user information, by default it's not very much
 
 ## Base Mode
 
@@ -115,7 +114,7 @@ If you're interested in securely storing passwords, you should salt and hash the
 Right now, we are storing the passwords in plain text, so if the enemy got a hold of our database, they would know everybody's password! Instead of storing plain passwords, we should scramble them up. That is called hashing.
 
 Uncomment this line to start hashing passwords for each user.
-    
+
 ```JavaScript
 return bcrypt.hashSync(password, '$2b$10$p5Wkte33hlOBOcUtJie6H.');
 ```
@@ -148,6 +147,7 @@ VALUES ('Admiral Greer', '$2b$10$p5Wkte33hlOBOcUtJie6H.PnCvk8v.KjZspVoAFtT7g5v5x
 ```
 
 ### Salting
+
 Now that we are no longer storing plain text passwords. The enemy is unable to see the crew's passwords. However, Lieutenant Ryan has been careless, and the enemy knows that his password is `tuna`. Because of this, they can see the lowest security information. Then they notice that Admiral Greer's hashed password perfectly matches Lieutenant Ryan's hashed password! They now know that Admiral Greer's password is `tuna` as well! We should fix our code so that even if two people have the same password, it has a different hash in the database. Enter salting! Salting is the process of generating a random string for each user. Notice that every password starts with `$2b$10$p5Wkte33hlOBOcUtJie6H.`. That is the salt! These should be random and generated uniquely for each user.
 
 Uncomment these two lines to start creating a unique salt for each user.
@@ -184,25 +184,26 @@ VALUES ('Admiral Greer', '$2b$10$uxPm0qeJAz70oqhEg8dX6uXlYc2PWUtPuZhTa65OiDv2LCH
 Admiral Greer and Lieutenant Ryan still have the same passwords as before, but it's not easy to see that because of salting and hashing.
 
 ### Create an Environment Variable
+
 `SERVER_SESSION_SECRET` is supposed to be a secret, but right now we are pushing it to GitHub! Let's create an environment variable so that we don't do this.
 
-* Uncomment `// return process.env.SERVER_SESSION_SECRET;` in `session-middleware.js`
-* Run `npm install dotenv` to get the node module that can create environment variables
-* Add the line `require('dotenv').config();` to the top of `server.js` to use the module
-* add `.env` to your `.gitignore` file
-* Create a `.env` file at the root of the project and paste this line into the file:
-    ```
-    SERVER_SESSION_SECRET=superDuperSecret
-    ```
-    While you're in your new `.env` file, take the time to replace `superDuperSecret` with some long random string like `25POUbVtx6RKVNWszd9ERB9Bb6` to keep your application secure. Here's a site that can help you: [https://passwordsgenerator.net/](https://passwordsgenerator.net/).
+- Uncomment `// return process.env.SERVER_SESSION_SECRET;` in `session-middleware.js`
+- Run `npm install dotenv` to get the node module that can create environment variables
+- Add the line `require('dotenv').config();` to the top of `server.js` to use the module
+- add `.env` to your `.gitignore` file
+- Create a `.env` file at the root of the project and paste this line into the file:
+  ```
+  SERVER_SESSION_SECRET=superDuperSecret
+  ```
+  While you're in your new `.env` file, take the time to replace `superDuperSecret` with some long random string like `25POUbVtx6RKVNWszd9ERB9Bb6` to keep your application secure. Here's a site that can help you: [https://passwordsgenerator.net/](https://passwordsgenerator.net/).
 
 ### Production Build
 
 Before pushing to Heroku, run `npm run build` in terminal. This will create a build folder that contains the code Heroku will be pointed at. You can test this build by typing `npm start`. Keep in mind that `npm start` will let you preview the production build but will **not** auto update.
 
-* Start postgres if not running already by using `brew services start postgresql`
-* Run `npm start`
-* Navigate to `localhost:5000`
+- Start postgres if not running already by using `brew services start postgresql`
+- Run `npm start`
+- Navigate to `localhost:5000`
 
 ### Deployment
 
@@ -215,5 +216,3 @@ Before pushing to Heroku, run `npm run build` in terminal. This will create a bu
 7. In the deploy section, select manual deploy
 
 ### Update Documentation
-
-

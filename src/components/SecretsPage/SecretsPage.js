@@ -1,18 +1,23 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import mapStoreToProps from '../../redux/mapStoreToProps';
 
 class SecretsPage extends Component {
   componentDidMount() {
-    this.props.dispatch({type: 'FETCH_SECRETS'});
+    this.props.dispatch({ type: 'FETCH_SECRETS' });
   }
 
   render() {
     return (
-      <div>
-        <p>Currently logged in as <b>{this.props.user.username}</b></p>
-        <p>Clearance level: <b>{this.props.user.clearance_level}</b></p>
+      <div className="container">
+        <p>
+          Currently logged in as <b>{this.props.store.user.username}</b>
+        </p>
+        <p>
+          Clearance level: <b>{this.props.store.user.clearance_level}</b>
+        </p>
         <ul>
-          {this.props.secrets.map(secret => (
+          {this.props.store.secrets.map((secret) => (
             <li>
               Clearance: {secret.secrecy_level} | Content: {secret.content}
             </li>
@@ -23,9 +28,4 @@ class SecretsPage extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  secrets: state.secrets,
-  user: state.user,
-});
-
-export default connect(mapStateToProps)(SecretsPage);
+export default connect(mapStoreToProps)(SecretsPage);
