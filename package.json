@@ -11,13 +11,13 @@
     "express": "^4.16.4",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
-    "pg": "^8.2.1",
+    "pg": "^8.3.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-redux": "^7.1.1",
     "react-router-dom": "^5.0.0",
-    "react-scripts": "^3.4.0",
+    "react-scripts": "^3.4.1",
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
     "redux-saga": "^1.0.2"
@@ -31,7 +31,7 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "nodemon": "^1.18.10"
+    "nodemon": "^2.0.4"
   },
   "browserslist": [
     ">0.2%",
