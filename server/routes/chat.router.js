@@ -8,7 +8,9 @@ const {
 // GET messages route
 router.get('/messages', (req, res) => {
   console.log('Retrieving stuff from prime_app database');
-  let queryText = (`SELECT * FROM "messages";`)
+  let queryText = (`SELECT "user"."id", "username", "channel_id", "message", "message_date" FROM "user"
+  JOIN "messages" ON "messages"."user_id" = "user"."id"
+  ORDER BY "messages"."message_date" DESC;`)
   pool.query(queryText).then(result => {
     res.send(result.rows);
   })

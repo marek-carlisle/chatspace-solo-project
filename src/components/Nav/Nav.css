@@ -8,14 +8,14 @@
 
 .nav {
   margin: 0 0 30px;
-  background-color: #00acb0;
+  background-color: #5e5e5e;
   overflow: hidden;
 }
 
 .nav-link {
   float: left;
   color: #f2f2f2;
-  background-color: #00acb0;
+  background-color: #5e5e5e;
   text-align: center;
   padding: 24px 10px;
   text-decoration: none;
