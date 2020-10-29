@@ -17,7 +17,6 @@ class InputBox extends Component {
     handleSubmit = (event) => {
         event.preventDefault()
         this.props.dispatch({ type: 'POST_MESSAGE', payload: this.state });
-        this.props.dispatch({ type: 'FETCH_MESSAGES' });
         this.setState({ message: '' });
     };
 
@@ -30,7 +29,7 @@ class InputBox extends Component {
 
                 <br />
 
-                <input type='text' placeholder='Send message' name='message' onChange={this.handleChange} />
+                <input type='text' placeholder='Send message' name='message' value={this.state.message} onChange={this.handleChange} />
 
                 <br />
 
