@@ -14,6 +14,12 @@ class InputBox extends Component {
         });
     };
 
+    handleEnter = (event) => {
+        if (event.key === 'Enter') {
+            this.handleSubmit(event);
+        };
+    };
+
     handleSubmit = (event) => {
         event.preventDefault()
         this.props.dispatch({ type: 'POST_MESSAGE', payload: this.state });
@@ -29,7 +35,7 @@ class InputBox extends Component {
 
                 <br />
 
-                <input type='text' placeholder='Send message' name='message' value={this.state.message} onChange={this.handleChange} />
+                <input type='text' placeholder='Send message' name='message' onKeyPress={this.handleEnter} value={this.state.message} onChange={this.handleChange} />
 
                 <br />
 
@@ -44,4 +50,4 @@ const mapStoreToProps = (reduxState) => ({
     chat: reduxState.chat
 });
 
-export default connect(mapStoreToProps) (InputBox);
+export default connect(mapStoreToProps)(InputBox);

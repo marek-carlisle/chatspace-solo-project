@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import MessageBox from './MessageBox';
+import ChannelPage from './ChannelPage';
 import InputBox from './InputBox';
 
 class ChatPage extends Component {
@@ -13,7 +13,7 @@ class ChatPage extends Component {
 
             <br />
 
-            <MessageBox />
+            <ChannelPage />
 
             </>
         );

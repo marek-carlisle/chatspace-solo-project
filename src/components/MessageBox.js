@@ -4,37 +4,41 @@ import MessageItem from './MessageItem';
 
 class MessageBox extends Component {
 
-state = {
-    null: null,
-};
+    state = {
+        null: null,
+    };
 
-componentDidMount() {
-    this.getMessages();
-};
+    componentDidMount() {
+        this.getMessages();
+        // this.reloadTimer();
+    };
 
-getMessages = () => {
-    console.log('Getting messages from prime_app database');
-    this.props.dispatch({
-        type: 'FETCH_MESSAGES'
-    });
-};
+    reloadTimer = () => {
+        setInterval(this.getMessages, 1000);
+    };
 
-render() {
-    console.log(this.state);
-    return (
-        <>
+    getMessages = () => {
+        this.props.dispatch({
+            type: 'FETCH_MESSAGES'
+        });
+    };
 
-        <ul>
-          {this.props.chat !== undefined && this.props.chat.map((message) => {
-            return (
-              <MessageItem message={message} />
-            )
-          })}
-        </ul>
+    render() {
+        console.log('This is your chat data, ', this.state);
+        return (
+            <>
 
-        </>
-    );
-};
+                <ul>
+                    {this.props.chat !== undefined && this.props.chat.map((message) => {
+                        return (
+                            <MessageItem message={message} />
+                        )
+                    })}
+                </ul>
+
+            </>
+        );
+    };
 
 
 
@@ -44,4 +48,4 @@ const mapStoreToProps = (reduxState) => ({
     chat: reduxState.chat
 });
 
-export default connect(mapStoreToProps) (MessageBox);
+export default connect(mapStoreToProps)(MessageBox);
