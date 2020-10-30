@@ -24,7 +24,7 @@ class MessageBox extends Component {
     };
 
     render() {
-        console.log('This is your chat data, ', this.state);
+        console.log('This is your chat data, ', this.props);
         return (
             <>
 
