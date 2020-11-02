@@ -22,7 +22,7 @@ function* chatSaga() {
 
 function* fetchMessages(action) {
     try {
-        const response = yield axios.get('/chat/messages', action.payload.channel_id);
+        const response = yield axios.get('/chat/messages', action.payload);
         yield put({ type: 'SET_MESSAGES', payload: response.data });
     } catch (error) {
         console.log('Failed to get messages from /chat/messages', error);

@@ -20,15 +20,15 @@ class MessageBox extends Component {
     getMessages = () => {
         this.props.dispatch({
             type: 'FETCH_MESSAGES',
-            payload: {
-                channel_id: this.props.channelSelection,
-            }
+            // payload: {
+            //     channel_id: this.props.channelSelection.selectedChannel,
+            // }
         });
     };
 
     render() {
-        console.log('This is your chat data! ', this.props);
-        console.log(this.props.channelSelection)
+        // console.log(this.props.channelSelection.selectedChannel)
+        console.log('this is props, ', this.props)
         return (
             <>
 

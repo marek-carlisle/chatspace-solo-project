@@ -4,14 +4,27 @@ import MessageBox from './MessageBox';
 
 class ChannelItem extends Component {
 
-    state = {
-        selectedChannel: null,
-    };
+    // state = {
+    //     selectedChannel: null,
+    // };
 
-    setChannel = () => {
-        this.setState({
-            selectedChannel: `${this.props.channel.id}`,
+    // setChannel = () => {
+    //     this.setState({
+    //         selectedChannel: `${this.props.channel.id}`,
+    //     });
+    // };
+
+    selectChannel = () => {
+        console.log(`Channel ${this.props.channel.id} has been selected.`);
+        this.props.dispatch({
+            type: 'SELECT_CHANNEL',
+            payload: {
+                selectedChannel: this.props.channel.id,
+            }
         });
+        // this.setState({
+        //     selectedChannel: null,
+        // });
     };
 
     render() {
@@ -21,10 +34,8 @@ class ChannelItem extends Component {
 
             <li>
                 <h2>{this.props.channel.channel_name}</h2>
-                <button onClick={this.setChannel}>Load channel</button>
+                <button onClick={this.selectChannel}>Load channel</button>
             </li>
-
-            <MessageBox channelSelection={this.state.selectedChannel}/>
 
             </>
 
@@ -32,4 +43,4 @@ class ChannelItem extends Component {
     };
 };
 
-export default ChannelItem;
+export default connect() (ChannelItem);

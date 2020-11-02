@@ -37,7 +37,7 @@ class ChannelPage extends Component {
 };
 
 const mapStoreToProps = (reduxState) => ({
-    channels: reduxState.channels
+    channels: reduxState.channels.channelList
 });
 
 export default connect(mapStoreToProps)(ChannelPage);

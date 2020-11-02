@@ -13,7 +13,7 @@ router.get('/getchannels', (req, res) => {
     res.send(result.rows);
   })
     .catch(error => {
-      console.log('Error obtaining messages', error);
+      console.log('Error obtaining channels', error);
       res.sendStatus(418);
     });
 });
