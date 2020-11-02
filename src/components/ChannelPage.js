@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import MessageBox from './MessageBox';
+import ChannelItem from './ChannelItem';
 
 class ChannelPage extends Component {
 
@@ -22,23 +23,20 @@ class ChannelPage extends Component {
 
                 <h2>Channel Page</h2>
 
+                <ul>
+                    {this.props.channels !== undefined && this.props.channels.map((channel) => {
+                        return (
+                            <ChannelItem channel={channel} />
+                        )
+                    })}
+                </ul>
+
                 <MessageBox />
 
             </>
 
-        )
-    }
-
-
-
-
-
-
-
-
-
-
-
+        );
+    };
 };
 
 const mapStoreToProps = (reduxState) => ({
