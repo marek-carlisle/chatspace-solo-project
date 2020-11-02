@@ -12,7 +12,6 @@ class ChannelItem extends Component {
         this.setState({
             selectedChannel: `${this.props.channel.id}`,
         });
-        console.log(this.state.selectedChannel);
     };
 
     render() {
@@ -24,6 +23,8 @@ class ChannelItem extends Component {
                 <h2>{this.props.channel.channel_name}</h2>
                 <button onClick={this.setChannel}>Load channel</button>
             </li>
+
+            <MessageBox channelSelection={this.state.selectedChannel}/>
 
             </>
 

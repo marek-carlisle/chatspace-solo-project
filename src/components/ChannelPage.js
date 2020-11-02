@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import MessageBox from './MessageBox';
 import ChannelItem from './ChannelItem';
 
 class ChannelPage extends Component {
@@ -30,8 +29,6 @@ class ChannelPage extends Component {
                         )
                     })}
                 </ul>
-
-                <MessageBox />
 
             </>
 

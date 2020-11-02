@@ -20,9 +20,9 @@ function* chatSaga() {
     )
 };
 
-function* fetchMessages() {
+function* fetchMessages(action) {
     try {
-        const response = yield axios.get('/chat/messages');
+        const response = yield axios.get('/chat/messages', action.payload.channel_id);
         yield put({ type: 'SET_MESSAGES', payload: response.data });
     } catch (error) {
         console.log('Failed to get messages from /chat/messages', error);
@@ -31,8 +31,8 @@ function* fetchMessages() {
 
 function* postMessage(action) {
     try {
-        const response = yield axios.post('/chat/postmessage', action.payload)
-        yield put({ type: 'FETCH_MESSAGES' })
+        const response = yield axios.post('/chat/postmessage', action.payload);
+        yield put({ type: 'FETCH_MESSAGES' });
     } catch (err) {
         console.log('Failed to add message to chat/postmessage', err)
     };

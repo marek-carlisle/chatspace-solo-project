@@ -14,17 +14,21 @@ class MessageBox extends Component {
     };
 
     reloadTimer = () => {
-        setInterval(this.getMessages, 1000);
+        setInterval(this.getMessages, 3 * 1000);
     };
 
     getMessages = () => {
         this.props.dispatch({
-            type: 'FETCH_MESSAGES'
+            type: 'FETCH_MESSAGES',
+            payload: {
+                channel_id: this.props.channelSelection,
+            }
         });
     };
 
     render() {
         console.log('This is your chat data! ', this.props);
+        console.log(this.props.channelSelection)
         return (
             <>
 
