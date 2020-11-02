@@ -10,6 +10,11 @@ state = {
 
 componentDidMount() {
     this.getMessages();
+    // this.reloadTimer();
+};
+
+reloadTimer = () => {
+    setInterval(this.getMessages, 3 * 1000);
 };
 
 getMessages = () => {
