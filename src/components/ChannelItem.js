@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import MessageBox from './MessageBox';
 
 class ChannelItem extends Component {
 
@@ -18,13 +17,8 @@ class ChannelItem extends Component {
         console.log(`Channel ${this.props.channel.id} has been selected.`);
         this.props.dispatch({
             type: 'SELECT_CHANNEL',
-            payload: {
-                selectedChannel: this.props.channel.id,
-            }
+            payload: this.props.channel.id,
         });
-        // this.setState({
-        //     selectedChannel: null,
-        // });
     };
 
     render() {

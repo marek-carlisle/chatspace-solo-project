@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { put, takeEvery, takeLatest } from 'redux-saga/effects';
+import { put, takeEvery, takeLatest, select } from 'redux-saga/effects';
 
 function* chatSaga() {
     yield takeEvery(
@@ -20,9 +20,12 @@ function* chatSaga() {
     )
 };
 
+const getSelectedChannel = (reduxState) => reduxState.channels.selectedChannel || ''; // Channel ID or an empty string, selector reaches into redux state and grabs the seleted channel ID
+
 function* fetchMessages(action) {
     try {
-        const response = yield axios.get('/chat/messages', action.payload);
+        const channel_id = yield select(getSelectedChannel); // Select is meant to use the yield keyword
+        const response = yield axios.get(`/chat/messages/${channel_id}`);
         yield put({ type: 'SET_MESSAGES', payload: response.data });
     } catch (error) {
         console.log('Failed to get messages from /chat/messages', error);
@@ -31,7 +34,8 @@ function* fetchMessages(action) {
 
 function* postMessage(action) {
     try {
-        const response = yield axios.post('/chat/postmessage', action.payload);
+        const channel_id = yield select(getSelectedChannel); // Select is meant to use the yield keyword
+        const response = yield axios.post(`/chat/postmessage/${channel_id}`, action.payload);
         yield put({ type: 'FETCH_MESSAGES' });
     } catch (err) {
         console.log('Failed to add message to chat/postmessage', err)

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { put, takeEvery, takeLatest } from 'redux-saga/effects';
+import { put, takeEvery, takeLatest, select } from 'redux-saga/effects';
 
 function* channelSaga() {
     yield takeEvery(

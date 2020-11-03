@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 class InputBox extends Component {
 
     state = {
-        channel: '1',
         message: '',
     };
 

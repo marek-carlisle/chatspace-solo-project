@@ -6,14 +6,15 @@ const {
 } = require('../modules/authentication-middleware');
 
 // GET messages route
-router.get('/messages', (req, res) => {
+router.get('/messages/:channel_id?', (req, res) => {
+  const channel_id = req.params.channel_id || 1; // Default to channel 1
   console.log('Retrieving stuff from prime_app database');
   let queryText = (`
   SELECT "user"."id", "username", "channel_id", "messages"."id" AS "message_id", "message", "message_date" FROM "user"
   JOIN "messages" ON "messages"."user_id" = "user"."id"
   WHERE "channel_id" = ($1)
   ORDER BY "messages"."message_date" DESC;`)
-  pool.query(queryText, [req.body.channel_id])
+  pool.query(queryText, [channel_id])
   .then(result => {
     res.send(result.rows);
   })
@@ -24,11 +25,11 @@ router.get('/messages', (req, res) => {
 });
 
 // POST messages route
-router.post('/postmessage', rejectUnauthenticated, (req, res) => {
+router.post('/postmessage/:channel_id?', rejectUnauthenticated, (req, res) => {
   console.log('Adding message into prime_app database', req.user, req.body);
   let queryText = `INSERT INTO "messages" ("user_id", "channel_id", "message")
   VALUES ($1, $2, $3);`;
-  pool.query(queryText, [req.user.id, req.body.channel, req.body.message])
+  pool.query(queryText, [req.user.id, req.params.channel_id, req.body.message])
     .then(result => {
       res.sendStatus(200)
     })
