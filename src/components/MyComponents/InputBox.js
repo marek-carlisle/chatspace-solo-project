@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import Button from 'react-bootstrap/Button';
+
 class InputBox extends Component {
 
     state = {
@@ -28,19 +30,17 @@ class InputBox extends Component {
     render() {
         console.log(this.props);
         return (
-            <>
+            
 
-                <h1>Chat Page</h1>
+                <div id='InputBox'>
 
-                <br />
+                    <input type='text' placeholder='Send message' name='message' onKeyPress={this.handleEnter} value={this.state.message} onChange={this.handleChange} />
+                    {' '}
+                    <Button onClick={this.handleSubmit}>Send</Button>
 
-                <input type='text' placeholder='Send message' name='message' onKeyPress={this.handleEnter} value={this.state.message} onChange={this.handleChange} />
+                </div>
 
-                <br />
-
-                <button onClick={this.handleSubmit}>Send</button>
-
-            </>
+            
         );
     };
 };

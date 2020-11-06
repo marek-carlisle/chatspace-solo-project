@@ -19,17 +19,13 @@ class ChannelPage extends Component {
         return (
 
             <>
-
-                <h2>Channel Page</h2>
-
-                <ul>
+                <ul id='ChannelPage'>
                     {this.props.channels !== undefined && this.props.channels.map((channel) => {
                         return (
                             <ChannelItem channel={channel} />
                         )
                     })}
                 </ul>
-
             </>
 
         );

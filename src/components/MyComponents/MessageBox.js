@@ -28,7 +28,7 @@ class MessageBox extends Component {
         return (
             <>
 
-                <ul>
+                <ul id='MessageBox'>
                     {this.props.chat !== undefined && this.props.chat.map((message) => {
                         return (
                             <MessageItem message={message} />

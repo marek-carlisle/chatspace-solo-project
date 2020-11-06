@@ -12,14 +12,14 @@ const Nav = (props) => {
   };
 
   if (props.store.user.id != null) {
-    loginLinkData.path = '/user';
-    loginLinkData.text = 'Home';
+    loginLinkData.path = '/chat';
+    loginLinkData.text = 'Chat';
   }
 
   return (
     <div className="nav">
-      <Link to="/home">
-        <h2 className="nav-title">Prime Solo Project</h2>
+      <Link to="/chat">
+        <h2 className="nav-title">Chatspace</h2>
       </Link>
       <div className="nav-right">
         <Link className="nav-link" to={loginLinkData.path}>
@@ -32,13 +32,13 @@ const Nav = (props) => {
         {props.store.user.id && (
           <>
 
-            <Link className="nav-link" to="/chat">
+            {/* <Link className="nav-link" to="/chat">
               Chat
-            </Link>
+            </Link> */}
 
-            <Link className="nav-link" to="/info">
+            {/* <Link className="nav-link" to="/info">
               Info Page
-            </Link>
+            </Link> */}
             <LogOutButton className="nav-link" />
           </>
         )}

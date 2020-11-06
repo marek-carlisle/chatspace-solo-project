@@ -20,7 +20,7 @@ function* chatSaga() {
     )
 };
 
-const getSelectedChannel = (reduxState) => reduxState.channels.selectedChannel || ''; // Channel ID or an empty string, selector reaches into redux state and grabs the seleted channel ID
+const getSelectedChannel = (reduxState) => reduxState.channels.selectedChannel || 1; // Selected channel, or channel 1, selector reaches into redux state and grabs the seleted channel ID
 
 function* fetchMessages(action) {
     try {

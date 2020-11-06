@@ -1,0 +1,118 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0%;
+    color: #6699cc;
+    background-color: #2c2c2c;
+    background-image: url('/images/space.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+  }
+
+#InputBox {
+    background-color: #1c1c1c;
+    border-radius: 5px;
+    margin: 6px;
+    width: 98%;
+  }
+
+  #InputBox input {
+    margin: 10px;
+    margin-bottom: 10px;
+    padding: 10px 50% 5px 5px;
+    background-color: #ffffff;
+    border-color: #b2b2b2;
+    color: #003b6d;
+    border-width: 1px 1px 3px;
+    border-radius: 4px;
+  }
+
+  #InputBox button {
+      float: right;
+      margin: 10px
+  }
+
+  ::placeholder {
+    color: #6699cc;
+    opacity: 60%;
+  }
+
+  #ChannelPage {
+      background-color: #80676767;
+      width: 20%;
+      float: left;
+      padding: 0%;
+      margin-left: 1%;
+      margin-top: 0%;
+      border-radius: 5px;
+  }
+
+  .ChannelItem {
+      background-color: #1c1c1c;
+      margin: 6px;
+      padding: 5px;
+      border-radius: 5px;
+  }
+
+  .ChannelItem h3 {
+      margin-top: 0%;
+      margin-bottom: 3%;
+  }
+
+  #MessageBox { 
+      padding: 0%;
+      margin: 0%;
+      height: 60vh;
+      overflow: auto;
+      border-radius: 5px;
+      display: flex;
+      flex-direction: column-reverse;
+  }
+
+  hr {
+      height: 1px;
+      border: none;
+      background-color: #003b6d;
+  }
+
+  #ChatBox {
+    width: 77%;
+    float: left;
+    margin-left: 1%;
+    background-color:#80676767;
+    border-radius: 5px;
+  }
+
+  .MessageItem {
+      background-color: #1c1c1c;
+      margin: 6px;
+      padding: 5px;
+      border-radius: 5px;
+}
+
+.MessageItem p {
+    margin-top: 0%;
+}
+
+.MessageItem h4 {
+    margin: 0%;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
