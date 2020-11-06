@@ -43,4 +43,4 @@ class ChatPage extends Component {
     };
 };
 
-export default connect()(ChatPage);
+export default connect()(ChatPage); 

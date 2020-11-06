@@ -10,11 +10,11 @@ class MessageBox extends Component {
 
     componentDidMount() {
         this.getMessages();
-        // this.reloadTimer();
+        this.reloadTimer();
     };
 
     reloadTimer = () => {
-        setInterval(this.getMessages, 3 * 1000);
+        setInterval(this.getMessages, 1 * 1000);
     };
 
     getMessages = () => {
