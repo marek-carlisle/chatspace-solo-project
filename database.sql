@@ -1,4 +1,3 @@
-
 -- USER is a reserved keyword with Postgres
 -- You must use double quotes in every query that user is in:
 -- ex. SELECT * FROM "user";
@@ -6,6 +5,7 @@
 -- CREATE TABLES!!!
 
 CREATE TABLE "user" (
+
   "id" SERIAL PRIMARY KEY,
   "first_name"  VARCHAR (40) NOT NULL,
   "middle_name" VARCHAR (40), -- Client NEEDS to send an EMPTY STRING if user DOES NOT input this OPTIONAL input
@@ -82,5 +82,3 @@ VALUES
 
 SELECT * FROM "image_list";
 
-
--- JOIN THE TABLES!!!

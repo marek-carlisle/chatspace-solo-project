@@ -1,4 +1,3 @@
-
 const express = require('express');
 require('dotenv').config();
 
@@ -10,6 +9,7 @@ const passport = require('./strategies/user.strategy');
 
 // Route includes
 const userRouter = require('./routes/user.router');
+
 const chatRouter = require('./routes/chat.router');
 const channelRouter = require('./routes/channel.router');
 
@@ -28,6 +28,7 @@ app.use(passport.session());
 app.use('/api/user', userRouter);
 app.use('/chat', chatRouter);
 app.use('/channels', channelRouter);
+
 
 // Serve static files
 app.use(express.static('build'));

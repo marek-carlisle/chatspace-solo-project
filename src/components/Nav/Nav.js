@@ -20,6 +20,7 @@ const Nav = (props) => {
     <div className="nav">
       <Link to="/chat">
         <h2 className="nav-title">Chatspace</h2>
+
       </Link>
       <div className="nav-right">
         <Link className="nav-link" to={loginLinkData.path}>

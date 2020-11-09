@@ -1,4 +1,3 @@
-
 # Chatspace
 A project I created because I wanted an alternative way to communicate with friends that sidesteps the limits of what the popular chatsites give.
 
