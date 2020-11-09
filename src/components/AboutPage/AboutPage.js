@@ -8,7 +8,7 @@ import React from 'react';
 const AboutPage = () => (
   <div className="container">
     <div>
-      <p>This about page is for anyone to read!</p>
+      <p>Chatspace is a basic messaging service under Marek Carlisles design. Right now, the application is small, however only time can realize my full scope of this website.</p>
     </div>
   </div>
 );

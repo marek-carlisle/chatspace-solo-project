@@ -15,8 +15,8 @@ body {
 
 #InputBox {
     background-color: #1c1c1c;
-    border-radius: 5px;
-    margin: 6px;
+    border-radius: 3px;
+    margin: 3px;
     /* width: 98%; */
   }
 
@@ -50,15 +50,15 @@ body {
       padding: 0%;
       margin-left: 1%;
       margin-top: 0%;
-      border-radius: 5px;
+      border-radius: 3px;
       /* min-content: 50px; */
   }
 
   .ChannelItem {
       background-color: #1c1c1c;
-      margin: 6px;
+      margin: 3px;
       padding: 5px;
-      border-radius: 5px;
+      border-radius: 3px;
   }
 
   .ChannelItem h3 {
@@ -69,9 +69,9 @@ body {
   #MessageBox { 
       padding: 0%;
       margin: 0%;
-      height: 60vh;
+      height: 60vh; 
       overflow: auto;
-      border-radius: 5px;
+      border-radius: 3px;
       display: flex;
       flex-direction: column-reverse;
   }
@@ -87,14 +87,14 @@ body {
     float: left;
     margin-left: 1%;
     background-color:#80676767;
-    border-radius: 5px;
+    border-radius: 3px;
   }
 
   .MessageItem {
       background-color: #1c1c1c;
-      margin: 6px;
+      margin: 3px;
       padding: 5px;
-      border-radius: 5px;
+      border-radius: 3px;
 }
 
 .MessageItem p {
